@@ -407,3 +407,22 @@ Como o banco de dados vetorial está na nuvem (Qdrant Cloud), as etapas de teste
 * `view_file` — para analisar o progresso de `DOCUMENTATION_ANTIGRAVITY.MD`.
 * `write_to_file` — para planejar a atualização do documento e gerenciar as tarefas do `task.md`.
 * `replace_file_content` — para registrar o Prompt 21 no arquivo de documentação.
+
+---
+
+### Prompt 22: Remoção Completa das Configurações e Badges de CI (09/07/2026)
+
+**Resumo do Prompt:** O usuário solicitou remover todos os arquivos e referências associadas à Integração Contínua (CI) do GitHub Actions na aplicação.
+
+**Resposta:**
+- Removeram-se os arquivos de workflow de CI `.github/workflows/ci.yml` e `.github/workflows/docker-build.yml` do repositório Git local via comando.
+- Removeu-se a badge de status do CI (`![CI]...`) no cabeçalho do arquivo `README.md`.
+
+**Erros resolvidos:** Nenhum.
+
+**Ferramentas utilizadas:**
+* `view_file` — para inspecionar os arquivos `README.md` e `DOCUMENTATION_ANTIGRAVITY.MD`.
+* `list_dir` — para listar os workflows na pasta `.github/workflows`.
+* `run_command` — para remover os arquivos de workflow do git local.
+* `replace_file_content` — para remover a badge no `README.md` e registrar o Prompt 22 no log de documentação.
+* `write_to_file` — para criar a especificação do plano de execução e o arquivo de tarefas `task.md`.

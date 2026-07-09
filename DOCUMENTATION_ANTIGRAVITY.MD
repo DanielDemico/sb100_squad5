@@ -374,16 +374,36 @@ Como o banco de dados vetorial está na nuvem (Qdrant Cloud), as etapas de teste
 * `write_to_file` — para reescrever `ui/chat_ui.py`, `tests/test_chat_ui.py`, `tests/test_schemas.py` e `walkthrough.md`.
 * `run_command` — para executar os testes e validar que tudo passou (317 passed).
 
+---
 
+### Prompt 20: Configuração de Repositório Remoto Git após Fork (09/07/2026)
 
+**Resumo do Prompt:** O usuário clonou o repositório original e depois fez um fork no GitHub. Ele solicitou auxílio para configurar os links dos remotos do Git localmente de modo que apontem para o seu fork, permitindo realizar pushes.
 
+**Resposta:**
+- Explicou-se a estratégia recomendada de manter o fork como `origin` e o repositório original como `upstream`.
+- Detalharam-se os comandos para visualizar remotos atuais (`git remote -v`), atualizar a URL do remote origin (`git remote set-url origin <URL_DO_FORK>`), adicionar o repositório original como upstream (`git remote add upstream <URL_DO_ORIGINAL>`) e verificar o resultado final.
 
+**Erros resolvidos:** Nenhum (ajuste de configuração operacional de Git).
 
+**Ferramentas utilizadas:**
+* `view_file` — para inspecionar `DOCUMENTATION_ANTIGRAVITY.MD`.
+* `write_to_file` — para criar a especificação do plano de execução e o arquivo de tarefas `task.md`.
+* `replace_file_content` — para registrar as ações do prompt atual no histórico de documentação e atualizar as tarefas.
 
+---
 
+### Prompt 21: Recusa de Configuração de Remote Upstream (09/07/2026)
 
+**Resumo do Prompt:** O usuário informou que não deseja configurar o repositório original como `upstream`, optando exclusivamente por atualizar a URL de `origin` para o seu fork pessoal.
 
+**Resposta:**
+- Apoiou-se a decisão do usuário.
+- O usuário executou com sucesso o comando `git remote set-url origin https://github.com/DanielDemico/sb100_squad5.git` e validou por meio de `git remote -v` que o repositório local passou a apontar unicamente para o seu fork pessoal como `origin`.
 
+**Erros resolvidos:** Nenhum (decisão de design de versionamento do usuário).
 
-
-
+**Ferramentas utilizadas:**
+* `view_file` — para analisar o progresso de `DOCUMENTATION_ANTIGRAVITY.MD`.
+* `write_to_file` — para planejar a atualização do documento e gerenciar as tarefas do `task.md`.
+* `replace_file_content` — para registrar o Prompt 21 no arquivo de documentação.

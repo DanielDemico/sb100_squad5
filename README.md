@@ -2,7 +2,7 @@
 ![FastAPI](https://img.shields.io/badge/FastAPI-0.111%2B-009688?logo=fastapi&logoColor=white)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-ESSE PROJETO FOI INICIADO POR 
+ESSE PROJETO FOI INICIADO POR [https://github.com/VicVald](https://github.com/VicVald) para o Projeto de Iniciação Científica SMARTB100, CONTINUADO POR [https://github.com/LukeSantossz](https://github.com/LukeSantossz) e [https://github.com/DanielDemico](https://github.com/DanielDemico).
 
 # SmartB100 — Agriculture RAG Agent
 

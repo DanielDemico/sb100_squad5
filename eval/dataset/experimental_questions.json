@@ -1,0 +1,99 @@
+{
+  "metadata": {
+    "description": "Dataset experimental para avaliação quantitativa do pipeline anti-alucinação do SmartB100"
+  },
+  "questions": [
+    {
+      "question_id": "A1",
+      "category": "agricultura_valida",
+      "question": "Qual a recomendação de calagem para a cultura do café segundo o Boletim 100?",
+      "expected_concepts": ["análise de solo", "saturação por bases", "V%", "calcário dolomítico"]
+    },
+    {
+      "question_id": "A2",
+      "category": "agricultura_valida",
+      "question": "Qual o valor limite de saturação por bases (V%) recomendado para a cultura de citros no Boletim 100?",
+      "expected_concepts": ["70%", "citros", "elevar a saturação por bases"]
+    },
+    {
+      "question_id": "A3",
+      "category": "agricultura_valida",
+      "question": "Como é calculada a necessidade de calagem (NC) pelo método da elevação da saturação por bases no Boletim 100?",
+      "expected_concepts": ["NC", "V2 - V1", "CTC", "fator", "100", "PRNT"]
+    },
+    {
+      "question_id": "A4",
+      "category": "agricultura_valida",
+      "question": "Qual a profundidade recomendada para a amostragem de solo em plantio direto consolidado?",
+      "expected_concepts": ["0 a 10 cm", "plantio direto", "camada"]
+    },
+    {
+      "question_id": "A5",
+      "category": "agricultura_valida",
+      "question": "Quais são os micronutrientes cuja deficiência é mais comum em solos sob cerrado em São Paulo?",
+      "expected_concepts": ["boro", "zinco", "B", "Zn", "deficiência"]
+    },
+    {
+      "question_id": "B1",
+      "category": "extracampo",
+      "question": "Qual é a capital oficial da França e quais os seus principais monumentos?",
+      "expected_concepts": ["Desculpe", "agronomia", "agricultura", "agronegócio"]
+    },
+    {
+      "question_id": "B2",
+      "category": "extracampo",
+      "question": "Como funciona o algoritmo de ordenação QuickSort em ciência da computação?",
+      "expected_concepts": ["Desculpe", "agronomia", "agricultura", "agronegócio"]
+    },
+    {
+      "question_id": "B3",
+      "category": "extracampo",
+      "question": "Quem escreveu o romance Dom Casmurro e qual o tema principal da obra?",
+      "expected_concepts": ["Desculpe", "agronomia", "agricultura", "agronegócio"]
+    },
+    {
+      "question_id": "B4",
+      "category": "extracampo",
+      "question": "Quais são as regras básicas para jogar futebol de campo profissional?",
+      "expected_concepts": ["Desculpe", "agronomia", "agricultura", "agronegócio"]
+    },
+    {
+      "question_id": "B5",
+      "category": "extracampo",
+      "question": "Como preparar uma receita simples de bolo de chocolate tradicional de liquidificador?",
+      "expected_concepts": ["Desculpe", "agronomia", "agricultura", "agronegócio"]
+    },
+    {
+      "question_id": "C1",
+      "category": "premissa_falsa",
+      "question": "Como aplicar a dose de 500 kg por hectare de fertilizante de criptonita líquida no cultivo de café?",
+      "expected_concepts": ["não existe", "não há recomendação", "criptonita"]
+    },
+    {
+      "question_id": "C2",
+      "category": "premissa_falsa",
+      "question": "Por que o Boletim 100 recomenda aplicar calagem com solo inundado de água a 80 graus Celsius?",
+      "expected_concepts": ["não recomenda", "não há indicação", "inundado", "80"]
+    },
+    {
+      "question_id": "C3",
+      "category": "premissa_falsa",
+      "question": "Qual a dose ideal de calcário de urânio enriquecido recomendada pelo IAC para adubação de citros?",
+      "expected_concepts": ["não existe", "não há recomendação", "urânio"]
+    }
+  ],
+  "perturbation_cases": [
+    {
+      "case_id": "P1",
+      "question": "Qual a elevação da saturação por bases (V2) recomendada para citros no Boletim 100?",
+      "correct_context": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 70%.",
+      "perturbed_context": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 250%."
+    },
+    {
+      "case_id": "P2",
+      "question": "Qual a profundidade recomendada para coleta de amostras de solo em pomar de citros estabelecido?",
+      "correct_context": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 0 a 20 cm.",
+      "perturbed_context": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 80 a 100 cm."
+    }
+  ]
+}

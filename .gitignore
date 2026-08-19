@@ -44,6 +44,7 @@ Thumbs.db
 # AI - local agent artifacts (never tracked)
 .claude/
 docs/superpowers/
+.agents
 
 # Miscellaneous
 coverage.xml

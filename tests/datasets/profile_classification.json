@@ -1,0 +1,1502 @@
+[
+  {
+    "id": 1,
+    "question": "Como faço para colocar calcário na minha plantação?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 2,
+    "question": "O que é calagem e para que serve?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 3,
+    "question": "Por que a terra fica ácida?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 4,
+    "question": "Como saber se a minha terra precisa de adubo?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 5,
+    "question": "O que significa NPK no saco de adubo?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 6,
+    "question": "Qual a diferença entre adubo orgânico e químico?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 7,
+    "question": "Como molhar as plantas da melhor forma?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 8,
+    "question": "O que fazer quando a folha da planta fica amarela?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 9,
+    "question": "Como matar bichinhos que estão comendo as plantas?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 10,
+    "question": "Para que serve o nitrogênio na plantação?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 11,
+    "question": "O solo vermelho é melhor que o solo escuro?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 12,
+    "question": "Como preparar a terra para plantar milho?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 13,
+    "question": "Qual o melhor mês para plantar feijão?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 14,
+    "question": "O que é rotação de culturas de forma simples?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 15,
+    "question": "Como cuidar da horta em casa?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 16,
+    "question": "O que faz a planta crescer mais rápido?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 17,
+    "question": "Por que as folhas das plantas secam nas pontas?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 18,
+    "question": "Para que serve o potássio nas plantas?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 19,
+    "question": "Como tirar o mato da plantação sem estragar a terra?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 20,
+    "question": "O calcário faz mal para a planta se colocar demais?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 21,
+    "question": "Qual a diferença entre terra e solo?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 22,
+    "question": "Como guardar sementes para o próximo ano?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 23,
+    "question": "Por que precisa jogar água todo dia na roça?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 24,
+    "question": "O que é uréia e como usar na plantação?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 25,
+    "question": "Como saber o momento certo de colher?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 26,
+    "question": "O que é compostagem simples?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 27,
+    "question": "Como usar cinza de madeira nas plantas?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 28,
+    "question": "Por que a plantação fica fraca na seca?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 29,
+    "question": "O que é esterco e qual o melhor tipo?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 30,
+    "question": "Como tratar a terra antes da chuva?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 31,
+    "question": "Por que o milho não cresce direito?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 32,
+    "question": "O que faz o tomate ficar com mancha preta embaixo?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 33,
+    "question": "Como proteger as plantas do sol muito forte?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 34,
+    "question": "Qual a quantidade de água que a soja precisa?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 35,
+    "question": "Como evitar lagartas na plantação de couve?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 36,
+    "question": "O que é adubação de cobertura?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 37,
+    "question": "Por que a terra fica dura demais?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 38,
+    "question": "Como melhorar a terra muito areosa?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 39,
+    "question": "O que é calcário dolomítico de forma fácil de entender?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 40,
+    "question": "Como usar esterco de galinha na roça?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 41,
+    "question": "O que é veneno agrícola para lagartas?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 42,
+    "question": "Por que deve plantar na época da chuva?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 43,
+    "question": "Como combater formigas na horta?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 44,
+    "question": "O que é ph do solo em palavras simples?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 45,
+    "question": "Como saber se o solo está bom para plantar café?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 46,
+    "question": "Por que as flores caem antes de dar fruto?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 47,
+    "question": "O que é cobertura morta para a terra?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 48,
+    "question": "Como recuperar uma terra cansada?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 49,
+    "question": "Qual adubo deixa a raiz forte?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 50,
+    "question": "Como evitar que a água leve a terra embora?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 51,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 51?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 52,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 52?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 53,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 53?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 54,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 54?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 55,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 55?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 56,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 56?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 57,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 57?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 58,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 58?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 59,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 59?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 60,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 60?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 61,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 61?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 62,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 62?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 63,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 63?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 64,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 64?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 65,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 65?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 66,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 66?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 67,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 67?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 68,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 68?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 69,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 69?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 70,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 70?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 71,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 71?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 72,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 72?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 73,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 73?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 74,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 74?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 75,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 75?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 76,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 76?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 77,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 77?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 78,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 78?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 79,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 79?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 80,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 80?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 81,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 81?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 82,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 82?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 83,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 83?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 84,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 84?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 85,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 85?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 86,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 86?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 87,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 87?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 88,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 88?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 89,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 89?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 90,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 90?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 91,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 91?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 92,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 92?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 93,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 93?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 94,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 94?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 95,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 95?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 96,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 96?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 97,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 97?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 98,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 98?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 99,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 99?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 100,
+    "question": "Pergunta simples leiga sobre manejo básico de solo número 100?",
+    "expected_profile": "O Leigo"
+  },
+  {
+    "id": 101,
+    "question": "Quanto de calcário devo jogar na terra antes de plantar?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 102,
+    "question": "Quanto de calcário eu jogo na roça?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 103,
+    "question": "Como ponho o calcário na terra pro milho vingar?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 104,
+    "question": "Tem que jogar o calcário antes de baixar a chuva?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 105,
+    "question": "Quanto eu boto de adubo na cova da mandioca?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 106,
+    "question": "Como é que faz pra terra não ficar fraca no estio?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 107,
+    "question": "O que eu faço pra espantar a lagarta do milharal?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 108,
+    "question": "Esse adubo de saco novo rende bem na terra roxa?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 109,
+    "question": "Como cuida do pasto pro gado engordar na seca?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 110,
+    "question": "Qual é o tempo bão pra semear o feijão das águas?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 111,
+    "question": "Como tirar a tiririca da roça sem matar o broto?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 112,
+    "question": "É bão jogar esterco curtido direto no pé do tomate?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 113,
+    "question": "Como que limpa o mato alto da grota sem queimar?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 114,
+    "question": "Quanto de uréia eu joga na capineira depois do corte?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 115,
+    "question": "Por que o milho tá amarelando as folhas de baixo?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 116,
+    "question": "Qual é o calcário bão pra terrinha de baixada?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 117,
+    "question": "Como tratar semente de milho em casa antes de jogar na terra?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 118,
+    "question": "O feijão tá cheio de vaquinha, o que eu jogo lá?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 119,
+    "question": "Como arrumar o pasto que tá virando cupinzeiro?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 120,
+    "question": "Posso jogar o adubo no seco ou tem que esperar o mormaço?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 121,
+    "question": "Como é que faz pra farinha de osso ajudar o mandiocal?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 122,
+    "question": "Quanto tempo demora pro calcário fazer efeito na roça?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 123,
+    "question": "O capim brachiaria tá secando tudo, o que pode ser?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 124,
+    "question": "Qual a melhor época pra roçar o pasto velho?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 125,
+    "question": "Como socorrer o café que tomou geada forte?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 126,
+    "question": "Posso misturar cinza com esterco de vaca no plantio?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 127,
+    "question": "O que é bom pra combater a broca do café na rocinha?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 128,
+    "question": "Como guardar o milho colhido pra não dar caruncho?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 129,
+    "question": "Quanto de cal precisa na terra preta pro feijão?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 130,
+    "question": "Por que a mandioca tá dando pouca batata?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 131,
+    "question": "Como molhar o hortaliçal sem encharcar o canteiro?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 132,
+    "question": "Qual adubo de cova é melhor pro maracujá vinar?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 133,
+    "question": "É bom passar o arado bem fundo na terra seca?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 134,
+    "question": "Como tratar a semente pra passarinho não comer na roça?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 135,
+    "question": "Por que a banana tá nascendo com o mastro torto?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 136,
+    "question": "O que eu faço quando a terra tá cheia de cascalho?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 137,
+    "question": "Como amolhar o solo duro antes de passar a grade?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 138,
+    "question": "Qual o veneno caseiro pra pulgão na couve?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 139,
+    "question": "Como é que sabe se a roça tá no ponto de colher?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 140,
+    "question": "Posso plantar milho junto com feijão na mesma carreira?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 141,
+    "question": "Como que usa torta de mamona no cafezal?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 142,
+    "question": "O solo tá empedrando tudo quando seca, o que ajuda?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 143,
+    "question": "Como cuidar das bezerras no pasto de inverno?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 144,
+    "question": "Quanto de superfosfato eu ponho por cova de mamão?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 145,
+    "question": "Como proteger as muda de café do vento forte?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 146,
+    "question": "O capim tá ficando ralo, tem que jogar mais semente?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 147,
+    "question": "Qual a lua boa pra plantar aipim e batata doce?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 148,
+    "question": "Como acaba com o percevejo no milharal?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 149,
+    "question": "O calcário de liquida funciona igual o de pó na roça?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 150,
+    "question": "O que é bom jogar no pé de laranjeira pra dar fruto doce?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 151,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 51?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 152,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 52?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 153,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 53?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 154,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 54?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 155,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 55?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 156,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 56?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 157,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 57?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 158,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 58?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 159,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 59?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 160,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 60?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 161,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 61?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 162,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 62?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 163,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 63?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 164,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 64?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 165,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 65?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 166,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 66?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 167,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 67?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 168,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 68?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 169,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 69?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 170,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 70?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 171,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 71?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 172,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 72?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 173,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 73?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 174,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 74?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 175,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 75?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 176,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 76?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 177,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 77?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 178,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 78?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 179,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 79?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 180,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 80?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 181,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 81?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 182,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 82?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 183,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 83?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 184,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 84?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 185,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 85?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 186,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 86?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 187,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 87?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 188,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 88?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 189,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 89?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 190,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 90?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 191,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 91?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 192,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 92?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 193,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 93?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 194,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 94?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 195,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 95?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 196,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 96?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 197,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 97?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 198,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 98?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 199,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 99?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 200,
+    "question": "Como é que faz pra cuidar da rocinha de forma caipira número 100?",
+    "expected_profile": "O Caipira"
+  },
+  {
+    "id": 201,
+    "question": "Qual dose de calcário devo aplicar considerando a saturação por bases?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 202,
+    "question": "Como calcular a necessidade de calagem pelo método de neutralização do Al3+ e elevação dos teores de Ca2+ e Mg2+?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 203,
+    "question": "Qual a interferência do PRNT na determinação da quantidade total de calcário a incorporar?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 204,
+    "question": "Como proceder na amostragem estratificada de solo nas camadas 0-20 cm e 20-40 cm para sistema de plantio direto?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 205,
+    "question": "Qual a relação Ca:Mg ideal no complexo sortivo para a cultura da soja em Latossolo Vermelho?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 206,
+    "question": "Como interpretar o teor de fósforo extraído por Mehlich-1 em solos com alto teor de argila?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 207,
+    "question": "Qual a recomendação de adubação potássica com base na expectativa de produtividade de 80 sc/ha de soja?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 208,
+    "question": "Como calcular a CTC a pH 7.0 e a CTC efetiva a partir da análise química do solo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 209,
+    "question": "Qual o impacto da saturação por alumínio (m%) no desenvolvimento radicular das culturas anuais?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 210,
+    "question": "Como aplicar micronutrientes via foliar considerando o estádio fenológico V4 da cultura do milho?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 211,
+    "question": "Qual a eficiência de recuperação do nitrogênio aplicado via cobertura utilizando uréia protegida por inibidores de urease?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 212,
+    "question": "Como diagnosticar deficiência severa de boro em cafeeiros fertirrigados?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 213,
+    "question": "Qual a taxa de inoculação de Bradyrhizobium japonicum recomendada para sementes de soja tratadas com fungicidas?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 214,
+    "question": "Como determinar a capacidade de retenção de água e ponto de murcha permanente em Argissolos Vermelho-Amarelos?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 215,
+    "question": "Qual a dosagem de atrazina e óleo mineral recomendada para controle pós-emergente de dicotiledôneas no milho?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 216,
+    "question": "Como mensurar a densidade do solo e a porosidade total em áreas sob compactação por tráfego de máquinas?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 217,
+    "question": "Qual o limiar econômico de dano para Euschistus heros na cultura da soja no estádio R5?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 218,
+    "question": "Como realizar o manejo de resistência de Phakopsora pachyrhizi utilizando fungicidas multissítios?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 219,
+    "question": "Qual a lâmina de irrigação líquida a aplicar via pivô central baseada na evapotranspiração de referência (ETo)?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 220,
+    "question": "Como estratificar o perfil de solo quanto à acidez subsuperficial e necessidade de gessagem agrícola?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 221,
+    "question": "Qual a dosagem de gesso agrícola recomendada em função do teor de argila para neutralizar Al3+ em profundidade?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 222,
+    "question": "Como correlacionar o teor de matéria orgânica do solo com a capacidade de troca catiônica efetiva?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 223,
+    "question": "Qual o índice V% recomendado para a implantação da cultura do cafeeiro arábica?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 224,
+    "question": "Como ajustar a adubação fosfatada de plantio considerando a capacidade máxima de adsorção de fosfato do solo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 225,
+    "question": "Qual o momento ideal de aplicação de potássio no milho visando minimizar perdas por lixiviação em solos arenosos?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 226,
+    "question": "Como avaliar o estresse hídrico na cultura do trigo através do índice de temperatura do dossel?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 227,
+    "question": "Qual a dosagem e época de aplicação de regulador de crescimento em algodoeiro sob alta adubação nitrogenada?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 228,
+    "question": "Como calcular o balanço de massa de nutrientes na rotação soja-milho safrinha?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 229,
+    "question": "Qual a seletividade de herbicidas pré-emergentes do grupo dos inibidores da PROTOX para a cultura do feijão?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 230,
+    "question": "Como efetuar a calibração de pulverizadores de barras considerando o volume de calda de 100 L/ha e pontas de indução de ar?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 231,
+    "question": "Qual o efeito da salinização da água de irrigação na condutividade elétrica do extrato de saturação do solo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 232,
+    "question": "Como identificar sintomas diferenciais entre deficiência de enxofre e deficiência de nitrogênio em gramíneas?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 233,
+    "question": "Qual a taxa de fixação biológica de nitrogênio esperada em pastagens de Brachiaria consorciadas com Stylosanthes?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 234,
+    "question": "Como quantificar a fração de carbono orgânico lábil no solo sob diferentes sistemas de manejo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 235,
+    "question": "Qual o papel do zinco na síntese de triptofano e alongamento celular em plantas de milho?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 236,
+    "question": "Como proceder no manejo integrado de Spodoptera frugiperda utilizando biopesticidas a base de Bacillus thuringiensis?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 237,
+    "question": "Qual a condutividade hidráulica saturada de Latossolos sob cultivo contínuo sem revolvimento?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 238,
+    "question": "Como calcular a dose de calcário pelo método da capacidade tampão do solo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 239,
+    "question": "Qual a curva de absorção de macronutrientes da cultura do girassol ao longo do ciclo vegetativo?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 240,
+    "question": "Como mitigar o efeito fitotóxico de resíduos de herbicidas sulfoniluréias na cultura da soja em sucessão?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 241,
+    "question": "Qual a tolerância de cultivares de sorgo ao alumínio tóxico em solos de Cerrado?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 242,
+    "question": "Como diagnosticar o mofo-branco (Sclerotinia sclerotiorum) e estruturar o esquema de rotação com gramíneas?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 243,
+    "question": "Qual a relação C/N ideal do palhedo de cobertura para equilibrar a taxa de decomposição e imobilização de N?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 244,
+    "question": "Como determinar a condutividade elétrica da solução do solo fertirrigado por gotejamento?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 245,
+    "question": "Qual a dosagem de cobalto e molibdênio recomendada via tratamento de sementes na cultura da soja?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 246,
+    "question": "Como avaliar a suscetibilidade de genótipos de milho ao acamamento de colmo por Stenocarpella maydis?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 247,
+    "question": "Qual o impacto do déficit de pressão de vapor (DPV) na condutância estomática e taxa fotossintética?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 248,
+    "question": "Como mensurar o fluxo de gases de efeito estufa (N2O e CH4) em solos agrícolas manejados?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 249,
+    "question": "Qual a cinética de liberação de K em minerais primários e secundários de solos tropicais altamente intemperizados?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 250,
+    "question": "Como dimensionar a densidade de semeadura e arranjo espacial de plantas para otimizar o índice de área foliar (IAF)?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 251,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 51?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 252,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 52?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 253,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 53?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 254,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 54?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 255,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 55?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 256,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 56?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 257,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 57?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 258,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 58?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 259,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 59?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 260,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 60?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 261,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 61?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 262,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 62?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 263,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 63?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 264,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 64?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 265,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 65?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 266,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 66?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 267,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 67?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 268,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 68?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 269,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 69?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 270,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 70?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 271,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 71?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 272,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 72?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 273,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 73?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 274,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 74?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 275,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 75?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 276,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 76?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 277,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 77?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 278,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 78?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 279,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 79?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 280,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 80?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 281,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 81?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 282,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 82?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 283,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 83?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 284,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 84?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 285,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 85?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 286,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 86?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 287,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 87?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 288,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 88?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 289,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 89?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 290,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 90?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 291,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 91?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 292,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 92?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 293,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 93?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 294,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 94?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 295,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 95?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 296,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 96?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 297,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 97?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 298,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 98?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 299,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 99?",
+    "expected_profile": "O Técnico"
+  },
+  {
+    "id": 300,
+    "question": "Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número 100?",
+    "expected_profile": "O Técnico"
+  }
+]

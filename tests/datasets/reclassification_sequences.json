@@ -1,0 +1,619 @@
+{
+  "dynamic_transitions": [
+    {
+      "id": "seq_leigo_to_tecnico_1",
+      "initial_profile": "O Leigo",
+      "steps": [
+        {
+          "question": "Como faço para melhorar a terra?",
+          "expected_class": "O Leigo",
+          "expected_reclassified": false
+        },
+        {
+          "question": "O que é calcário?",
+          "expected_class": "O Leigo",
+          "expected_reclassified": false
+        },
+        {
+          "question": "Quando devo colocar calcário?",
+          "expected_class": "O Leigo",
+          "expected_reclassified": false
+        },
+        {
+          "question": "Como calculo a necessidade de calagem considerando V2?",
+          "expected_class": "O Técnico",
+          "expected_reclassified": true
+        },
+        {
+          "question": "Como determinar a dose de calcário pelo método de saturação por bases?",
+          "expected_class": "O Técnico",
+          "expected_reclassified": false
+        },
+        {
+          "question": "Como o PRNT interfere na dose recomendada?",
+          "expected_class": "O Técnico",
+          "expected_reclassified": false
+        }
+      ]
+    },
+    {
+      "id": "seq_caipira_to_tecnico_1",
+      "initial_profile": "O Caipira",
+      "steps": [
+        {
+          "question": "Quanto de calcário eu jogo na roça?",
+          "expected_class": "O Caipira",
+          "expected_reclassified": false
+        },
+        {
+          "question": "Como ponho o calcário na terra pro milho vingar?",
+          "expected_class": "O Caipira",
+          "expected_reclassified": false
+        },
+        {
+          "question": "Qual a dose exata baseada na capacidade de troca catiônica efetiva (CTC)?",
+          "expected_class": "O Técnico",
+          "expected_reclassified": true
+        },
+        {
+          "question": "Como analisar o teor de Ca e Mg no extrato de acetato de amônio?",
+          "expected_class": "O Técnico",
+          "expected_reclassified": false
+        }
+      ]
+    }
+  ],
+  "persistence_tests": [
+    {
+      "id": "persist_tecnico_after_reclass",
+      "initial_profile": "O Leigo",
+      "trigger_question": "Como calcular a necessidade de calagem por V% e PRNT?",
+      "post_trigger_question": "Quais os teores ideais de Ca e Mg no solo?",
+      "expected_active_profile": "O Técnico"
+    }
+  ],
+  "stability_atypical_tests": [
+    {
+      "id": "atypical_single_query_stability",
+      "current_profile": "O Técnico",
+      "history_depth": 5,
+      "atypical_question": "Como faço para colocar calcário?",
+      "expected_final_profile": "O Técnico",
+      "should_reclassify": false
+    }
+  ],
+  "ambiguous_questions": [
+    {
+      "id": 1,
+      "question": "Esse negócio de calcário funciona mesmo?",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 2,
+      "question": "Qual é a melhor maneira de cuidar da terra?",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 3,
+      "question": "Quanto eu uso?",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 4,
+      "question": "Pode colocar calcário antes da chuva?",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 5,
+      "question": "Pergunta ambígua número 5 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 6,
+      "question": "Pergunta ambígua número 6 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 7,
+      "question": "Pergunta ambígua número 7 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 8,
+      "question": "Pergunta ambígua número 8 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 9,
+      "question": "Pergunta ambígua número 9 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 10,
+      "question": "Pergunta ambígua número 10 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 11,
+      "question": "Pergunta ambígua número 11 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 12,
+      "question": "Pergunta ambígua número 12 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 13,
+      "question": "Pergunta ambígua número 13 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 14,
+      "question": "Pergunta ambígua número 14 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 15,
+      "question": "Pergunta ambígua número 15 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 16,
+      "question": "Pergunta ambígua número 16 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 17,
+      "question": "Pergunta ambígua número 17 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 18,
+      "question": "Pergunta ambígua número 18 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 19,
+      "question": "Pergunta ambígua número 19 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 20,
+      "question": "Pergunta ambígua número 20 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 21,
+      "question": "Pergunta ambígua número 21 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 22,
+      "question": "Pergunta ambígua número 22 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 23,
+      "question": "Pergunta ambígua número 23 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 24,
+      "question": "Pergunta ambígua número 24 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 25,
+      "question": "Pergunta ambígua número 25 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 26,
+      "question": "Pergunta ambígua número 26 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 27,
+      "question": "Pergunta ambígua número 27 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 28,
+      "question": "Pergunta ambígua número 28 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 29,
+      "question": "Pergunta ambígua número 29 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 30,
+      "question": "Pergunta ambígua número 30 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 31,
+      "question": "Pergunta ambígua número 31 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 32,
+      "question": "Pergunta ambígua número 32 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 33,
+      "question": "Pergunta ambígua número 33 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 34,
+      "question": "Pergunta ambígua número 34 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 35,
+      "question": "Pergunta ambígua número 35 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 36,
+      "question": "Pergunta ambígua número 36 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 37,
+      "question": "Pergunta ambígua número 37 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 38,
+      "question": "Pergunta ambígua número 38 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 39,
+      "question": "Pergunta ambígua número 39 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 40,
+      "question": "Pergunta ambígua número 40 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 41,
+      "question": "Pergunta ambígua número 41 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 42,
+      "question": "Pergunta ambígua número 42 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 43,
+      "question": "Pergunta ambígua número 43 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 44,
+      "question": "Pergunta ambígua número 44 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 45,
+      "question": "Pergunta ambígua número 45 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 46,
+      "question": "Pergunta ambígua número 46 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 47,
+      "question": "Pergunta ambígua número 47 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 48,
+      "question": "Pergunta ambígua número 48 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 49,
+      "question": "Pergunta ambígua número 49 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    },
+    {
+      "id": 50,
+      "question": "Pergunta ambígua número 50 sobre uso de fertilizantes no campo",
+      "expected_profile": "O Leigo"
+    }
+  ],
+  "regional_colloquial_questions": [
+    {
+      "id": 1,
+      "question": "Quanto de calcário eu jogo na roça?",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 2,
+      "question": "Como ponho o calcário na terra?",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 3,
+      "question": "Tem que jogar o calcário antes de plantar?",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 4,
+      "question": "Quanto eu boto de calcário?",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 5,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 5",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 6,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 6",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 7,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 7",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 8,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 8",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 9,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 9",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 10,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 10",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 11,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 11",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 12,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 12",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 13,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 13",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 14,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 14",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 15,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 15",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 16,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 16",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 17,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 17",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 18,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 18",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 19,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 19",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 20,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 20",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 21,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 21",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 22,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 22",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 23,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 23",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 24,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 24",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 25,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 25",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 26,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 26",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 27,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 27",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 28,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 28",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 29,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 29",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 30,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 30",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 31,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 31",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 32,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 32",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 33,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 33",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 34,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 34",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 35,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 35",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 36,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 36",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 37,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 37",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 38,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 38",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 39,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 39",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 40,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 40",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 41,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 41",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 42,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 42",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 43,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 43",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 44,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 44",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 45,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 45",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 46,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 46",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 47,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 47",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 48,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 48",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 49,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 49",
+      "expected_profile": "O Caipira"
+    },
+    {
+      "id": 50,
+      "question": "Pergunta coloquial caipira sobre plantação de roça número 50",
+      "expected_profile": "O Caipira"
+    }
+  ],
+  "invalid_class_cases": [
+    {
+      "input_class": "Professor",
+      "expected_action": "REJECT"
+    },
+    {
+      "input_class": "Especialista",
+      "expected_action": "REJECT"
+    },
+    {
+      "input_class": "Administrador",
+      "expected_action": "REJECT"
+    },
+    {
+      "input_class": "",
+      "expected_action": "REJECT"
+    },
+    {
+      "input_class": null,
+      "expected_action": "REJECT"
+    },
+    {
+      "input_class": "técnico",
+      "expected_action": "REJECT_OR_NORMALIZE"
+    },
+    {
+      "input_class": "TECNICO",
+      "expected_action": "REJECT_OR_NORMALIZE"
+    }
+  ]
+}

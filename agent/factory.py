@@ -1,16 +1,16 @@
 """Factory for the SmartB100 deep agent (deepagents + Groq), isolated behind agent/."""
 
-from typing import Any
+from typing import cast
 
 from deepagents import create_deep_agent
 from langchain_core.language_models import BaseChatModel
 from langchain_groq import ChatGroq
-from langgraph.graph.state import CompiledStateGraph
 from pydantic import SecretStr
 
 from agent.prompt import AGENT_INSTRUCTIONS
 from agent.tools import search_corpus
 from core.config import settings
+from core.schemas import AgentGraph
 
 
 def default_model() -> ChatGroq:
@@ -19,7 +19,7 @@ def default_model() -> ChatGroq:
     return ChatGroq(model=settings.agent_model, api_key=api_key)
 
 
-def create_agent(model: BaseChatModel | None = None) -> CompiledStateGraph[Any, Any, Any, Any]:
+def create_agent(model: BaseChatModel | None = None) -> AgentGraph:
     """Build the compiled deep-agent graph.
 
     `model` defaults to the Groq model from settings; inject a model in tests to compile
@@ -27,8 +27,11 @@ def create_agent(model: BaseChatModel | None = None) -> CompiledStateGraph[Any, 
     """
     if model is None:
         model = default_model()
-    return create_deep_agent(
-        model=model,
-        tools=[search_corpus],
-        system_prompt=AGENT_INSTRUCTIONS,
+    return cast(
+        AgentGraph,
+        create_deep_agent(
+            model=model,
+            tools=[search_corpus],
+            system_prompt=AGENT_INSTRUCTIONS,
+        ),
     )

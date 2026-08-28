@@ -17,20 +17,20 @@ import ollama
 
 from core.config import settings
 from core.ollama_clients import get_chat_client
-from core.schemas import ExpertiseLevel, UserProfile
+from core.schemas import ChatMessage, ExpertiseLevel, UserProfile
 
 logger = logging.getLogger(__name__)
 
 
 def _ollama_chat(
-    model: str, messages: list[dict[str, str]], options: dict[str, int]
+    model: str, messages: list[ChatMessage], options: dict[str, int]
 ) -> dict[str, dict[str, str]]:
     """Testable wrapper around ``ollama.Client.chat`` with the timeout applied.
 
     The shared client comes from :func:`core.ollama_clients.get_chat_client`,
     which applies ``settings.ollama_timeout`` and reuses the HTTP connection.
-    The ``cast`` forces the declared type — ``ollama.Client.chat`` returns
-    ``ChatResponse`` (TypedDict-like), which mypy 1.21+ treats as ``Any``.
+    The ``cast`` forces the declared type because ``ollama.Client.chat`` returns
+    a library response whose static details are not exposed to this project.
     """
     return cast(
         dict[str, dict[str, str]],
@@ -136,7 +136,7 @@ def build_system_prompt(profile: UserProfile) -> str:
 def generate(
     question: str,
     context: str,
-    history: list[dict[str, str]],
+    history: list[ChatMessage],
     profile: UserProfile,
 ) -> str:
     """Generates the LLM answer using RAG context, history, and the user profile.
@@ -157,7 +157,7 @@ def generate(
     sanitized_question = _sanitize_question(question)
     sanitized_context = _sanitize_context(context)
 
-    messages: list[dict[str, str]] = []
+    messages: list[ChatMessage] = []
     messages.append({"role": "system", "content": build_system_prompt(profile)})
 
     for msg in history:

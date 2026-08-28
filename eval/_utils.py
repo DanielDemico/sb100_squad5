@@ -9,7 +9,6 @@ from __future__ import annotations
 
 import hashlib
 from pathlib import Path
-from typing import Any
 
 EVAL_DIR: Path = Path(__file__).resolve().parent
 PROJECT_ROOT: Path = EVAL_DIR.parent
@@ -28,7 +27,7 @@ QUESTION_MIN_LEN: int = 20
 QUESTION_MAX_LEN: int = 500
 
 
-def validate_dataset_schema(data: Any, expected_keys: list[str]) -> None:
+def validate_dataset_schema(data: object, expected_keys: list[str]) -> None:
     """Validate that `data` is a dict containing every key in `expected_keys`.
 
     Args:
@@ -45,7 +44,7 @@ def validate_dataset_schema(data: Any, expected_keys: list[str]) -> None:
         raise ValueError(f"Dataset missing required keys: {missing}")
 
 
-def is_valid_question(question: Any) -> bool:
+def is_valid_question(question: object) -> bool:
     """Quality filter: string containing '?' with 20-500 characters."""
     if not isinstance(question, str):
         return False

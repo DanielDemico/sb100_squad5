@@ -1,9 +1,28 @@
 """Pydantic schemas for the public API contract (shared request/response)."""
 
+import re
 from datetime import datetime
 from enum import StrEnum
+from typing import Literal, Protocol, TypedDict
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, field_validator
+
+_USERNAME_PATTERN = re.compile(r"^[a-zA-Z0-9_-]+$")
+
+
+class ChatMessage(TypedDict):
+    """Single chat message exchanged between generation, verification and agent layers."""
+
+    role: str
+    content: str
+
+
+class AgentGraph(Protocol):
+    """Minimal graph contract consumed by the agent runner."""
+
+    def invoke(self, payload: dict[str, list[ChatMessage]]) -> dict[str, list[object]]:
+        """Run a graph invocation and return emitted messages."""
+        ...
 
 
 class ExpertiseLevel(StrEnum):
@@ -78,6 +97,12 @@ class RetrievalSource(BaseModel):
     pagina: int | None = Field(default=None, description="PDF page number.")
 
 
+class RetrievalChunk(RetrievalSource):
+    """Internal retrieval result shared between vector search and the API layer."""
+
+    score: float | None = Field(default=None, description="Vector similarity score.")
+
+
 class ChatResponse(BaseModel):
     """Assistant answer after processing the question."""
 
@@ -114,7 +139,7 @@ class ChatResponse(BaseModel):
         description="Estimated hallucination risk (0.0 grounded — 1.0 likely hallucinated).",
     )
     sources: list[RetrievalSource] = Field(
-        default=[],
+        default_factory=list,
         description="The list of retrieval sources used to answer the question."
     )
 
@@ -127,3 +152,31 @@ class ConversationResponse(BaseModel):
     title: str = Field(..., description="Title of the conversation.")
     created_at: datetime = Field(..., description="Time the conversation was created.")
     updated_at: datetime = Field(..., description="Time the conversation was last updated.")
+
+
+class UserCreate(BaseModel):
+    """Schema for creating a new user."""
+
+    username: str = Field(..., min_length=1, max_length=50)
+    password: str = Field(..., min_length=8, max_length=128)
+
+    @field_validator("username")
+    @classmethod
+    def _validate_username(cls, value: str) -> str:
+        if not _USERNAME_PATTERN.match(value):
+            raise ValueError("username must contain only letters, digits, hyphen and underscore")
+        return value
+
+
+class RegisterResponse(BaseModel):
+    """Response schema for successful user registration."""
+
+    message: str
+    username: str
+
+
+class Token(BaseModel):
+    """Response schema containing the JWT."""
+
+    access_token: str
+    token_type: Literal["bearer"]

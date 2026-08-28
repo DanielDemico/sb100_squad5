@@ -4,7 +4,6 @@ import re
 import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
 
 import fitz  # PyMuPDF
 import numpy as np
@@ -12,10 +11,12 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
 from tqdm import tqdm
 
-from retrieval.ollama_embeddings import embed_text
 from core.config import settings
+from retrieval.ollama_embeddings import embed_text
 
 logger = logging.getLogger(__name__)
+
+MetadataValue = str | int | float | bool | None
 
 # ─────────────────────────────────────────────
 # Global settings
@@ -49,7 +50,7 @@ class Chunk:
     text: str
     sentences: list[str]
     embedding: np.ndarray = field(default=None, repr=False)
-    metadata: dict[str, Any] = field(default_factory=dict)
+    metadata: dict[str, MetadataValue] = field(default_factory=dict)
 
 
 # ─────────────────────────────────────────────
@@ -162,7 +163,10 @@ def semantic_chunking(sentences: list[Sentence]) -> list[list[Sentence]]:
     return chunks
 
 
-def build_chunks(sentence_groups: list[list[Sentence]], metadata: dict) -> list[Chunk]:
+def build_chunks(
+    sentence_groups: list[list[Sentence]],
+    metadata: dict[str, MetadataValue],
+) -> list[Chunk]:
     """Convert sentence groups into Chunk objects with a representative embedding."""
     chunks = []
     for group in sentence_groups:
@@ -187,7 +191,7 @@ def build_chunks(sentence_groups: list[list[Sentence]], metadata: dict) -> list[
 # ─────────────────────────────────────────────
 
 
-def init_qdrant(client: QdrantClient, embed_dim: int):
+def init_qdrant(client: QdrantClient, embed_dim: int) -> None:
     """Create the Qdrant collection if it does not exist."""
     existing = [c.name for c in client.get_collections().collections]
     if COLLECTION_NAME not in existing:
@@ -203,7 +207,7 @@ def init_qdrant(client: QdrantClient, embed_dim: int):
         logger.info("semantic_chunker.collection_exists", extra={"collection": COLLECTION_NAME})
 
 
-def upsert_chunks(client: QdrantClient, chunks: list[Chunk]):
+def upsert_chunks(client: QdrantClient, chunks: list[Chunk]) -> int:
     """Insert chunks into Qdrant."""
     points = []
     for chunk in chunks:
@@ -277,7 +281,7 @@ def process_pdf(pdf_path: str, client: QdrantClient) -> int:
     return count
 
 
-def process_folder(folder_path: str):
+def process_folder(folder_path: str) -> None:
     """Process all PDFs in a folder."""
     pdf_files = list(Path(folder_path).glob("**/*.pdf"))
     if not pdf_files:
@@ -313,7 +317,7 @@ def process_folder(folder_path: str):
 # ─────────────────────────────────────────────
 
 
-def search(query: str, top_k: int = 5):
+def search(query: str, top_k: int = 5) -> None:
     """Semantic search over the collection."""
     client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
     query_embedding = get_embedding(query)

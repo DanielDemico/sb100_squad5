@@ -1,13 +1,12 @@
 """Synchronous runner for the SmartB100 deep agent, isolated behind agent/ (ADR-0008)."""
 
 from dataclasses import dataclass
-from typing import Any
 
 from langchain_core.messages import AIMessage, ToolMessage
 
 from agent.factory import create_agent
 from agent.tools import SEARCH_CORPUS_SENTINELS
-from core.schemas import UserProfile
+from core.schemas import AgentGraph, ChatMessage, UserProfile
 
 # Reuse the generation-layer sanitizer so the agent path has the same
 # prompt-injection hardening as the legacy /chat path (parity, no duplication).
@@ -22,7 +21,7 @@ class AgentOutcome:
     context: str
 
 
-def _as_text(content: Any) -> str:
+def _as_text(content: object) -> str:
     """Normalize LangChain message content (str or content blocks) to plain text."""
     if isinstance(content, str):
         return content
@@ -30,8 +29,8 @@ def _as_text(content: Any) -> str:
 
 
 def _build_input(
-    question: str, history: list[dict[str, str]], profile: UserProfile
-) -> dict[str, Any]:
+    question: str, history: list[ChatMessage], profile: UserProfile
+) -> dict[str, list[ChatMessage]]:
     """Build the graph input: prior turns plus the user question with a short profile preamble."""
     preamble = (
         f"The user's expertise level is {profile.expertise.value}. "
@@ -41,16 +40,16 @@ def _build_input(
     # system-authored and keys only on a constrained StrEnum value, so it carries
     # no injection risk.
     sanitized_question = _sanitize_question(question)
-    messages: list[dict[str, str]] = list(history)
+    messages: list[ChatMessage] = list(history)
     messages.append({"role": "user", "content": f"{preamble}\n\n{sanitized_question}"})
     return {"messages": messages}
 
 
 def invoke_agent(
     question: str,
-    history: list[dict[str, str]],
+    history: list[ChatMessage],
     profile: UserProfile,
-    graph: Any | None = None,
+    graph: AgentGraph | None = None,
 ) -> AgentOutcome:
     """Run the deep agent once and return its final answer plus retrieved context.
 

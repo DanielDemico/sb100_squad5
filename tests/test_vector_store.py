@@ -129,7 +129,7 @@ def test_search_rich_returns_detailed_metadata() -> None:
     with patch("retrieval.vector_store.QdrantClient") as mock_cls:
         mock_client = MagicMock()
         mock_cls.return_value = mock_client
-        
+
         point = ScoredPoint(
             id="000d0064-f08d-4197-bca3-698a3df364d9",
             version=0,
@@ -146,12 +146,12 @@ def test_search_rich_returns_detailed_metadata() -> None:
         out = search_context_rich([0.1] * settings.embed_dim)
 
         assert len(out) == 1
-        assert out[0]["id"] == "000d0064-f08d-4197-bca3-698a3df364d9"
-        assert out[0]["inicio"] == 12
-        assert out[0]["text"] == "teste rico"
-        assert out[0]["file"] == "doc.pdf"
-        assert out[0]["pagina"] == 3
-        assert out[0]["score"] == 0.88
+        assert out[0].id == "000d0064-f08d-4197-bca3-698a3df364d9"
+        assert out[0].inicio == 12
+        assert out[0].text == "teste rico"
+        assert out[0].file == "doc.pdf"
+        assert out[0].pagina == 3
+        assert out[0].score == 0.88
 
 
 def test_search_rich_rejects_wrong_dim() -> None:

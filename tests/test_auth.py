@@ -21,13 +21,9 @@ from sqlalchemy.pool import StaticPool
 
 from api.dependencies import ALGORITHM, limiter
 from api.main import app
-from api.routes.auth import (
-    UserCreate,
-    create_access_token,
-    get_password_hash,
-    verify_password,
-)
+from api.routes.auth import create_access_token, get_password_hash, verify_password
 from core.config import settings
+from core.schemas import UserCreate
 from database.db import Base, get_db
 from database.models import User
 

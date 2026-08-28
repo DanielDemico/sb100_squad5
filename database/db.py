@@ -9,7 +9,7 @@ Hardening applied to this layer:
 
 from collections.abc import Generator
 from pathlib import Path
-from typing import Any
+from typing import Protocol
 
 from sqlalchemy import create_engine, event
 from sqlalchemy.engine import Engine
@@ -36,8 +36,27 @@ engine = create_engine(
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 
+class _DbapiCursor(Protocol):
+    def execute(self, statement: str) -> object:
+        """Execute a SQL statement."""
+        ...
+
+    def close(self) -> object:
+        """Close the cursor."""
+        ...
+
+
+class _DbapiConnection(Protocol):
+    def cursor(self) -> _DbapiCursor:
+        """Return a DB-API cursor."""
+        ...
+
+
 @event.listens_for(Engine, "connect")
-def _enable_sqlite_foreign_keys(dbapi_connection: Any, connection_record: Any) -> None:
+def _enable_sqlite_foreign_keys(
+    dbapi_connection: _DbapiConnection,
+    connection_record: object,
+) -> None:
     """Enable PRAGMA foreign_keys on SQLite connections to ensure CASCADE."""
     # Only SQLite needs the PRAGMA; other dialects do not expose ``execute`` this way.
     try:

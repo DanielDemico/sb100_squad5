@@ -40,7 +40,12 @@ def load_judged_results(input_path: str) -> dict:
 
 
 def extract_all_judgments(results: list[dict]) -> list[dict]:
-    """Extract every valid judgment from the results."""
+    """Extract every valid judgment from the results.
+
+    QUALITY: long-function-justification - flattening judgments while carrying the
+    original question, SB100 answer, matching reference answer, scores, verdict, and
+    justification is one schema mapping step.
+    """
     judgments = []
     for result in results:
         question = result.get("question", "")
@@ -122,6 +127,8 @@ def generate_report_markdown(
     verdict_stats: dict,
 ) -> str:
     """Generate the report in Markdown format."""
+    # QUALITY: long-function-justification - the Markdown table sequence is linear
+    # report composition; splitting it would obscure the emitted document order.
     scores = [j["judge_score"] for j in judgments]
 
     report = f"""# Evaluation Report - SB100
@@ -213,6 +220,9 @@ def export_human_sample(
     """
     Export a random sample for human validation.
 
+    QUALITY: long-function-justification - seeded sampling, CSV schema definition,
+    row mapping, and artifact write are one reproducible export step.
+
     Args:
         judgments: List of judgments
         output_path: Path to the output CSV
@@ -272,6 +282,10 @@ def generate_report(
     """
     Generate the full evaluation report.
 
+    QUALITY: long-function-justification - input loading, schema validation,
+    statistics, Markdown artifact, CSV sample artifact, and status result are one
+    report-generation transaction.
+
     Args:
         input_path: Path to the judged dataset
         report_path: Path to the MD report
@@ -323,6 +337,11 @@ def generate_report(
 
 
 def main():
+    """Parse CLI options and generate the evaluation report.
+
+    QUALITY: long-function-justification - argument parsing, input validation,
+    report execution, and process status form one CLI entrypoint.
+    """
     parser = argparse.ArgumentParser(description="Generate the evaluation summary report")
     parser.add_argument(
         "--input",

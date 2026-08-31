@@ -119,9 +119,9 @@ class ChatResponse(BaseModel):
                             "inicio": 16,
                             "text": "dos materiais revelaram que...",
                             "file": "Zanetti(2003)-Fino carvao2.pdf",
-                            "pagina": 2
+                            "pagina": 2,
                         }
-                    ]
+                    ],
                 }
             ]
         }
@@ -140,7 +140,7 @@ class ChatResponse(BaseModel):
     )
     sources: list[RetrievalSource] = Field(
         default_factory=list,
-        description="The list of retrieval sources used to answer the question."
+        description="The list of retrieval sources used to answer the question.",
     )
 
 

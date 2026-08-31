@@ -17,7 +17,6 @@ from ui.chat_ui import (
     _classify_score,
     _is_transient_error,
     _user_facing_http_error,
-    login,
     new_session_state,
     post_chat,
     respond,
@@ -69,7 +68,11 @@ class TestPostChat:
     def test_send_message_attaches_bearer_token(self) -> None:
         state = _authenticated_state()
         response = Mock()
-        response.json.return_value = {"answer": "ok", "hallucination_score": 0.1, "conversation_id": 42}
+        response.json.return_value = {
+            "answer": "ok",
+            "hallucination_score": 0.1,
+            "conversation_id": 42,
+        }
         response.raise_for_status = Mock()
 
         with patch("ui.chat_ui._client.post", return_value=response) as mock_post:
@@ -251,7 +254,9 @@ class TestSendWithRetry:
     def test_eventual_success_after_503(self) -> None:
         transient = _http_status_error(503)
         with (
-            patch("ui.chat_ui.post_chat", side_effect=[transient, ("answer", 0.1, 42)]) as mock_post,
+            patch(
+                "ui.chat_ui.post_chat", side_effect=[transient, ("answer", 0.1, 42)]
+            ) as mock_post,
             patch("ui.chat_ui.time.sleep") as mock_sleep,
         ):
             result = send_with_retry(self.STATE, "q?", attempts=2)

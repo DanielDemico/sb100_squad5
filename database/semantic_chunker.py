@@ -12,7 +12,7 @@ from qdrant_client.models import Distance, PointStruct, VectorParams
 from tqdm import tqdm
 
 from core.config import settings
-from retrieval.ollama_embeddings import embed_text
+from core.embeddings import embed_text
 
 logger = logging.getLogger(__name__)
 
@@ -42,14 +42,14 @@ MAX_CHUNK_SENTENCES = 20  # maximum sentences per chunk
 @dataclass
 class Sentence:
     text: str
-    embedding: np.ndarray = field(default=None, repr=False)
+    embedding: np.ndarray = field(repr=False)
 
 
 @dataclass
 class Chunk:
     text: str
     sentences: list[str]
-    embedding: np.ndarray = field(default=None, repr=False)
+    embedding: np.ndarray = field(repr=False)
     metadata: dict[str, MetadataValue] = field(default_factory=dict)
 
 
@@ -233,7 +233,11 @@ def upsert_chunks(client: QdrantClient, chunks: list[Chunk]) -> int:
 
 
 def process_pdf(pdf_path: str, client: QdrantClient) -> int:
-    """Process a single PDF and index it in Qdrant. Returns the number of chunks."""
+    """Process a single PDF and index it in Qdrant. Returns the number of chunks.
+
+    QUALITY: long-function-justification - extraction, batch embedding, semantic chunking,
+    collection setup, and upsert are the atomic ingestion unit for one source document.
+    """
     filename = Path(pdf_path).name
     logger.info("semantic_chunker.pdf_start", extra={"file": filename})
 
@@ -269,7 +273,7 @@ def process_pdf(pdf_path: str, client: QdrantClient) -> int:
     )
 
     # 5. Build chunks with metadata
-    metadata = {
+    metadata: dict[str, MetadataValue] = {
         "source_file": filename,
         "source_path": str(Path(pdf_path).resolve()),
     }
@@ -282,7 +286,12 @@ def process_pdf(pdf_path: str, client: QdrantClient) -> int:
 
 
 def process_folder(folder_path: str) -> None:
-    """Process all PDFs in a folder."""
+    """Process all PDFs in a folder.
+
+    QUALITY: long-function-justification - folder discovery, empty-folder handling,
+    Qdrant setup, per-PDF ingestion loop, and final indexing summary form one
+    operator-facing ingestion transaction.
+    """
     pdf_files = list(Path(folder_path).glob("**/*.pdf"))
     if not pdf_files:
         logger.warning("semantic_chunker.no_pdfs_found", extra={"folder": folder_path})
@@ -348,7 +357,11 @@ def search(query: str, top_k: int = 5) -> None:
 
 
 def main() -> None:
-    """Entry point for CLI usage. Parses arguments and runs index or search."""
+    """Entry point for CLI usage. Parses arguments and runs index or search.
+
+    QUALITY: long-function-justification - argparse setup and command dispatch remain
+    together because splitting the parser obscures CLI flags and subcommands.
+    """
     global OLLAMA_MODEL, SIMILARITY_THRESHOLD, QDRANT_URL, QDRANT_API_KEY, COLLECTION_NAME
 
     logging.basicConfig(

@@ -216,6 +216,10 @@ def run_judge(
     """
     Run the judgment for every comparison.
 
+    QUALITY: long-function-justification - provider selection, A/B assignment,
+    judge invocation, SB100-perspective normalization, artifact write, and summary
+    statistics are one deterministic judging transaction.
+
     Args:
         input_path: Path to the dataset with evaluation results
         output_path: Path to the output file
@@ -373,6 +377,11 @@ def run_judge(
 
 
 def main():
+    """Parse CLI options and run automatic judging.
+
+    QUALITY: long-function-justification - argument parsing, credential validation,
+    input validation, judge execution, and exit code are one CLI entrypoint.
+    """
     parser = argparse.ArgumentParser(description="Run automatic judgment of the answers")
     parser.add_argument(
         "--input",

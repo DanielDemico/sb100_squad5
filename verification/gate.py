@@ -36,6 +36,8 @@ def evaluate(
         3. If score <= threshold, return the answer.
         4. If it exceeds, regenerate up to ``MAX_RETRIES``.
         5. After exhausting attempts, return ``FALLBACK_MESSAGE`` with the last score.
+    QUALITY: long-function-justification - generation, entropy scoring, retry,
+    verifier-failure degradation, and final fallback are the atomic gate policy.
     """
     last_score = 0.0
 

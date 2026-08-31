@@ -53,9 +53,13 @@ def search_context_rich(embedding: list[float]) -> list[RetrievalChunk]:
         ValueError: If the embedding does not have the expected dimensions.
         qdrant_client.http.exceptions.UnexpectedResponse: If the collection does not exist.
         requests.exceptions.ConnectionError: If Qdrant is offline.
+    QUALITY: long-function-justification - dimension validation, Qdrant query, payload
+    normalization, missing-text logging, and schema mapping form one retrieval adapter operation.
     """
     if len(embedding) != settings.embed_dim:
-        raise ValueError(f"embedding must have {settings.embed_dim} dimensions; got {len(embedding)}")
+        raise ValueError(
+            f"embedding must have {settings.embed_dim} dimensions; got {len(embedding)}"
+        )
 
     client = _get_client()
     results = client.query_points(
@@ -132,7 +136,9 @@ def top_similarity(embedding: list[float]) -> float | None:
         ValueError: If the embedding does not have the expected dimensions.
     """
     if len(embedding) != settings.embed_dim:
-        raise ValueError(f"embedding must have {settings.embed_dim} dimensions; got {len(embedding)}")
+        raise ValueError(
+            f"embedding must have {settings.embed_dim} dimensions; got {len(embedding)}"
+        )
 
     client = _get_client()
     results = client.query_points(

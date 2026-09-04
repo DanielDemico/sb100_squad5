@@ -2,7 +2,6 @@ from datetime import UTC, datetime
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy.orm import Session
 
 from api.dependencies import verify_token
 from api.main import app
@@ -35,6 +34,7 @@ def test_list_conversations_success() -> None:
 
     # Criar sessão de teste física para inserir dados
     from database.db import SessionLocal
+
     db = SessionLocal()
     try:
         db.add(user_a)
@@ -42,9 +42,12 @@ def test_list_conversations_success() -> None:
         db.commit()
 
         from datetime import timedelta
+
         now_time = datetime.now(UTC)
         # Criar conversas para alice
-        conv1 = Conversation(user_id=user_a.id, title="Alice Conv 1", created_at=now_time - timedelta(minutes=10))
+        conv1 = Conversation(
+            user_id=user_a.id, title="Alice Conv 1", created_at=now_time - timedelta(minutes=10)
+        )
         conv2 = Conversation(user_id=user_a.id, title="Alice Conv 2", created_at=now_time)
         # Criar conversa para bob
         conv3 = Conversation(user_id=user_b.id, title="Bob Conv 1", created_at=now_time)

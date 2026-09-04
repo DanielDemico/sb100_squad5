@@ -106,6 +106,8 @@ def register(
     Raises:
         HTTPException(400): If the username is already taken.
         HTTPException(429): If the rate-limit (3/hour per IP) is hit.
+    QUALITY: long-function-justification - duplicate check, bcrypt hashing, ORM insert,
+    commit/rollback, and response mapping are one atomic registration command.
     """
     existing = db.query(User).filter(User.username == user_data.username).first()
     if existing:

@@ -138,8 +138,8 @@ def test_search_rich_returns_detailed_metadata() -> None:
                 "content": "teste rico",
                 "chunk_index": 12,
                 "file": "doc.pdf",
-                "pagina_pdf": 3
-            }
+                "pagina_pdf": 3,
+            },
         )
         mock_client.query_points.return_value = MagicMock(points=[point])
 

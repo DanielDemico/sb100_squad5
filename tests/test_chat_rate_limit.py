@@ -11,10 +11,10 @@ from unittest.mock import patch
 
 import pytest
 from fastapi.testclient import TestClient
-from starlette.requests import Request
 from sqlalchemy import create_engine
 from sqlalchemy.orm import Session, sessionmaker
 from sqlalchemy.pool import StaticPool
+from starlette.requests import Request
 
 from api.dependencies import limiter, verify_token
 from api.main import app
@@ -88,11 +88,13 @@ def db_setup() -> Generator[None, None, None]:
         poolclass=StaticPool,
     )
     Base.metadata.create_all(bind=engine)
-    TestingSessionLocal = sessionmaker(bind=engine)
-    db = TestingSessionLocal()
+    testing_session_local = sessionmaker(bind=engine)
+    db = testing_session_local()
     try:
         # Seed users to prevent foreign key errors
-        testuser = User(id=1, username="testuser", hashed_password="x", created_at=datetime.now(UTC))
+        testuser = User(
+            id=1, username="testuser", hashed_password="x", created_at=datetime.now(UTC)
+        )
         heavy = User(id=2, username="heavy-user", hashed_password="x", created_at=datetime.now(UTC))
         usera = User(id=3, username="user-a", hashed_password="x", created_at=datetime.now(UTC))
         userb = User(id=4, username="user-b", hashed_password="x", created_at=datetime.now(UTC))
@@ -105,7 +107,7 @@ def db_setup() -> Generator[None, None, None]:
         db.close()
 
     def _get_testing_db() -> Generator[Session, None, None]:
-        db = TestingSessionLocal()
+        db = testing_session_local()
         try:
             yield db
         finally:
@@ -161,7 +163,9 @@ def test_exceeding_the_limit_returns_429(chat_client: TestClient, low_chat_limit
     headers = _bearer("heavy-user")
 
     # Mock dynamic verify_token to return the user that matches the JWT sub to keep DB integrity
-    heavy_user_model = User(id=2, username="heavy-user", hashed_password="x", created_at=datetime.now(UTC))
+    heavy_user_model = User(
+        id=2, username="heavy-user", hashed_password="x", created_at=datetime.now(UTC)
+    )
     app.dependency_overrides[verify_token] = lambda: heavy_user_model
 
     for _ in range(3):

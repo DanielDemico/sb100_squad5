@@ -19,8 +19,8 @@ import math
 from typing import TypedDict, cast
 
 from core.config import settings
+from core.embeddings import embed_text
 from core.ollama_clients import get_chat_client
-from retrieval.ollama_embeddings import embed_text
 
 logger = logging.getLogger(__name__)
 

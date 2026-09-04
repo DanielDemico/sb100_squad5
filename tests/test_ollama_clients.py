@@ -43,7 +43,9 @@ def test_get_embed_client_returns_singleton() -> None:
 
         assert first is sentinel
         assert first is second
-        mock_cls.assert_called_once_with(host=settings.ollama_host, timeout=settings.ollama_embed_timeout)
+        mock_cls.assert_called_once_with(
+            host=settings.ollama_host, timeout=settings.ollama_embed_timeout
+        )
 
 
 def test_chat_client_uses_settings_ollama_timeout() -> None:

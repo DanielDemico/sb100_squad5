@@ -18,26 +18,39 @@ import logging
 import threading
 import time
 from collections import OrderedDict
+from typing import cast
 
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, Request
 from jwt.exceptions import InvalidTokenError
 from slowapi.util import get_remote_address
+from sqlalchemy.orm import Session
 
-from agent.intent import OUT_OF_DOMAIN_MESSAGE, classify_domain, classify_domain_llm, classify_expertise_llm
+from agent.intent import (
+    OUT_OF_DOMAIN_MESSAGE,
+    classify_domain,
+    classify_domain_llm,
+    classify_expertise_llm,
+)
 from agent.runner import invoke_agent
 from api.dependencies import ALGORITHM, limiter, verify_token
 from core.config import settings
-from core.schemas import ChatRequest, ChatResponse, RetrievalSource, UserProfile
+from core.schemas import (
+    ChatMessage,
+    ChatRequest,
+    ChatResponse,
+    RetrievalChunk,
+    RetrievalSource,
+    UserProfile,
+)
 from database.db import get_db
-from database.models import User, Conversation, Message, RagResponse, RagSource
+from database.models import Conversation, Message, RagResponse, RagSource, User
 from generation.llm import generate
 from memory.conversation import ConversationBuffer
 from retrieval.embedder import generate_embedding
 from retrieval.vector_store import search_context, search_context_rich
 from verification.gate import evaluate as verify_and_generate
 from verification.gate import score_context
-from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
 
@@ -182,22 +195,29 @@ def chat(
         db.add(conversation)
         db.flush()
 
+    conversation_id = cast(int, conversation.id)
+    username = str(current_user.username)
+
     if not in_domain:
         out_of_domain_answer = (
             "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. "
             "Só posso responder perguntas relacionadas a esses temas."
         )
         # Salvar a pergunta do usuário e a resposta de bloqueio no histórico da conversa
-        user_msg = Message(conversation_id=conversation.id, role="user", content=req.question)
+        user_msg = Message(conversation_id=conversation_id, role="user", content=req.question)
         db.add(user_msg)
         db.flush()
-        assistant_msg = Message(conversation_id=conversation.id, role="assistant", content=out_of_domain_answer)
+        assistant_msg = Message(
+            conversation_id=conversation_id,
+            role="assistant",
+            content=out_of_domain_answer,
+        )
         db.add(assistant_msg)
         db.commit()
 
         return ChatResponse(
             answer=out_of_domain_answer,
-            conversation_id=conversation.id,
+            conversation_id=conversation_id,
             hallucination_score=0.0,
             sources=[]
         )
@@ -212,7 +232,7 @@ def chat(
             detail=f"Erro no agente de classificação de expertise: {str(e)}"
         ) from e
 
-    profile = UserProfile(name=current_user.username, expertise=expertise)
+    profile = UserProfile(name=username, expertise=expertise)
 
     # Recuperar histórico de mensagens do banco de dados para a conversa
     past_messages = (
@@ -221,21 +241,21 @@ def chat(
         .order_by(Message.created_at.asc())
         .all()
     )
-    history = [
-        {"role": msg.role, "content": msg.content}
+    history: list[ChatMessage] = [
+        {"role": str(msg.role), "content": str(msg.content)}
         for msg in past_messages
     ]
 
     # Salvar a pergunta do usuário na tabela de mensagens
     user_msg = Message(
-        conversation_id=conversation.id,
+        conversation_id=conversation_id,
         role="user",
         content=req.question
     )
     db.add(user_msg)
     db.flush()
 
-    context_chunks = []
+    context_chunks: list[RetrievalChunk] = []
 
     if settings.agent_enabled:
         decision = classify_domain(req.question) if settings.intent_filter_enabled else None
@@ -282,6 +302,7 @@ def chat(
 
         try:
             import unittest.mock
+
             from retrieval.vector_store import search_context as original_search_context
 
             is_mocked = (
@@ -291,13 +312,14 @@ def chat(
             if is_mocked:
                 mocked_chunks = search_context(embedding)
                 context_chunks = [
-                    {
-                        "id": f"mock-id-{i}",
-                        "inicio": i,
-                        "text": str(chunk),
-                        "file": "mock.pdf",
-                        "pagina": 1,
-                    }
+                    RetrievalChunk(
+                        id=f"mock-id-{i}",
+                        inicio=i,
+                        text=str(chunk),
+                        file="mock.pdf",
+                        pagina=1,
+                        score=None,
+                    )
                     for i, chunk in enumerate(mocked_chunks)
                 ]
             else:
@@ -312,7 +334,7 @@ def chat(
                 detail=f"Context search failed: {str(e)}. Check that Qdrant is running.",
             ) from e
 
-        context_text = "\n\n".join(c["text"] for c in context_chunks) if context_chunks else ""
+        context_text = "\n\n".join(chunk.text for chunk in context_chunks) if context_chunks else ""
 
         try:
             if settings.verification_enabled:
@@ -344,7 +366,7 @@ def chat(
 
     # Salvar a resposta do assistente no banco de dados
     assistant_msg = Message(
-        conversation_id=conversation.id,
+        conversation_id=conversation_id,
         role="assistant",
         content=response_answer
     )
@@ -365,26 +387,26 @@ def chat(
 
     # Salvar RagSources e gerar RetrievalSource para o retorno da API
     sources = []
-    for c in context_chunks:
+    for chunk in context_chunks:
         source_model = RagSource(
             rag_response_id=rag_resp.id,
-            content=c["text"],
-            document_id=c["id"],
-            chunk_id=str(c["inicio"]),
+            content=chunk.text,
+            document_id=chunk.id,
+            chunk_id=str(chunk.inicio),
             similarity_score=None,
-            source_name=c.get("file"),
-            page_number=c.get("pagina"),
+            source_name=chunk.file,
+            page_number=chunk.pagina,
             metadata=None
         )
         db.add(source_model)
 
         sources.append(
             RetrievalSource(
-                id=c["id"],
-                inicio=c["inicio"],
-                text=c["text"],
-                file=c.get("file"),
-                pagina=c.get("pagina"),
+                id=chunk.id,
+                inicio=chunk.inicio,
+                text=chunk.text,
+                file=chunk.file,
+                pagina=chunk.pagina,
             )
         )
 
@@ -392,7 +414,7 @@ def chat(
 
     return ChatResponse(
         answer=response_answer,
-        conversation_id=conversation.id,
+        conversation_id=conversation_id,
         hallucination_score=hallucination_score,
         sources=sources
     )

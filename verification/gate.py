@@ -8,7 +8,7 @@ failures, which must propagate to the caller as usual.
 import logging
 
 from core.config import settings
-from core.schemas import ChatResponse, UserProfile
+from core.schemas import ChatMessage, ChatResponse, UserProfile
 from generation.llm import generate
 from verification.entropy import compute_entropy_score
 
@@ -22,7 +22,7 @@ NEUTRAL_SCORE = 0.5
 def evaluate(
     question: str,
     context: str,
-    history: list[dict[str, str]],
+    history: list[ChatMessage],
     profile: UserProfile,
 ) -> ChatResponse:
     """Evaluates and regenerates the answer if the entropy score exceeds the threshold.

@@ -16,7 +16,7 @@ Numerical-stability and error-handling notes:
 
 import logging
 import math
-from typing import Any, cast
+from typing import TypedDict, cast
 
 from core.config import settings
 from core.ollama_clients import get_chat_client
@@ -33,6 +33,14 @@ DEFAULT_VERIFICATION_MODELS = {
 }
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+
+
+class _OllamaMessage(TypedDict, total=False):
+    content: str
+
+
+class _OllamaChatResponse(TypedDict, total=False):
+    message: _OllamaMessage
 
 
 def _build_messages(question: str, context: str) -> list[dict[str, str]]:
@@ -61,11 +69,11 @@ def _generate_one_groq(question: str, context: str, model: str) -> str:
 
 
 def _generate_one_ollama(question: str, context: str, model: str) -> str:
-    # ollama-py returns ChatResponse; casting to dict[str, Any] keeps the safe
+    # ollama-py returns ChatResponse; casting to a partial TypedDict keeps the safe
     # ``.get`` access (still valid at runtime for ChatResponse).
     # Shared client (singleton with timeout — see core/ollama_clients).
     resp = cast(
-        dict[str, Any],
+        _OllamaChatResponse,
         get_chat_client().chat(
             model=model,
             messages=_build_messages(question, context),

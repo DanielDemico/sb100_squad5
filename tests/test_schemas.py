@@ -3,7 +3,16 @@
 import pytest
 from pydantic import ValidationError
 
-from core.schemas import ChatRequest, ChatResponse, ExpertiseLevel, UserProfile
+from core.schemas import (
+    ChatRequest,
+    ChatResponse,
+    ExpertiseLevel,
+    RegisterResponse,
+    RetrievalChunk,
+    Token,
+    UserCreate,
+    UserProfile,
+)
 
 
 def _profile() -> UserProfile:
@@ -70,3 +79,27 @@ def test_chat_response_accepts_score_boundaries() -> None:
     high = ChatResponse(answer="ok", hallucination_score=1.0)
     assert low.hallucination_score == 0.0
     assert high.hallucination_score == 1.0
+
+
+def test_auth_public_schemas_live_in_core_schemas() -> None:
+    user = UserCreate(username="alice_99-prod", password="strong-pw-12")
+    token = Token(access_token="jwt", token_type="bearer")
+    response = RegisterResponse(message="User created successfully", username=user.username)
+
+    assert user.__class__.__module__ == "core.schemas"
+    assert token.__class__.__module__ == "core.schemas"
+    assert response.__class__.__module__ == "core.schemas"
+
+
+def test_retrieval_chunk_contract_includes_internal_score() -> None:
+    chunk = RetrievalChunk(
+        id="chunk-1",
+        inicio=12,
+        text="conteudo",
+        file="doc.pdf",
+        pagina=3,
+        score=0.88,
+    )
+
+    assert chunk.__class__.__module__ == "core.schemas"
+    assert chunk.score == 0.88

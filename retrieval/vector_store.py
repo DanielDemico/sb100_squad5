@@ -13,6 +13,7 @@ import threading
 from qdrant_client import QdrantClient
 
 from core.config import settings
+from core.schemas import RetrievalChunk
 
 logger = logging.getLogger(__name__)
 
@@ -36,7 +37,7 @@ def _get_client() -> QdrantClient:
     return _qdrant_client
 
 
-def search_context_rich(embedding: list[float]) -> list[dict]:
+def search_context_rich(embedding: list[float]) -> list[RetrievalChunk]:
     """Retrieves text chunks with metadata similar to the query vector.
 
     Runs ANN (Approximate Nearest Neighbors) search on the configured Qdrant
@@ -46,7 +47,7 @@ def search_context_rich(embedding: list[float]) -> list[dict]:
         embedding: Query embedding vector.
 
     Returns:
-        List of dicts representing each retrieved chunk and its metadata.
+        List of retrieval chunks representing each retrieved chunk and its metadata.
 
     Raises:
         ValueError: If the embedding does not have the expected dimensions.
@@ -65,7 +66,7 @@ def search_context_rich(embedding: list[float]) -> list[dict]:
         with_payload=True,
     ).points
 
-    chunks: list[dict] = []
+    chunks: list[RetrievalChunk] = []
     for point in results:
         payload = point.payload or {}
         text = payload.get("content") or payload.get("text") or ""
@@ -79,14 +80,16 @@ def search_context_rich(embedding: list[float]) -> list[dict]:
                 extra={"payload_keys": sorted(payload.keys())},
             )
 
-        chunks.append({
-            "id": str(point.id),
-            "inicio": int(inicio),
-            "text": str(text),
-            "file": str(file) if file is not None else None,
-            "pagina": int(pagina) if pagina is not None else None,
-            "score": float(point.score) if point.score is not None else None,
-        })
+        chunks.append(
+            RetrievalChunk(
+                id=str(point.id),
+                inicio=int(inicio),
+                text=str(text),
+                file=str(file) if file is not None else None,
+                pagina=int(pagina) if pagina is not None else None,
+                score=float(point.score) if point.score is not None else None,
+            )
+        )
     return chunks
 
 
@@ -109,7 +112,7 @@ def search_context(embedding: list[float]) -> list[str]:
         requests.exceptions.ConnectionError: If Qdrant is offline.
     """
     rich_chunks = search_context_rich(embedding)
-    return [c["text"] for c in rich_chunks]
+    return [chunk.text for chunk in rich_chunks]
 
 
 def top_similarity(embedding: list[float]) -> float | None:
@@ -140,8 +143,6 @@ def top_similarity(embedding: list[float]) -> float | None:
     ).points
     if not results:
         return None
-    # Coerce to a concrete float: the Qdrant client is untyped under the CI
-    # typecheck (deps not installed), so `.score` is Any there — returning it
-    # directly would trip mypy's no-any-return (mirrors search_context building
-    # a concrete list[str] rather than returning library Any).
+    # Coerce to a concrete float because Qdrant's runtime response type is
+    # broader than the contract this module exposes to callers.
     return float(results[0].score)

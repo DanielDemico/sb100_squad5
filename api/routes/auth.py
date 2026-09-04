@@ -13,26 +13,24 @@ Security:
 """
 
 import logging
-import re
+from collections.abc import Mapping
 from datetime import UTC, datetime, timedelta
-from typing import Any
 
 import jwt
 from fastapi import APIRouter, Depends, HTTPException, Request, status
 from fastapi.security import OAuth2PasswordRequestForm
 from passlib.context import CryptContext
-from pydantic import BaseModel, Field, field_validator
 from sqlalchemy.orm import Session
 
 from api.dependencies import ALGORITHM, limiter
 from core.config import settings
+from core.schemas import RegisterResponse, Token, UserCreate
 from database.db import get_db
 from database.models import User
 
 logger = logging.getLogger(__name__)
 
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
-_USERNAME_PATTERN = re.compile(r"^[a-zA-Z0-9_-]+$")
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -69,7 +67,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
         return False
 
 
-def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = None) -> str:
+def create_access_token(data: Mapping[str, str], expires_delta: timedelta | None = None) -> str:
     """Create a signed JWT with an expiration time.
 
     Args:
@@ -79,7 +77,7 @@ def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = 
     Returns:
         Encoded JWT as a string.
     """
-    to_encode = data.copy()
+    to_encode: dict[str, str | datetime] = dict(data)
     if expires_delta:
         expire = datetime.now(UTC) + expires_delta
     else:
@@ -88,34 +86,13 @@ def create_access_token(data: dict[str, Any], expires_delta: timedelta | None = 
     return jwt.encode(to_encode, settings.jwt_secret_key, algorithm=ALGORITHM)
 
 
-class UserCreate(BaseModel):
-    """Schema for creating a new user."""
-
-    username: str = Field(..., min_length=1, max_length=50)
-    password: str = Field(..., min_length=8, max_length=128)
-
-    @field_validator("username")
-    @classmethod
-    def _validate_username(cls, value: str) -> str:
-        if not _USERNAME_PATTERN.match(value):
-            raise ValueError("username must contain only letters, digits, hyphen and underscore")
-        return value
-
-
-class Token(BaseModel):
-    """Response schema containing the JWT."""
-
-    access_token: str
-    token_type: str
-
-
-@router.post("/register", status_code=status.HTTP_201_CREATED)
+@router.post("/register", status_code=status.HTTP_201_CREATED, response_model=RegisterResponse)
 @limiter.limit("3/hour")
 def register(
     request: Request,
     user_data: UserCreate,
     db: Session = Depends(get_db),
-) -> dict[str, str]:
+) -> RegisterResponse:
     """Register a new user in the system.
 
     Args:
@@ -149,7 +126,7 @@ def register(
     db.commit()
     db.refresh(user)
     logger.info("auth.register.success", extra={"username": user_data.username})
-    return {"message": "User created successfully", "username": str(user.username)}
+    return RegisterResponse(message="User created successfully", username=str(user.username))
 
 
 @router.post("/token", response_model=Token)
@@ -158,7 +135,7 @@ def login(
     request: Request,
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db),
-) -> dict[str, str]:
+) -> Token:
     """Authenticate the user and return a JWT.
 
     Endpoint compatible with the OAuth2 password flow for use with Swagger UI.
@@ -185,8 +162,8 @@ def login(
         )
 
     access_token = create_access_token(
-        data={"sub": user.username},
+        data={"sub": str(user.username)},
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     logger.info("auth.login.success", extra={"username": user.username})
-    return {"access_token": access_token, "token_type": "bearer"}
+    return Token(access_token=access_token, token_type="bearer")

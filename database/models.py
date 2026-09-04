@@ -26,6 +26,13 @@ def _utc_now() -> datetime:
 
 
 class User(Base):
+    """Registered application user and owner of chat conversations.
+
+    Stores the unique login name, bcrypt password hash and the relationship
+    used to cascade-delete the user's conversations and downstream messages/RAG
+    metadata.
+    """
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -42,6 +49,12 @@ class User(Base):
 
 
 class Conversation(Base):
+    """Persistent chat session belonging to one authenticated user.
+
+    Groups ordered user/assistant messages and provides the ownership boundary
+    used by API routes to prevent cross-user access.
+    """
+
     __tablename__ = "conversations"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -70,6 +83,12 @@ class Conversation(Base):
 
 
 class Message(Base):
+    """Single persisted chat turn within a conversation.
+
+    Stores either a user question or assistant answer. Assistant messages may
+    have one associated ``RagResponse`` with verification and source metadata.
+    """
+
     __tablename__ = "messages"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -94,6 +113,12 @@ class Message(Base):
 
 
 class RagResponse(Base):
+    """RAG and verification metadata attached to one assistant message.
+
+    Captures the generated answer, hallucination score, model name and token
+    counters, and owns the source chunks used to ground that answer.
+    """
+
     __tablename__ = "rag_responses"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -121,6 +146,12 @@ class RagResponse(Base):
 
 
 class RagSource(Base):
+    """Retrieved source chunk persisted for one RAG response.
+
+    Records the Qdrant/document identifiers, chunk text and optional page/source
+    metadata so later audits can trace which context supported an answer.
+    """
+
     __tablename__ = "rag_sources"
 
     id = Column(Integer, primary_key=True, index=True)

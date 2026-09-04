@@ -21,6 +21,13 @@ def search_corpus(query: str) -> str:
 
     Embeds the query and runs vector search over the configured collection, returning the
     concatenated text of the most similar chunks.
+
+    Args:
+        query: Natural-language question or search phrase from the agent.
+
+    Returns:
+        Sanitized context block for the agent, or a sentinel message when no
+        context is found or retrieval fails.
     """
     try:
         embedding = generate_embedding(query)

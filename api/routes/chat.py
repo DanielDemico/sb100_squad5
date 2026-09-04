@@ -70,11 +70,15 @@ def _get_or_create_buffer(current_user: User, session_id: str) -> ConversationBu
             _sessions.pop(session_key, None)
 
         while len(_sessions) >= _SESSION_MAX_SIZE:
+            # OrderedDict preserves access order because active sessions are
+            # reinserted below; removing from the front limits memory with LRU overflow.
             _sessions.popitem(last=False)
 
         existing = _sessions.pop(key, None)
         if existing is not None:
             buffer, _ = existing
+            # Reinsert the buffer with the current timestamp so recent traffic
+            # moves to the back of the OrderedDict and survives future overflow.
             _sessions[key] = (buffer, now)
             return buffer
 
@@ -359,6 +363,22 @@ def chat(
     db: Session = Depends(get_db),
 ) -> ChatResponse:
     """Process the authenticated user's question and return the assistant answer.
+
+    Args:
+        request: FastAPI request object used by slowapi rate limiting.
+        req: Validated chat request containing the question and optional
+            conversation id.
+        current_user: Authenticated user resolved from the JWT.
+        db: SQLAlchemy session used for conversation, message and RAG persistence.
+
+    Returns:
+        Assistant answer, conversation id, hallucination score and persisted
+        retrieval sources.
+
+    Raises:
+        HTTPException: 404 for inaccessible conversations, 503 for classifier,
+            embedding, retrieval or generation failures, and authentication/rate
+            limit errors through FastAPI dependencies.
 
     QUALITY: long-function-justification - FastAPI dependencies, domain preflight,
     path dispatch, persistence commit, and schema response stay in the route as the

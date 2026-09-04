@@ -92,6 +92,15 @@ class Settings(BaseSettings):
         ``CHAT_RATE_LIMIT`` would otherwise surface as a 500 on every ``/chat``
         call instead of a fail-loud boot error. Validating the slowapi format
         here (via the same ``limits`` parser slowapi uses) catches it early.
+
+        Args:
+            value: Raw limit string loaded from the environment.
+
+        Returns:
+            The original limit string when accepted by the parser.
+
+        Raises:
+            ValueError: If the value is not a valid slowapi/limits expression.
         """
         try:
             parse_many(value)
@@ -104,7 +113,17 @@ class Settings(BaseSettings):
     @field_validator("jwt_secret_key")
     @classmethod
     def _validate_jwt_secret_key(cls, value: str) -> str:
-        """Ensure the JWT secret exists and has minimum entropy."""
+        """Ensure the JWT secret exists and has minimum entropy.
+
+        Args:
+            value: Secret loaded from ``JWT_SECRET_KEY``.
+
+        Returns:
+            The unchanged secret when present and at least 32 characters long.
+
+        Raises:
+            ValueError: If the secret is missing or too short for signing JWTs.
+        """
         if not value:
             raise ValueError("JWT_SECRET_KEY must be configured in .env or environment variables")
         if len(value) < 32:

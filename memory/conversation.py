@@ -32,6 +32,9 @@ class ConversationBuffer:
             role: Turn role (``"user"`` or ``"assistant"``).
             content: Message content (must not be empty or whitespace-only).
 
+        Returns:
+            None.
+
         Raises:
             ValueError: If ``role`` is not in ``{"user", "assistant"}`` or
                 if ``content`` is empty.
@@ -40,6 +43,8 @@ class ConversationBuffer:
             raise ValueError(f"role must be one of {sorted(_VALID_ROLES)}; got {role!r}")
         if not content or not content.strip():
             raise ValueError("content must be a non-empty string")
+        # The deque owns FIFO overflow: once maxlen is reached, append drops the
+        # oldest turn so memory stays bounded while preserving recent context.
         self._buffer.append({"role": role, "content": content})
         logger.debug("memory.conversation.add", extra={"role": role, "size": len(self._buffer)})
 

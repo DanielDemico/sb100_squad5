@@ -21,6 +21,18 @@ _RETRY_MAX_SEC = 2.0
 def embed_text(model: str, prompt: str) -> list[float]:
     """Return an embedding vector for text, with truncation and transient retries.
 
+    Args:
+        model: Ollama embedding model name.
+        prompt: Input text to embed; values longer than the adapter limit are
+            truncated before the request.
+
+    Returns:
+        Embedding vector returned by Ollama.
+
+    Raises:
+        BaseException: Re-raises the last captured transient Ollama/httpx/OS
+            failure when all retry attempts are exhausted.
+
     QUALITY: long-function-justification - this adapter keeps the retry loop,
     exception capture, backoff calculation, and final error propagation together
     so callers observe one atomic Ollama embedding operation.
@@ -48,6 +60,8 @@ def embed_text(model: str, prompt: str) -> list[float]:
             )
             if attempt >= _MAX_RETRIES - 1:
                 break
+            # Exponential backoff absorbs short Ollama startup/network hiccups
+            # while the cap keeps a hot-path embedding call from stalling too long.
             delay = min(_RETRY_BASE_SEC * (2**attempt), _RETRY_MAX_SEC)
             time.sleep(delay)
     if last_exc is None:

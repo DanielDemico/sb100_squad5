@@ -21,7 +21,14 @@ class AgentGraph(Protocol):
     """Minimal graph contract consumed by the agent runner."""
 
     def invoke(self, payload: dict[str, list[ChatMessage]]) -> dict[str, list[object]]:
-        """Run a graph invocation and return emitted messages."""
+        """Run a graph invocation and return emitted messages.
+
+        Args:
+            payload: Graph input containing the ordered ``messages`` list.
+
+        Returns:
+            Mapping with emitted graph messages under the ``messages`` key.
+        """
         ...
 
 

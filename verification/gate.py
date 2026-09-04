@@ -36,6 +36,21 @@ def evaluate(
         3. If score <= threshold, return the answer.
         4. If it exceeds, regenerate up to ``MAX_RETRIES``.
         5. After exhausting attempts, return ``FALLBACK_MESSAGE`` with the last score.
+
+    Args:
+        question: Current user question.
+        context: Retrieved context used by generation and verification.
+        history: Previous chat turns included in generation.
+        profile: User profile that selects the answer style.
+
+    Returns:
+        Chat response with the accepted answer and entropy score, a neutral
+        score if verification fails, or a fallback message after retries.
+
+    Raises:
+        Exception: Propagates answer-generation failures; verification failures
+            are intentionally degraded to ``NEUTRAL_SCORE``.
+
     QUALITY: long-function-justification - generation, entropy scoring, retry,
     verifier-failure degradation, and final fallback are the atomic gate policy.
     """
@@ -72,6 +87,14 @@ def score_context(question: str, context: str) -> float:
 
     Returns the neutral score when there is no context to verify; otherwise runs the
     semantic-entropy score with the same neutral fallback as ``evaluate`` on verifier failure.
+
+    Args:
+        question: User question associated with the agent answer.
+        context: Context retrieved by the agent's corpus-search tool.
+
+    Returns:
+        Semantic entropy score, or ``NEUTRAL_SCORE`` when context is empty or
+        verification fails.
     """
     if not context.strip():
         return NEUTRAL_SCORE

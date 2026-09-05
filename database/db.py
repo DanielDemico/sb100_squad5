@@ -38,17 +38,32 @@ SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
 class _DbapiCursor(Protocol):
     def execute(self, statement: str) -> object:
-        """Execute a SQL statement."""
+        """Execute a SQL statement through a DB-API cursor.
+
+        Args:
+            statement: SQL statement to execute.
+
+        Returns:
+            Driver-specific execution result.
+        """
         ...
 
     def close(self) -> object:
-        """Close the cursor."""
+        """Close the cursor after PRAGMA execution.
+
+        Returns:
+            Driver-specific close result.
+        """
         ...
 
 
 class _DbapiConnection(Protocol):
     def cursor(self) -> _DbapiCursor:
-        """Return a DB-API cursor."""
+        """Return a DB-API cursor for low-level connection setup.
+
+        Returns:
+            Cursor object supporting ``execute`` and ``close``.
+        """
         ...
 
 
@@ -57,7 +72,15 @@ def _enable_sqlite_foreign_keys(
     dbapi_connection: _DbapiConnection,
     connection_record: object,
 ) -> None:
-    """Enable PRAGMA foreign_keys on SQLite connections to ensure CASCADE."""
+    """Enable PRAGMA foreign_keys on SQLite connections to ensure CASCADE.
+
+    Args:
+        dbapi_connection: Raw DB-API connection opened by SQLAlchemy.
+        connection_record: SQLAlchemy connection-pool record, unused by this listener.
+
+    Returns:
+        None.
+    """
     # Only SQLite needs the PRAGMA; other dialects do not expose ``execute`` this way.
     try:
         cursor = dbapi_connection.cursor()
@@ -82,6 +105,13 @@ def get_db() -> Generator[Session, None, None]:
         @router.get("/")
         def handler(db: Session = Depends(get_db)) -> ...:
             ...
+
+    Yields:
+        SQLAlchemy session bound to the application engine.
+
+    Raises:
+        Exception: Re-raises request-time database errors after rolling back
+            the session.
     """
     db = SessionLocal()
     try:

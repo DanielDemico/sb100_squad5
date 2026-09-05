@@ -22,7 +22,15 @@ def list_conversations(
     db: Session = Depends(get_db),
     current_user: User = Depends(verify_token),
 ) -> list[ConversationResponse]:
-    """Retrieve all conversations for the authenticated user, sorted by created_at desc."""
+    """Retrieve all conversations owned by the authenticated user.
+
+    Args:
+        db: SQLAlchemy session injected by FastAPI.
+        current_user: User resolved from the bearer JWT.
+
+    Returns:
+        Conversation metadata sorted by creation time descending.
+    """
     logger.info(
         "conversations.list",
         extra={"username": current_user.username, "user_id": current_user.id},

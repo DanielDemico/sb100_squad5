@@ -25,7 +25,14 @@ OUT_OF_DOMAIN_MESSAGE = (
 
 @dataclass(frozen=True)
 class DomainDecision:
-    """Outcome of the domain gate: whether the question is in domain and the score seen."""
+    """Domain-gate result consumed by the agent chat path.
+
+    Attributes:
+        in_domain: Whether retrieval similarity indicates the question can be
+            answered from the agricultural corpus.
+        score: Top corpus similarity observed, or ``None`` when scoring failed
+            or produced no result and the gate failed open.
+    """
 
     in_domain: bool
     score: float | None
@@ -38,6 +45,13 @@ def classify_domain(question: str) -> DomainDecision:
     Fails open: on any embedding/search error, or when the collection yields no score, the
     question is treated as in domain (the agent path shares this retrieval and would surface the
     failure itself) and the failure is logged.
+
+    Args:
+        question: User question to embed and compare with the corpus.
+
+    Returns:
+        Domain decision with the boolean gate result and optional similarity
+        score.
     """
     try:
         embedding = generate_embedding(question)
@@ -58,6 +72,17 @@ def classify_domain_llm(question: str) -> bool:
 
     Fails open under pytest runner to preserve legacy integration tests.
     Under production, propagates exceptions to ensure the caller receives detailed errors.
+
+    Args:
+        question: User question to classify.
+
+    Returns:
+        ``True`` when the LLM answers ``SIM`` or when pytest fail-open logic is
+        active; otherwise ``False``.
+
+    Raises:
+        RuntimeError: If the classifier LLM call fails outside pytest.
+
     QUALITY: long-function-justification - prompt construction, pytest legacy fallback
     detection, LLM call, and strict yes/no parsing form one observable classifier transaction.
     """
@@ -110,6 +135,17 @@ def classify_expertise_llm(question: str) -> ExpertiseLevel:
     """Classifies via LLM the appropriate expertise level (beginner, intermediate, expert) for the question.
 
     Fails open to 'intermediate' under pytest if the client is not mocked specifically.
+
+    Args:
+        question: User question whose terminology and depth indicate the target
+            answer level.
+
+    Returns:
+        Expertise enum used to select the generation prompt.
+
+    Raises:
+        RuntimeError: If the classifier LLM call fails outside pytest.
+
     QUALITY: long-function-justification - prompt construction, test-mode fallback, LLM
     dispatch, and enum normalization stay together to keep the fail-open contract readable.
     """

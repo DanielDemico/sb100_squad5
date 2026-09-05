@@ -14,7 +14,12 @@ from core.schemas import AgentGraph
 
 
 def default_model() -> ChatGroq:
-    """Build the default agent chat model from settings (hosted Groq, ADR-0009)."""
+    """Build the default hosted Groq chat model for the agent path.
+
+    Returns:
+        ``ChatGroq`` configured with ``settings.agent_model`` and the optional
+        Groq API key.
+    """
     api_key = SecretStr(settings.groq_api_key) if settings.groq_api_key is not None else None
     return ChatGroq(model=settings.agent_model, api_key=api_key)
 
@@ -22,8 +27,12 @@ def default_model() -> ChatGroq:
 def create_agent(model: BaseChatModel | None = None) -> AgentGraph:
     """Build the compiled deep-agent graph.
 
-    `model` defaults to the Groq model from settings; inject a model in tests to compile
-    the graph without network access.
+    Args:
+        model: Optional LangChain chat model. When omitted, a Groq model is
+            built from settings; tests can inject a stub to avoid network calls.
+
+    Returns:
+        Compiled DeepAgents graph implementing the ``AgentGraph`` protocol.
     """
     if model is None:
         model = default_model()

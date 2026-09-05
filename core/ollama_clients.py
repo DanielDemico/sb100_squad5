@@ -33,6 +33,9 @@ def get_chat_client() -> OllamaClient:
     """Return the Ollama client singleton for chat completions.
 
     Uses ``settings.ollama_timeout`` as the HTTP timeout. Thread-safe lazy init.
+
+    Returns:
+        Shared ``ollama.Client`` configured for long-running chat generation.
     """
     global _chat_client
     if _chat_client is None:
@@ -48,6 +51,9 @@ def get_embed_client() -> OllamaClient:
     """Return the Ollama client singleton for embeddings.
 
     Uses ``settings.ollama_embed_timeout`` as the HTTP timeout. Thread-safe lazy init.
+
+    Returns:
+        Shared ``ollama.Client`` configured for embedding requests.
     """
     global _embed_client
     if _embed_client is None:
@@ -64,6 +70,9 @@ def reset_clients() -> None:
 
     Expected use: autouse fixture in tests that need to patch ``OllamaClient``
     and ensure the next call instantiates from the mock.
+
+    Returns:
+        None.
     """
     global _chat_client, _embed_client
     with _chat_client_lock:

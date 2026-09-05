@@ -15,7 +15,13 @@ from generation.llm import _sanitize_question
 
 @dataclass(frozen=True)
 class AgentOutcome:
-    """Result of one agent run: the final answer and the context it retrieved."""
+    """Result returned by one DeepAgents execution.
+
+    Attributes:
+        answer: Final assistant message produced by the graph.
+        context: Concatenated corpus text returned by successful ``search_corpus``
+            tool calls during the run.
+    """
 
     answer: str
     context: str
@@ -53,7 +59,18 @@ def invoke_agent(
 ) -> AgentOutcome:
     """Run the deep agent once and return its final answer plus retrieved context.
 
-    ``graph`` defaults to a freshly built agent; inject a stub in tests to run without network.
+    Args:
+        question: Current user question.
+        history: Prior chat turns in the API/generation message format.
+        profile: User profile used to adapt the agent answer.
+        graph: Optional graph implementation; when omitted a fresh agent is
+            created from settings.
+
+    Returns:
+        Agent outcome with the final answer and any retrieved context.
+
+    Raises:
+        Exception: Propagates graph construction or invocation failures.
     """
     if graph is None:
         graph = create_agent()

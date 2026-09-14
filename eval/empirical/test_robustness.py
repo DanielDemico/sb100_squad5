@@ -9,7 +9,7 @@ from agent.profiling import (
     UserProfileCategory,
 )
 
-DATASET_PATH = Path(__file__).resolve().parents[1] / "datasets" / "reclassification_sequences.json"
+DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassification_sequences.json"
 
 
 def run_robustness_experiment():

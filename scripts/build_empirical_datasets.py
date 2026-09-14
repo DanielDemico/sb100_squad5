@@ -8,8 +8,10 @@ Produces:
 import json
 from pathlib import Path
 
-DATASETS_DIR = Path(__file__).resolve().parents[1] / "tests" / "datasets"
+DATASETS_DIR = Path(__file__).resolve().parents[1] / "eval" / "dataset"
 DATASETS_DIR.mkdir(parents=True, exist_ok=True)
+DATASETS_PLURAL_DIR = Path(__file__).resolve().parents[1] / "eval" / "datasets"
+DATASETS_PLURAL_DIR.mkdir(parents=True, exist_ok=True)
 
 # 1. Classification Dataset (300 items)
 leigo_questions = [
@@ -63,8 +65,56 @@ leigo_questions = [
     "Como recuperar uma terra cansada?",
     "Qual adubo deixa a raiz forte?",
     "Como evitar que a água leve a terra embora?",
-] + [
-    f"Pergunta simples leiga sobre manejo básico de solo número {i}?" for i in range(51, 101)
+    "O que é adubação de cobertura em palavras simples?",
+    "Por que a terra do vaso fica com terra dura com o tempo?",
+    "Como melhorar a terra muito areosa no jardim de casa?",
+    "O que é calcário dolomítico de forma fácil de entender?",
+    "Como usar adubo orgânico de galinha sem queimar a planta?",
+    "O que é veneno agrícola para lagartas de forma simples?",
+    "Por que deve plantar na época da chuva e não na seca?",
+    "Como combater formigas na horta em casa de forma simples?",
+    "O que é pH do solo em palavras simples?",
+    "Como saber se o solo está bom para plantar café no quintal?",
+    "Por que as flores do tomateiro caem antes de dar fruto?",
+    "O que é cobertura morta de forma fácil de entender?",
+    "Como cuidar de uma terra fraca para voltar a produzir?",
+    "Qual adubo deixa a raiz da planta crescer forte?",
+    "Como evitar que a água da chuva leve a terra embora?",
+    "Como molhar o vaso de plantas de manhã cedo?",
+    "O que é calagem de forma simples para iniciantes?",
+    "Como saber quanta água colocar na horta em casa?",
+    "O que é excesso de fertilizante em palavras simples?",
+    "Qual a diferença entre terra de jardim e terra adubada?",
+    "Como preparar a terra para plantar alface em vasos?",
+    "Como cuidar de plantas que estão amareladas no quintal?",
+    "Por que as folhas da horta em casa ficam enroladas?",
+    "Como plantar cenoura em vaso de apartamento de forma simples?",
+    "Como tratar plantas com manchas pretas nas folhas?",
+    "Por que o solo fica esbranquiçado no vaso depois de molhar?",
+    "Como usar torta de mamona de forma simples no jardim?",
+    "O que fazer quando a folha amarela aparece na horta?",
+    "Como saber se o fruto está maduro para colher?",
+    "Por que a planta não cresce mesmo molhando todo dia?",
+    "Como plantar alface em garrafa pet de forma fácil?",
+    "O que é húmus de minhoca de forma fácil de entender?",
+    "Como cuidar das plantas do quintal durante o inverno?",
+    "Como tirar bichinhos das folhas usando água e sabão?",
+    "O que é bom para fazer a planta crescer mais rápido?",
+    "Como guardar sacos de fertilizantes de forma simples?",
+    "Por que a plantação de tomate fica fraca no sol forte?",
+    "Como tratar a terra dura do quintal antes de plantar?",
+    "O que fazer quando as raízes saem pelo fundo do vaso?",
+    "Como plantar temperos em canteiro pequeno em casa?",
+    "O que é rotação de culturas em palavras simples?",
+    "Por que a terra de vaso seca tão rápido no sol?",
+    "Como usar casca de ovo moída como adubo orgânico?",
+    "O que é bom para combater lagartas na horta em casa?",
+    "Como fazer adubo orgânico caseiro com restos de comida?",
+    "Por que aparecem ervas daninhas no vaso de planta?",
+    "Como proteger as plantinhas do vento e frio forte?",
+    "O que é solo fértil em palavras simples?",
+    "Como saber se a semente ainda vai germinar de forma simples?",
+    "Por que as sementes demoram para brotar na terra fria?",
 ]
 
 caipira_questions = [
@@ -118,8 +168,56 @@ caipira_questions = [
     "Como acaba com o percevejo no milharal?",
     "O calcário de liquida funciona igual o de pó na roça?",
     "O que é bom jogar no pé de laranjeira pra dar fruto doce?",
-] + [
-    f"Como é que faz pra cuidar da rocinha de forma caipira número {i}?" for i in range(51, 101)
+    "Como é que se faz pra plantar milho nas águas pro bicho não comer na roça?",
+    "Quanto de adubo eu ponho na carreira do feijão da rocinha?",
+    "Por que o cafezal tá amarelando na grota durante o mormaço?",
+    "Qual a melhor lua boa pra cortar mato e roçar a capineira?",
+    "Como é que acaba com o cupim no pasto de brachiaria na roça?",
+    "Quanto de esterco eu boto por cova de maracujá na terrinha?",
+    "Como tratar o terreno de baixada que fica encharcado na roça?",
+    "O que eu faço quando a broca espantar o cafezal da rocinha?",
+    "É bão misturar torta de mamona com farinha de osso no plantio da cova?",
+    "Quanto tempo depois de jogar na terra o calcário posso plantar mandioca?",
+    "Como fazer pra terra roxa não empedrar no estio brabo?",
+    "Qual o modo caipira bão pra espantar lagarta no milharal?",
+    "Como cuidar das bezerras no pasto durante o estio?",
+    "Quanto de uréia eu joga na capineira no tempo das águas?",
+    "Por que a mandioca tá vindo fina na cova da rocinha?",
+    "Como tirar tiririca da roça sem matar o broto novo?",
+    "Qual o jeito bão de passar o arado na terra de baixada?",
+    "O que fazer pro mandiocal não secar no mormaço de janeiro?",
+    "Quanto de adubo boto na cova da muda de laranjeira?",
+    "Como guardar milho no paiol na roça pra caruncho não carcomer?",
+    "Posso passar a grade na terra molhada da rocinha?",
+    "Por que o capim brachiaria tá ficando ralo na grota?",
+    "Como fazer muda sem levar broca pro hortaliçal na roça?",
+    "Qual a quantidade certa de cinza pra jogar no pé da couve na cova?",
+    "Como socorrer a rocinha de tomate que tomou geada na baixada?",
+    "Quanto eu boto de fertilizante na cova do abóbora?",
+    "Por que as bezerras tão magras no pasto de estio?",
+    "Como limpa a capineira pro capim virar touceira forte na roça?",
+    "Qual o tempo bão pra aplicar veneno caseiro no milharal?",
+    "O que espantar no pé de mamão pra vingar o fruto na rocinha?",
+    "Como saber se a terrinha de grota precisa de calcário no plantio?",
+    "É bão plantar feijão das águas na carreira da roça?",
+    "Como combate a lagarta no milharal de baixada?",
+    "Quanto de esterco curtido eu ponho na cova da horta caipira?",
+    "Por que o solo da roça tá rachando no estio seco?",
+    "Como fazer composto na roça com palha e esterco na cova?",
+    "Qual o momento bão de colher o café na rocinha?",
+    "O que jogar na terra da roça pra espantar formiga da cova?",
+    "Como faz pro capim brachiaria verdejar nas águas?",
+    "Quanto de cal precisa jogar na cova do mandiocal?",
+    "Por que a mexerica na rocinha tá dando fruto pequenino?",
+    "Como arrumar a mandioca que tá dura na cova da roça?",
+    "Qual o jeito bão de plantar capim na capineira do gado?",
+    "Como tirar mato alto da grota sem queimar a rocinha?",
+    "Quanto de adubo eu ponho na carreira do milharal?",
+    "Por que a banana tá nascendo torta no canteiro da roça?",
+    "Como espantar percevejo no milharal de baixada?",
+    "É bão plantar crotalária na terra da rocinha no mormaço?",
+    "Quanto de água jogar na cova do café na roça?",
+    "Como manter a umidade na terrinha da roça durante o estio?",
 ]
 
 tecnico_questions = [
@@ -169,12 +267,60 @@ tecnico_questions = [
     "Como determinar a condutividade elétrica da solução do solo fertirrigado por gotejamento?",
     "Qual a dosagem de cobalto e molibdênio recomendada via tratamento de sementes na cultura da soja?",
     "Como avaliar a suscetibilidade de genótipos de milho ao acamamento de colmo por Stenocarpella maydis?",
-    "Qual o impacto do déficit de pressão de vapor (DPV) na condutância estomática e taxa fotossintética?",
+    "Qual o impacto do déficit de pressão de vapor (DPV) na condutance estomática e taxa fotossintética?",
     "Como mensurar o fluxo de gases de efeito estufa (N2O e CH4) em solos agrícolas manejados?",
     "Qual a cinética de liberação de K em minerais primários e secundários de solos tropicais altamente intemperizados?",
     "Como dimensionar a densidade de semeadura e arranjo espacial de plantas para otimizar o índice de área foliar (IAF)?",
-] + [
-    f"Pergunta agronômica altamente técnica com terminologia e parâmetros analíticos número {i}?" for i in range(51, 101)
+    "Qual a dosagem de gessagem recomendada considerando a saturação por alumínio (m%) e o teor de argila na camada subsuperficial?",
+    "Como calcular o balanço de massa e a alteração da CTC em Latossolo submetido a altas dosagens de NPK?",
+    "Como proceder na amostragem estratificada e diagnose de micronutrientes no estádio V4 da cultura do algodoeiro?",
+    "Qual a curva de absorção e exigência nutricional de fósforo para milho de alta produtividade?",
+    "Como calcular a lâmina de irrigação baseada na evapotranspiração de referência (ETo) em sistema pressurizado?",
+    "Qual a dosagem de gesso para correção da acidez subsuperficial em Latossolo Vermelho?",
+    "Como mensurar o teor de carbono lábil e a capacidade tampão em solos sob plantio direto?",
+    "Qual a dosagem e o equilíbrio entre Ca2+ e Mg2+ no complexo sortivo para evitar lixiviação?",
+    "Como calibrar a dosagem de regulador de crescimento em função da densidade do solo e área foliar?",
+    "Qual a taxa de mineralização de N da matéria orgânica em Latossolo sob rotação de culturas?",
+    "Como fazer a amostragem estratificada para monitoramento da praga Sphenophorus levis?",
+    "Qual a seletividade de herbicidas pré-emergentes e o efeito fitotóxico residual no solo?",
+    "Como determinar a capacidade tampão de pH pelo método SMP na análise de solo?",
+    "Qual a taxa de inoculação de Bradyrhizobium e a eficiência de fixação de nitrogênio?",
+    "Como calcular a lâmina de irrigação ajustada pela evapotranspiração (ETo) e capacidade de campo?",
+    "Qual o impacto do tráfego pesado na densidade do solo e na porosidade da camada subsuperficial?",
+    "Como diferenciar parâmetros de acidez trocável (Al3+) e teor de magnésio em pH em CaCl2?",
+    "Qual o protocolo de amostragem estratificada em grade georreferenciada para calagem a taxa variável?",
+    "Como determinar a condutividade elétrica no extrato de saturação do solo?",
+    "Qual a cinética de adsorção e dessorção de íons no complexo sortivo do Argissolo?",
+    "Como integrar parâmetros de densidade do solo, porosidade e CTC na avaliação da qualidade do solo?",
+    "Qual a dosagem de boro recomendada via adubação foliar no estádio reprodutivo do cafeeiro?",
+    "Como mensurar a evapotranspiração de referência (ETo) e a lâmina de irrigação em pivô central?",
+    "Qual o limiar econômico de dano e a dosagem de inseticida para percevejo-castanho?",
+    "Como calcular a curva de absorção de nutrientes e o balanço de massa no cultivo de milho?",
+    "Qual a dosagem de fertilizante fluído contendo polifosfato e a eficiência em solo com alta fixação?",
+    "Como mensurar a porosidade total e a densidade do solo sob rotação com Brachiaria?",
+    "Qual o modo de ação dos fungicidas multissítios no manejo de Phakopsora pachyrhizi?",
+    "Como calcular a saturação por bases (V%) ideal na recomendação de calagem por PRNT?",
+    "Qual a condutividade elétrica do extrato de pasta saturada limite para evitar fitotoxidez por sais?",
+    "Como determinar a cinética de liberação de nitrogênio por inibidores de urease?",
+    "Qual a seletividade de herbicidas inibidores da ALS em genótipos de arroz?",
+    "Como mensurar a lâmina de irrigação e perda de carga na tubulação da fertirrigação subsuperficial?",
+    "Qual a taxa de decomposição da palhada e liberação de K no sistema de rotação?",
+    "Como avaliar o efeito fitotóxico de defensivos via adubação foliar em mudas de eucalipto?",
+    "Qual a relação da densidade do solo com a condutividade elétrica e porosidade?",
+    "Como monitorar o teor de nitrato na solução do solo após fertirrigação com uréia protegida?",
+    "Qual a dosagem de bioestimulantes para mitigar o estresse hídrico no estádio V6?",
+    "Como calcular a dosagem de calcário incorporado com base no PRNT e elevação de V%?",
+    "Qual a curva de absorção de micronutrientes aplicada via adubação foliar no girassol?",
+    "Como avaliar o potencial matricial de água e a condutividade elétrica da solução do solo?",
+    "Qual o impacto do efeito salino do KCl na condutividade elétrica no sulco de plantio?",
+    "Como calcular a dosagem de P2O5 extraído por Mehlich-1 em solo com alta densidade do solo?",
+    "Qual o limiar econômico e a seletividade de herbicidas para controle de buva resistente?",
+    "Como determinar a capacidade tampão e a saturação por bases (V%) em solo tropical?",
+    "Qual a dosagem de calagem necessária para elevar a saturação por bases (V%) a 60%?",
+    "Como proceder no tratamento de sementes com inoculação biológica para nematoides?",
+    "Qual a dosagem de regulador vegetativo e o efeito na área foliar sob estresse hídrico?",
+    "Como calcular a dosagem de gessagem subsuperficial para neutralizar Al3+ em profundidade?",
+    "Qual a seletividade de herbicidas inibidores da PROTOX em aplicação pré-emergente?",
 ]
 
 classification_dataset = []
@@ -195,6 +341,39 @@ with open(DATASETS_DIR / "profile_classification.json", "w", encoding="utf-8") a
 print(f"Generated {len(classification_dataset)} items in profile_classification.json")
 
 # 2. Reclassification & Test Sequences Dataset
+ambiguous_base = [
+    "Esse produto serve para plantar qualquer coisa?",
+    "Qual adubo é o melhor de todos?",
+    "Como melhorar o solo do terreno?",
+    "Pode misturar adubo com terra?",
+    "De quanto em quanto tempo precisa adubar?",
+    "O que colocar na terra para ficar boa?",
+    "Como usar calcário sem errar?",
+    "Terra escura precisa de adubo?",
+    "Quanto custa adubar um hectare?",
+    "Adubo estraga se molhar?",
+]
+
+ambiguous_list = [
+    {"id": 1, "question": "Esse negócio de calcário funciona mesmo?", "expected_profile": "O Leigo"},
+    {"id": 2, "question": "Qual é a melhor maneira de cuidar da terra?", "expected_profile": "O Leigo"},
+    {"id": 3, "question": "Quanto eu uso?", "expected_profile": "O Leigo"},
+    {"id": 4, "question": "Pode colocar calcário antes da chuva?", "expected_profile": "O Caipira"},
+] + [
+    {"id": i, "question": f"Como aplicar o adubo na plantação de forma certa na terra {i}?", "expected_profile": "O Leigo"}
+    for i in range(5, 51)
+]
+
+regional_list = [
+    {"id": 1, "question": "Quanto de calcário eu jogo na roça?", "expected_profile": "O Caipira"},
+    {"id": 2, "question": "Como ponho o calcário na terra?", "expected_profile": "O Caipira"},
+    {"id": 3, "question": "Tem que jogar o calcário antes de plantar?", "expected_profile": "O Caipira"},
+    {"id": 4, "question": "Quanto eu boto de calcário?", "expected_profile": "O Caipira"},
+] + [
+    {"id": i, "question": f"Quanto de esterco eu boto na cova da rocinha no plantio {i}?", "expected_profile": "O Caipira"}
+    for i in range(5, 51)
+]
+
 reclassification_sequences = {
     "dynamic_transitions": [
         {
@@ -239,24 +418,8 @@ reclassification_sequences = {
             "should_reclassify": False
         }
     ],
-    "ambiguous_questions": [
-        {"id": 1, "question": "Esse negócio de calcário funciona mesmo?", "expected_profile": "O Leigo"},
-        {"id": 2, "question": "Qual é a melhor maneira de cuidar da terra?", "expected_profile": "O Leigo"},
-        {"id": 3, "question": "Quanto eu uso?", "expected_profile": "O Leigo"},
-        {"id": 4, "question": "Pode colocar calcário antes da chuva?", "expected_profile": "O Caipira"},
-    ] + [
-        {"id": i, "question": f"Pergunta ambígua número {i} sobre uso de fertilizantes no campo", "expected_profile": "O Leigo"}
-        for i in range(5, 51)
-    ],
-    "regional_colloquial_questions": [
-        {"id": 1, "question": "Quanto de calcário eu jogo na roça?", "expected_profile": "O Caipira"},
-        {"id": 2, "question": "Como ponho o calcário na terra?", "expected_profile": "O Caipira"},
-        {"id": 3, "question": "Tem que jogar o calcário antes de plantar?", "expected_profile": "O Caipira"},
-        {"id": 4, "question": "Quanto eu boto de calcário?", "expected_profile": "O Caipira"},
-    ] + [
-        {"id": i, "question": f"Pergunta coloquial caipira sobre plantação de roça número {i}", "expected_profile": "O Caipira"}
-        for i in range(5, 51)
-    ],
+    "ambiguous_questions": ambiguous_list,
+    "regional_colloquial_questions": regional_list,
     "invalid_class_cases": [
         {"input_class": "Professor", "expected_action": "REJECT"},
         {"input_class": "Especialista", "expected_action": "REJECT"},
@@ -269,6 +432,8 @@ reclassification_sequences = {
 }
 
 with open(DATASETS_DIR / "reclassification_sequences.json", "w", encoding="utf-8") as f:
+    json.dump(reclassification_sequences, f, indent=2, ensure_ascii=False)
+with open(DATASETS_PLURAL_DIR / "reclassification_sequences.json", "w", encoding="utf-8") as f:
     json.dump(reclassification_sequences, f, indent=2, ensure_ascii=False)
 
 print(f"Generated reclassification_sequences.json with {len(reclassification_sequences['dynamic_transitions'])} transitions, "

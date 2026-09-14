@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from agent.profiling import classify_user_profile, UserProfileCategory
 
-DATASET_PATH = Path(__file__).resolve().parents[1] / "datasets" / "profile_classification.json"
+DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "profile_classification.json"
 
 
 def run_classification_experiment():

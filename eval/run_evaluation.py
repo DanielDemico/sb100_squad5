@@ -385,7 +385,11 @@ def enrich_questions_with_references(
         with open(ref_file, encoding="utf-8") as f:
             ref_data = json.load(f)
         ref_questions = ref_data.get("questions", [])
-        ref_map = {q["question_id"]: q.get("reference_answers", []) for q in ref_questions if "question_id" in q}
+        ref_map = {
+            q["question_id"]: q.get("reference_answers", [])
+            for q in ref_questions
+            if "question_id" in q
+        }
     except (OSError, json.JSONDecodeError):
         return questions
 

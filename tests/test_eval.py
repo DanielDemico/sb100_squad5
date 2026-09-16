@@ -961,7 +961,11 @@ class TestReferenceEnrichment:
 
         questions = [
             {"question_id": "q1", "question": "Q1?", "reference_answers": []},
-            {"question_id": "q2", "question": "Q2?", "reference_answers": [{"model": "m1", "answer": "A2"}]},
+            {
+                "question_id": "q2",
+                "question": "Q2?",
+                "reference_answers": [{"model": "m1", "answer": "A2"}],
+            },
         ]
         ref_file = tmp_path / "reference_answers.json"
         ref_file.write_text(
@@ -1018,4 +1022,3 @@ class TestExpandedHumanSampleSchema:
             assert "judge_justification" in header
             assert "human_score" in header
             assert "human_notes" in header
-

@@ -362,8 +362,11 @@ def run_judge(
 
     if concurrent > 1:
         from concurrent.futures import ThreadPoolExecutor
+
         with ThreadPoolExecutor(max_workers=concurrent) as executor:
-            for item in tqdm(executor.map(process_result, results), total=len(results), desc="Judging answers"):
+            for item in tqdm(
+                executor.map(process_result, results), total=len(results), desc="Judging answers"
+            ):
                 judged_results.append(item)
                 if len(judged_results) % 10 == 0:
                     tmp_dataset = {

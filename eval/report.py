@@ -64,7 +64,8 @@ def extract_all_judgments(results: list[dict]) -> list[dict]:
                             (
                                 r.get("reference_answer") or r.get("answer", "")
                                 for r in result.get("reference_answers", [])
-                                if (r.get("reference_model") or r.get("model")) == j.get("reference_model")
+                                if (r.get("reference_model") or r.get("model"))
+                                == j.get("reference_model")
                             ),
                             "",
                         ),

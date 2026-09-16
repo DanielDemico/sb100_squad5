@@ -360,6 +360,45 @@ async def run_evaluation_async(
     return merge_results(list(results_by_id.values()), [])
 
 
+def enrich_questions_with_references(
+    questions: list[dict], ref_path: Path | str | None = None
+) -> list[dict]:
+    """Enrich question dicts with reference answers if they are missing or empty.
+
+    # QUALITY: long-function-justification
+
+    When running against questions.json, reference_answers is initially empty.
+    This helper populates reference_answers from DEFAULT_REFERENCES_PATH matching on question_id.
+    """
+    if not questions:
+        return questions
+
+    needs_enrichment = any(not q.get("reference_answers") for q in questions)
+    if not needs_enrichment:
+        return questions
+
+    ref_file = Path(ref_path) if ref_path else DEFAULT_REFERENCES_PATH
+    if not ref_file.exists():
+        return questions
+
+    try:
+        with open(ref_file, encoding="utf-8") as f:
+            ref_data = json.load(f)
+        ref_questions = ref_data.get("questions", [])
+        ref_map = {q["question_id"]: q.get("reference_answers", []) for q in ref_questions if "question_id" in q}
+    except (OSError, json.JSONDecodeError):
+        return questions
+
+    enriched = []
+    for q in questions:
+        q_copy = dict(q)
+        if not q_copy.get("reference_answers") and q_copy.get("question_id") in ref_map:
+            q_copy["reference_answers"] = ref_map[q_copy["question_id"]]
+        enriched.append(q_copy)
+
+    return enriched
+
+
 def run_evaluation(
     input_path: str = str(DEFAULT_REFERENCES_PATH),
     output_path: str = str(DEFAULT_EVAL_RESULTS_PATH),
@@ -392,7 +431,7 @@ def run_evaluation(
 
     validate_dataset_schema(dataset, ["metadata", "questions"])
 
-    questions = dataset["questions"]
+    questions = enrich_questions_with_references(dataset["questions"])
     print(f"Loaded {len(questions)} questions from {input_path}")
     print(f"API URL: {api_url}")
     print(f"Concurrent requests: {concurrent}")

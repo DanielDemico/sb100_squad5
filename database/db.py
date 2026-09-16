@@ -31,7 +31,7 @@ SQLALCHEMY_DATABASE_URL = f"sqlite:///{_resolved_db.as_posix()}"
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL,
-    connect_args={"check_same_thread": False, "timeout": 10},
+    connect_args={"check_same_thread": False, "timeout": 60},
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
@@ -72,7 +72,7 @@ def _enable_sqlite_foreign_keys(
     dbapi_connection: _DbapiConnection,
     connection_record: object,
 ) -> None:
-    """Enable PRAGMA foreign_keys on SQLite connections to ensure CASCADE.
+    """Enable PRAGMA foreign_keys and WAL mode on SQLite connections.
 
     Args:
         dbapi_connection: Raw DB-API connection opened by SQLAlchemy.
@@ -85,6 +85,7 @@ def _enable_sqlite_foreign_keys(
     try:
         cursor = dbapi_connection.cursor()
         cursor.execute("PRAGMA foreign_keys=ON")
+        cursor.execute("PRAGMA journal_mode=WAL")
         cursor.close()
     except Exception:  # noqa: BLE001
         # Non-SQLite or incompatible cursor — ignore silently.

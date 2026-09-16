@@ -48,6 +48,7 @@ def extract_all_judgments(results: list[dict]) -> list[dict]:
     """
     judgments = []
     for result in results:
+        question_id = result.get("question_id", "")
         question = result.get("question", "")
         sb100_answer = result.get("sb100_answer", "")
 
@@ -55,14 +56,16 @@ def extract_all_judgments(results: list[dict]) -> list[dict]:
             if j.get("judge_score") is not None:
                 judgments.append(
                     {
+                        "question_id": question_id,
                         "question": question,
                         "sb100_answer": sb100_answer,
                         "reference_model": j.get("reference_model", ""),
                         "reference_answer": next(
                             (
-                                r["reference_answer"]
+                                r.get("reference_answer") or r.get("answer", "")
                                 for r in result.get("reference_answers", [])
-                                if r["reference_model"] == j["reference_model"]
+                                if (r.get("reference_model") or r.get("model"))
+                                == j.get("reference_model")
                             ),
                             "",
                         ),
@@ -245,6 +248,7 @@ def export_human_sample(
         writer = csv.DictWriter(
             f,
             fieldnames=[
+                "question_id",
                 "question",
                 "sb100_answer",
                 "reference_model",
@@ -252,6 +256,8 @@ def export_human_sample(
                 "judge_score",
                 "judge_verdict",
                 "judge_justification",
+                "human_score",
+                "human_notes",
             ],
             quoting=csv.QUOTE_ALL,
         )
@@ -260,13 +266,16 @@ def export_human_sample(
         for item in sample:
             writer.writerow(
                 {
-                    "question": item["question"],
-                    "sb100_answer": item["sb100_answer"],
-                    "reference_model": item["reference_model"],
-                    "reference_answer": item["reference_answer"],
-                    "judge_score": item["judge_score"],
-                    "judge_verdict": item["judge_verdict"],
-                    "judge_justification": item["judge_justification"],
+                    "question_id": item.get("question_id", ""),
+                    "question": item.get("question", ""),
+                    "sb100_answer": item.get("sb100_answer", ""),
+                    "reference_model": item.get("reference_model", ""),
+                    "reference_answer": item.get("reference_answer", ""),
+                    "judge_score": item.get("judge_score", ""),
+                    "judge_verdict": item.get("judge_verdict", ""),
+                    "judge_justification": item.get("judge_justification", ""),
+                    "human_score": "",
+                    "human_notes": "",
                 }
             )
 

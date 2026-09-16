@@ -450,10 +450,10 @@ class TestJudgeFiltersErrors:
 
         monkeypatch.setattr(jd, "judge_groq", fake_judge)
 
-        for _ in range(2):
+        for i in range(2):
             jd.run_judge(
                 input_path=str(input_path),
-                output_path=str(tmp_path / "out.json"),
+                output_path=str(tmp_path / f"out_{i}.json"),
                 provider="groq",
                 model="m",
             )
@@ -948,3 +948,77 @@ class TestCheckpointIntegrity:
         )
         run_evaluation(input_path=str(inp), output_path=str(out), checkpoint_path=str(ck))
         assert ck.exists()
+
+
+# ============================================================================
+# Additional Pipeline Requirements
+# ============================================================================
+
+
+class TestReferenceEnrichment:
+    def test_enrich_questions_with_references_from_default_file(self, tmp_path) -> None:
+        from eval.run_evaluation import enrich_questions_with_references
+
+        questions = [
+            {"question_id": "q1", "question": "Q1?", "reference_answers": []},
+            {
+                "question_id": "q2",
+                "question": "Q2?",
+                "reference_answers": [{"model": "m1", "answer": "A2"}],
+            },
+        ]
+        ref_file = tmp_path / "reference_answers.json"
+        ref_file.write_text(
+            json.dumps(
+                {
+                    "questions": [
+                        {
+                            "question_id": "q1",
+                            "question": "Q1?",
+                            "reference_answers": [{"model": "m1", "answer": "A1"}],
+                        }
+                    ]
+                }
+            ),
+            encoding="utf-8",
+        )
+
+        enriched = enrich_questions_with_references(questions, ref_path=ref_file)
+        assert enriched[0]["reference_answers"] == [{"model": "m1", "answer": "A1"}]
+        assert enriched[1]["reference_answers"] == [{"model": "m1", "answer": "A2"}]
+
+
+class TestExpandedHumanSampleSchema:
+    def test_export_human_sample_contains_all_required_columns(self, tmp_path) -> None:
+        import csv
+
+        from eval.report import export_human_sample
+
+        judgments = [
+            {
+                "question_id": "q-100",
+                "question": "Test Q?",
+                "sb100_answer": "SB100 Ans",
+                "reference_model": "ref-m1",
+                "reference_answer": "Ref Ans",
+                "judge_score": 8,
+                "judge_verdict": "better",
+                "judge_justification": "Clear and complete",
+            }
+        ]
+        out_csv = tmp_path / "human_sample.csv"
+        export_human_sample(judgments, str(out_csv), sample_size=1)
+
+        assert out_csv.exists()
+        with open(out_csv, encoding="utf-8") as f:
+            reader = csv.DictReader(f)
+            header = reader.fieldnames
+            assert header is not None
+            assert "question_id" in header
+            assert "question" in header
+            assert "sb100_answer" in header
+            assert "reference_answer" in header
+            assert "judge_score" in header
+            assert "judge_justification" in header
+            assert "human_score" in header
+            assert "human_notes" in header

@@ -212,6 +212,7 @@ def run_judge(
     output_path: str = str(DEFAULT_JUDGED_RESULTS_PATH),
     provider: str = DEFAULT_PROVIDER,
     model: str | None = None,
+    concurrent: int = 1,
 ) -> dict:
     """
     Run the judgment for every comparison.
@@ -225,6 +226,7 @@ def run_judge(
         output_path: Path to the output file
         provider: LLM provider (groq or ollama)
         model: Judge model
+        concurrent: Number of concurrent workers (default: 1)
 
     Returns:
         Dataset with judgments
@@ -247,35 +249,50 @@ def run_judge(
 
     results = dataset["results"]
     print(f"Loaded {len(results)} results from {input_path}")
-    print(f"Judge model: {model} ({provider})")
+    print(f"Judge model: {model} ({provider}), concurrent workers: {concurrent}")
 
-    # Process each result
-    judged_results = []
+    # Load existing judged items for resume support
+    existing_judged = {}
+    out_file = Path(output_path)
+    if out_file.exists():
+        try:
+            with open(out_file, encoding="utf-8") as f:
+                prev_data = json.load(f)
+                for r in prev_data.get("results", []):
+                    if r.get("judgments"):
+                        existing_judged[r["question_id"]] = r
+            if existing_judged:
+                print(f"Resuming judgment: {len(existing_judged)} items already judged.")
+        except Exception:
+            pass
 
-    for result in tqdm(results, desc="Judging answers"):
+    def process_result(result: dict) -> dict:
+        """Process a single evaluation result with LLM judging.
+
+        # QUALITY: long-function-justification - deterministic A/B position,
+        # reference filtering, LLM judge execution, score normalization, and error
+        # mapping are one judgment unit.
+        """
+        qid = result.get("question_id", "")
+        if qid in existing_judged:
+            return existing_judged[qid]
+
         sb100_answer = result.get("sb100_answer", "")
         reference_answers = result.get("reference_answers", [])
-        question_id = result.get("question_id", "")
 
         if not result.get("sb100_success", True):
-            # Skip failed results
-            judged_results.append(
-                {
-                    **result,
-                    "judgments": [],
-                }
-            )
-            continue
+            return {
+                **result,
+                "judgments": [],
+            }
 
         judgments = []
 
         for ref in reference_answers:
-            ref_model = ref.get("reference_model", "unknown")
-            ref_answer = ref.get("reference_answer")
+            ref_model = ref.get("reference_model") or ref.get("model", "unknown")
+            ref_answer = ref.get("reference_answer") or ref.get("answer")
             ref_error = ref.get("error")
 
-            # Skip references with a structured error (new format),
-            # missing answers, or the legacy "[ERRO] ..." format
             if (
                 ref_error is not None
                 or not ref_answer
@@ -283,9 +300,7 @@ def run_judge(
             ):
                 continue
 
-            # Deterministic A/B via hash(question_id) — avoids bias
-            # without relying on random.seed/PYTHONHASHSEED
-            sb100_is_a = deterministic_sb100_position_is_a(question_id)
+            sb100_is_a = deterministic_sb100_position_is_a(qid)
 
             if sb100_is_a:
                 answer_a, answer_b = sb100_answer, ref_answer
@@ -300,7 +315,6 @@ def run_judge(
                     model,
                 )
 
-                # Normalize scores and verdict to the SB100 perspective
                 if sb100_is_a:
                     sb100_score = judge_result["score_a"]
                     ref_score = judge_result["score_b"]
@@ -333,12 +347,55 @@ def run_judge(
                     }
                 )
 
-        judged_results.append(
-            {
-                **result,
-                "judgments": judgments,
-            }
-        )
+        top_score = judgments[0]["judge_score"] if judgments else None
+        top_justification = judgments[0]["judge_justification"] if judgments else None
+        return {
+            **result,
+            "judge_score": top_score,
+            "judge_justification": top_justification,
+            "judgments": judgments,
+        }
+
+    # Process each result with optional concurrency
+    judged_results = []
+    out_file.parent.mkdir(parents=True, exist_ok=True)
+
+    if concurrent > 1:
+        from concurrent.futures import ThreadPoolExecutor
+
+        with ThreadPoolExecutor(max_workers=concurrent) as executor:
+            for item in tqdm(
+                executor.map(process_result, results), total=len(results), desc="Judging answers"
+            ):
+                judged_results.append(item)
+                if len(judged_results) % 10 == 0:
+                    tmp_dataset = {
+                        "metadata": {
+                            **dataset.get("metadata", {}),
+                            "judge_model": model,
+                            "judge_provider": provider,
+                            "judged_at": datetime.now(UTC).isoformat(),
+                        },
+                        "results": judged_results,
+                    }
+                    with open(out_file, "w", encoding="utf-8") as f:
+                        json.dump(tmp_dataset, f, ensure_ascii=False, indent=2)
+    else:
+        for r in tqdm(results, desc="Judging answers"):
+            item = process_result(r)
+            judged_results.append(item)
+            if len(judged_results) % 10 == 0:
+                tmp_dataset = {
+                    "metadata": {
+                        **dataset.get("metadata", {}),
+                        "judge_model": model,
+                        "judge_provider": provider,
+                        "judged_at": datetime.now(UTC).isoformat(),
+                    },
+                    "results": judged_results,
+                }
+                with open(out_file, "w", encoding="utf-8") as f:
+                    json.dump(tmp_dataset, f, ensure_ascii=False, indent=2)
 
     # Build final dataset
     judged_dataset = {
@@ -403,6 +460,12 @@ def main():
         "--model",
         help="Judge model (default depends on provider)",
     )
+    parser.add_argument(
+        "--concurrent",
+        type=int,
+        default=1,
+        help="Concurrent requests (default: 1)",
+    )
 
     args = parser.parse_args()
 
@@ -427,6 +490,7 @@ def main():
         output_path=args.output,
         provider=args.provider,
         model=args.model,
+        concurrent=args.concurrent,
     )
 
     return 0

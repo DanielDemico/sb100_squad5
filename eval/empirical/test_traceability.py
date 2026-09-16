@@ -1,10 +1,9 @@
 """Empirical tests 9, 10: Traceability & Source Auditability (Sections 13, 14)."""
 
-import datetime
-from database.db import SessionLocal, Base, engine
-from database.models import User, Conversation, Message, RagResponse, RagSource
-from retrieval.vector_store import search_context_rich
+from database.db import Base, SessionLocal, engine
+from database.models import Conversation, Message, RagResponse, RagSource, User
 from retrieval.embedder import generate_embedding
+from retrieval.vector_store import search_context_rich
 
 
 def run_traceability_experiment():

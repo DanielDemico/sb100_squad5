@@ -2,11 +2,11 @@
 
 import json
 from pathlib import Path
+
 from agent.profiling import (
     classify_user_profile,
     evaluate_disparity_and_reclassify,
     is_valid_profile,
-    UserProfileCategory,
 )
 
 DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassification_sequences.json"
@@ -29,7 +29,7 @@ def run_robustness_experiment():
         inferred = classify_user_profile(q)
         # Evaluate disparity starting from default valid profile
         final_p, reclassified, just = evaluate_disparity_and_reclassify("O Leigo", inferred, history=[])
-        
+
         ambiguity_results.append({
             "question": q,
             "inferred": inferred,
@@ -66,10 +66,10 @@ def run_robustness_experiment():
     for inv in invalid_classes:
         bad_val = inv["input_class"]
         valid = is_valid_profile(bad_val)
-        
+
         # Test evaluation behavior
         final_p, reclassified, just = evaluate_disparity_and_reclassify(bad_val, "O Leigo", history=[])
-        
+
         # System must reject bad_val and set a valid profile (O Leigo/Técnico/Caipira)
         handled_safely = is_valid_profile(final_p) and not valid
         if handled_safely:
@@ -101,7 +101,7 @@ def run_robustness_experiment():
     ]
     run1 = [classify_user_profile(q) for q in rep_questions]
     run2 = [classify_user_profile(q) for q in rep_questions]
-    consistency_rate = sum(1 for a, b in zip(run1, run2) if a == b) / len(rep_questions)
+    consistency_rate = sum(1 for a, b in zip(run1, run2, strict=False) if a == b) / len(rep_questions)
 
     return {
         "ambiguity_eval_total": len(ambiguous_set),

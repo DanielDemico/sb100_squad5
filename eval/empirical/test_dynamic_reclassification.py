@@ -2,10 +2,11 @@
 
 import json
 from pathlib import Path
+
 from agent.profiling import (
+    UserProfileCategory,
     classify_user_profile,
     evaluate_disparity_and_reclassify,
-    UserProfileCategory,
 )
 
 DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassification_sequences.json"
@@ -13,7 +14,7 @@ DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassificati
 
 def run_dynamic_reclassification_experiment():
     """Run dynamic transitions, persistence, and stability against atypical questions."""
-    with open(DATASET_PATH, "r", encoding="utf-8") as f:
+    with open(DATASET_PATH, encoding="utf-8") as f:
         datasets = json.load(f)
 
     transitions = datasets["dynamic_transitions"]

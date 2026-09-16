@@ -17,12 +17,11 @@ def run_personalization_experiment():
     evaluation_scores = {}
 
     for profile in profiles:
-        instr = get_profile_system_instructions(profile)
+        get_profile_system_instructions(profile)
         # Custom prompt combining instructions, context, question
-        prompt_with_instr = f"SYSTEM INSTRUCTIONS: {instr}\n\nPERGUNTA DO USUÁRIO: {question}"
-        
+
         try:
-            from core.schemas import UserProfile, ExpertiseLevel
+            from core.schemas import ExpertiseLevel, UserProfile
             exp_map = {
                 UserProfileCategory.LEIGO.value: ExpertiseLevel.beginner,
                 UserProfileCategory.CAIPIRA.value: ExpertiseLevel.intermediate,

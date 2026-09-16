@@ -1,6 +1,6 @@
 """Empirical tests 7, 8: Explainability & XAI Consistency (Sections 11, 12)."""
 
-from agent.profiling import evaluate_disparity_and_reclassify, UserProfileCategory
+from agent.profiling import UserProfileCategory, evaluate_disparity_and_reclassify
 
 
 def run_explainability_experiment():
@@ -47,7 +47,7 @@ def run_explainability_experiment():
 
         # Consistency check: reason mentions transition from old to new
         reason = just["reason"]
-        evidence = just["evidence"]
+        just["evidence"]
 
         if has_required_fields and old_p in reason and new_p in reason:
             classification_status = "CORRETA"

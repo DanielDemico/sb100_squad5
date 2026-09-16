@@ -6,14 +6,15 @@ across 300 agronomic questions (100 Leigo, 100 Caipira, 100 Técnico).
 
 import json
 from pathlib import Path
-from agent.profiling import classify_user_profile, UserProfileCategory
+
+from agent.profiling import UserProfileCategory, classify_user_profile
 
 DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "profile_classification.json"
 
 
 def run_classification_experiment():
     """Run empirical evaluation over the 300-question dataset."""
-    with open(DATASET_PATH, "r", encoding="utf-8") as f:
+    with open(DATASET_PATH, encoding="utf-8") as f:
         dataset = json.load(f)
 
     y_true = []
@@ -42,14 +43,14 @@ def run_classification_experiment():
 
     # Calculate metrics
     total = len(y_true)
-    correct_count = sum(1 for t, p in zip(y_true, y_pred) if t == p)
+    correct_count = sum(1 for t, p in zip(y_true, y_pred, strict=False) if t == p)
     incorrect_count = total - correct_count
     accuracy = correct_count / total if total > 0 else 0.0
 
     # Per-class metrics & confusion matrix
     # Matrix format: rows = expected (true), cols = predicted
-    confusion_matrix = {c_true: {c_pred: 0 for c_pred in classes} for c_true in classes}
-    for t, p in zip(y_true, y_pred):
+    confusion_matrix = {c_true: dict.fromkeys(classes, 0) for c_true in classes}
+    for t, p in zip(y_true, y_pred, strict=False):
         if t in confusion_matrix and p in confusion_matrix[t]:
             confusion_matrix[t][p] += 1
 
@@ -84,9 +85,9 @@ def run_classification_experiment():
         "support": total
     }
 
-    weighted_precision = sum(p * s for p, s in zip(precisions, supports)) / total if total > 0 else 0.0
-    weighted_recall = sum(r * s for r, s in zip(recalls, supports)) / total if total > 0 else 0.0
-    weighted_f1 = sum(f * s for f, s in zip(f1s, supports)) / total if total > 0 else 0.0
+    weighted_precision = sum(p * s for p, s in zip(precisions, supports, strict=False)) / total if total > 0 else 0.0
+    weighted_recall = sum(r * s for r, s in zip(recalls, supports, strict=False)) / total if total > 0 else 0.0
+    weighted_f1 = sum(f * s for f, s in zip(f1s, supports, strict=False)) / total if total > 0 else 0.0
 
     weighted_avg = {
         "precision": round(weighted_precision, 4),

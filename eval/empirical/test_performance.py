@@ -1,10 +1,12 @@
 """Empirical test 14: Performance & Latency (Section 18)."""
 
 import time
+
 import numpy as np
+
 from agent.profiling import classify_user_profile, evaluate_disparity_and_reclassify
-from retrieval.vector_store import search_context_rich
 from retrieval.embedder import generate_embedding
+from retrieval.vector_store import search_context_rich
 
 
 def run_performance_experiment(num_runs: int = 10):
@@ -26,7 +28,7 @@ def run_performance_experiment(num_runs: int = 10):
         q = sample_questions[i % len(sample_questions)]
 
         t0 = time.perf_counter()
-        
+
         # 1. Profiling latency
         tp_start = time.perf_counter()
         inferred = classify_user_profile(q)

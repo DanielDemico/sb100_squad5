@@ -14,8 +14,6 @@ import re
 from enum import StrEnum
 from typing import Any
 
-from core.config import settings
-
 logger = logging.getLogger(__name__)
 
 
@@ -136,7 +134,7 @@ def evaluate_disparity_and_reclassify(
             "new_profile": inferred_profile,
             "reason": "Perfil anterior era inválido ou não inicializado. Atribuído perfil inferido pela primeira vez.",
             "evidence": f"Entrada inicial de perfil: {current_profile}",
-            "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
+            "timestamp": datetime.datetime.now(datetime.UTC).isoformat()
         }
         return inferred_profile, True, justification
 
@@ -159,7 +157,7 @@ def evaluate_disparity_and_reclassify(
         "new_profile": inferred_profile,
         "reason": reason,
         "evidence": evidence,
-        "timestamp": datetime.datetime.now(datetime.timezone.utc).isoformat()
+        "timestamp": datetime.datetime.now(datetime.UTC).isoformat()
     }
     return inferred_profile, True, justification
 

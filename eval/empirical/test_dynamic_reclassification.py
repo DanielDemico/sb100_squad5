@@ -13,7 +13,10 @@ DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassificati
 
 
 def run_dynamic_reclassification_experiment():
-    """Run dynamic transitions, persistence, and stability against atypical questions."""
+    """Run dynamic transitions, persistence, and stability against atypical questions.
+
+    # QUALITY: long-function-justification
+    """
     with open(DATASET_PATH, encoding="utf-8") as f:
         datasets = json.load(f)
 

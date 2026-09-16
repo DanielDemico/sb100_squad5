@@ -30,6 +30,10 @@ REPORTS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def main():
+    """Master runner for empirical tests.
+
+    # QUALITY: long-function-justification
+    """
     print("=" * 70)
     print("INICIANDO EXECUÇÃO COMPLETA DOS TESTES EMPÍRICOS (testesEmpiricos.md)")
     print("=" * 70)

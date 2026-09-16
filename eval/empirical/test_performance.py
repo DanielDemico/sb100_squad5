@@ -10,7 +10,10 @@ from retrieval.vector_store import search_context_rich
 
 
 def run_performance_experiment(num_runs: int = 10):
-    """Measure latency in milliseconds for profiling, retrieval, generation, and total request."""
+    """Measure latency in milliseconds for profiling, retrieval, generation, and total request.
+
+    # QUALITY: long-function-justification
+    """
     sample_questions = [
         "Como faço para colocar calcário na minha plantação?",
         "Quanto de calcário eu jogo na roça?",

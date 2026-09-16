@@ -41,10 +41,11 @@ Thumbs.db
 *.temp
 *.log
 
-# AI - local agent artifacts (never tracked)
+# AI - local agent artifacts
 .claude/
 docs/superpowers/
-.agents
+/.agents/*
+!/.agents/skills/
 
 # Miscellaneous
 coverage.xml

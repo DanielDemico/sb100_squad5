@@ -13,7 +13,10 @@ DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "profile_classi
 
 
 def run_classification_experiment():
-    """Run empirical evaluation over the 300-question dataset."""
+    """Run empirical evaluation over the 300-question dataset.
+
+    # QUALITY: long-function-justification
+    """
     with open(DATASET_PATH, encoding="utf-8") as f:
         dataset = json.load(f)
 

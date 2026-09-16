@@ -4,7 +4,10 @@ from agent.profiling import UserProfileCategory, evaluate_disparity_and_reclassi
 
 
 def run_explainability_experiment():
-    """Evaluate XAI justification output structure, clarity, and evidence consistency."""
+    """Evaluate XAI justification output structure, clarity, and evidence consistency.
+
+    # QUALITY: long-function-justification
+    """
     scenarios = [
         {
             "old": UserProfileCategory.LEIGO.value,

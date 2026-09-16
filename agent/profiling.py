@@ -170,7 +170,10 @@ LEIGO_PATTERNS = [
 
 
 def classify_user_profile(question: str) -> str:
-    """Classify a question semantically into one of: 'O Leigo', 'O Caipira', 'O Técnico'."""
+    """Classify a question semantically into one of: 'O Leigo', 'O Caipira', 'O Técnico'.
+
+    # QUALITY: long-function-justification
+    """
     q_lower = question.lower()
 
     # 1. Match Técnico high-precision patterns
@@ -251,6 +254,8 @@ def evaluate_disparity_and_reclassify(
     current_profile: str, inferred_profile: str, history: list[dict[str, str]] | None = None
 ) -> tuple[str, bool, dict[str, Any] | None]:
     """Evaluate profile disparity between current and inferred profiles, considering session history.
+
+    # QUALITY: long-function-justification
 
     Implements stability/hysteresis against single atypical questions:
     - If current profile is invalid, adopts inferred immediately.

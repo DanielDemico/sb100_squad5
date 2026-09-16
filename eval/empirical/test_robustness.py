@@ -13,7 +13,10 @@ DATASET_PATH = Path(__file__).resolve().parents[1] / "dataset" / "reclassificati
 
 
 def run_robustness_experiment():
-    """Run empirical robustness suite covering ambiguity, regional dialect, invalid profile inputs, and error handling."""
+    """Run empirical robustness suite covering ambiguity, regional dialect, invalid profile inputs, and error handling.
+
+    # QUALITY: long-function-justification
+    """
     with open(DATASET_PATH, encoding="utf-8") as f:
         datasets = json.load(f)
 

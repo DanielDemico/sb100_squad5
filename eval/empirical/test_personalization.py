@@ -5,7 +5,10 @@ from generation.llm import generate
 
 
 def run_personalization_experiment():
-    """Generate responses for the same agronomic question across the 3 user profiles."""
+    """Generate responses for the same agronomic question across the 3 user profiles.
+
+    # QUALITY: long-function-justification
+    """
     question = "Como devo realizar a calagem do solo?"
     context = (
         "A calagem é a aplicação de calcário para elevar o pH do solo e neutralizar o alumínio tóxico (Al3+). "

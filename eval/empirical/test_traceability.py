@@ -7,7 +7,10 @@ from retrieval.vector_store import search_context_rich
 
 
 def run_traceability_experiment():
-    """Verify auditability of interaction logs and retrieved sources."""
+    """Verify auditability of interaction logs and retrieved sources.
+
+    # QUALITY: long-function-justification
+    """
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
 

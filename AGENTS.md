@@ -7,13 +7,14 @@ subdiretorio deste projeto.
 ## Fonte canonica obrigatoria
 
 Antes de analisar, planejar ou executar qualquer task neste repositorio, o Codex
-DEVE localizar e ler integralmente o manual operacional permanente:
+DEVE localizar e ler integralmente o manual operacional permanente e as skills obrigatorias:
 
-`./.agents/skills/smartb100-squad5/SKILL.md`
+- `./.agents/skills/smartb100-squad5/SKILL.md`
+- `./.agents/skills/project-development-tdd/SKILL.md`
 
-Esse `SKILL.md` e a fonte canonica e detalhada de conhecimento do SmartB100. Suas
-regras, arquitetura, contratos, ADRs, convencoes, restricoes e protocolos sao
-normativos, nao documentacao opcional. Este `AGENTS.md` nao substitui o manual:
+Essas skills sao a fonte canonica e detalhada de conhecimento do SmartB100. Suas
+regras, arquitetura, ciclo TDD (RED -> GREEN -> REFACTOR), contratos em `core/schemas.py`,
+ADRs, convencoes, restricoes e protocolos sao normativos, nao documentacao opcional. Este `AGENTS.md` nao substitui o manual:
 ele apenas torna obrigatorio seu uso permanente e explicita regras criticas que
 devem guiar qualquer trabalho antes de implementacao.
 

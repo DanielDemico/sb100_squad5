@@ -1,0 +1,84 @@
+{
+  "classification": {
+    "accuracy": 0.76,
+    "precision": 0.7778,
+    "recall": 0.76,
+    "f1": 0.748,
+    "per_class": {
+      "O Leigo": {
+        "precision": 0.7797,
+        "recall": 0.46,
+        "f1": 0.5786,
+        "support": 100
+      },
+      "O Caipira": {
+        "precision": 0.9109,
+        "recall": 0.92,
+        "f1": 0.9154,
+        "support": 100
+      },
+      "O Técnico": {
+        "precision": 0.6429,
+        "recall": 0.9,
+        "f1": 0.75,
+        "support": 100
+      }
+    },
+    "confusion_matrix": {
+      "O Leigo": {
+        "O Leigo": 46,
+        "O Caipira": 4,
+        "O Técnico": 50
+      },
+      "O Caipira": {
+        "O Leigo": 8,
+        "O Caipira": 92,
+        "O Técnico": 0
+      },
+      "O Técnico": {
+        "O Leigo": 5,
+        "O Caipira": 5,
+        "O Técnico": 90
+      }
+    }
+  },
+  "dynamic_reclassification": {
+    "total_cases": 2,
+    "successful_cases": 2,
+    "success_rate": 1.0,
+    "average_interactions_to_reclassify": 4.0,
+    "unwarranted_change_count": 0
+  },
+  "personalization": {
+    "leigo_mean": 4.0,
+    "caipira_mean": 3.5,
+    "tecnico_mean": 5.0
+  },
+  "explainability": {
+    "mean_score": 5.0,
+    "correct": 3,
+    "partially_correct": 0,
+    "incorrect": 0
+  },
+  "traceability": {
+    "complete_logs": 1,
+    "total_logs": 1,
+    "completeness_rate": 1.0,
+    "percent_responses_with_source": 100.0,
+    "percent_valid_sources": 100.0
+  },
+  "robustness": {
+    "regional_accuracy": 0.98,
+    "invalid_classes_handled": 7,
+    "dependency_failure_resilience": "PASS",
+    "reproducibility_consistency_rate": 1.0
+  },
+  "performance": {
+    "mean_latency_ms": 269.79,
+    "p95_latency_ms": 379.65,
+    "p99_latency_ms": 397.94,
+    "profiling_mean_ms": 0.24,
+    "retrieval_mean_ms": 249.37,
+    "generation_mean_ms": 20.18
+  }
+}

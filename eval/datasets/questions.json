@@ -1,0 +1,1513 @@
+{
+  "metadata": {
+    "source_documents": [
+      "archives/smart_boletim.pdf"
+    ],
+    "generated_at": "2026-09-14T14:21:20.154257+00:00",
+    "total_questions": 300,
+    "provider": "groq",
+    "model": "llama-3.3-70b-versatile"
+  },
+  "questions": [
+    {
+      "question_id": "q-001-1e095972",
+      "question": "Como faço para colocar calcário na minha plantação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-002-0f1a85ed",
+      "question": "O que é calagem e para que serve?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-003-a46fa4a9",
+      "question": "Por que a terra fica ácida?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-004-17def805",
+      "question": "Como saber se a minha terra precisa de adubo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-005-89346b2f",
+      "question": "O que significa NPK no saco de adubo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-006-7892495a",
+      "question": "Qual a diferença entre adubo orgânico e químico?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-007-bd8ad160",
+      "question": "Como molhar as plantas da melhor forma?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-008-e6375b6f",
+      "question": "O que fazer quando a folha da planta fica amarela?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-009-6dc31714",
+      "question": "Como matar bichinhos que estão comendo as plantas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-010-39a95c5b",
+      "question": "Para que serve o nitrogênio na plantação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-011-92bfe623",
+      "question": "O solo vermelho é melhor que o solo escuro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-012-d70bca4c",
+      "question": "Como preparar a terra para plantar milho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-013-293c6025",
+      "question": "Qual o melhor mês para plantar feijão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-014-f3d0c93d",
+      "question": "O que é rotação de culturas de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-015-06090729",
+      "question": "Como cuidar da horta em casa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-016-92967e9d",
+      "question": "O que faz a planta crescer mais rápido?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-017-d70106df",
+      "question": "Por que as folhas das plantas secam nas pontas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-018-d3d4a17d",
+      "question": "Para que serve o potássio nas plantas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-019-68ef9b5d",
+      "question": "Como tirar o mato da plantação sem estragar a terra?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-020-dcfcb78b",
+      "question": "O calcário faz mal para a planta se colocar demais?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-021-28d11f83",
+      "question": "Qual a diferença entre terra e solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-022-676bc17b",
+      "question": "Como guardar sementes para o próximo ano?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-023-30d70e28",
+      "question": "Por que precisa jogar água todo dia na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-024-b4a36b75",
+      "question": "O que é uréia e como usar na plantação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-025-27a1fe24",
+      "question": "Como saber o momento certo de colher?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-026-ba91b56a",
+      "question": "O que é compostagem simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-027-b088d602",
+      "question": "Como usar cinza de madeira nas plantas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-028-e5504f60",
+      "question": "Por que a plantação fica fraca na seca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-029-eb498652",
+      "question": "O que é esterco e qual o melhor tipo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-030-7856b3e5",
+      "question": "Como tratar a terra antes da chuva?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-031-3cfb119b",
+      "question": "Por que o milho não cresce direito?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-032-d7e36d80",
+      "question": "O que faz o tomate ficar com mancha preta embaixo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-033-41da34cf",
+      "question": "Como proteger as plantas do sol muito forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-034-cef071d5",
+      "question": "Qual a quantidade de água que a soja precisa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-035-0d74129a",
+      "question": "Como evitar lagartas na plantação de couve?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-036-d6f5fbdb",
+      "question": "O que é adubação de cobertura?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-037-10fce811",
+      "question": "Por que a terra fica dura demais?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-038-6689c139",
+      "question": "Como melhorar a terra muito areosa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-039-1a176d06",
+      "question": "O que é calcário dolomítico de forma fácil de entender?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-040-a3a9ccae",
+      "question": "Como usar esterco de galinha na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-041-66e91989",
+      "question": "O que é veneno agrícola para lagartas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-042-c52540e9",
+      "question": "Por que deve plantar na época da chuva?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-043-459dce9c",
+      "question": "Como combater formigas na horta?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-044-ba57d58d",
+      "question": "O que é ph do solo em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-045-f5feb063",
+      "question": "Como saber se o solo está bom para plantar café?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-046-de091c01",
+      "question": "Por que as flores caem antes de dar fruto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-047-77bc2177",
+      "question": "O que é cobertura morta para a terra?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-048-6e2b1606",
+      "question": "Como recuperar uma terra cansada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-049-9afefa6d",
+      "question": "Qual adubo deixa a raiz forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-050-18b5803f",
+      "question": "Como evitar que a água leve a terra embora?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-051-94b9d96c",
+      "question": "O que é adubação de cobertura em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-052-f4d129a7",
+      "question": "Por que a terra do vaso fica com terra dura com o tempo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-053-a6b6a6c3",
+      "question": "Como melhorar a terra muito areosa no jardim de casa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-054-f18e7854",
+      "question": "O que é calcário dolomítico de forma fácil de entender?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-055-8fef060c",
+      "question": "Como usar adubo orgânico de galinha sem queimar a planta?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-056-53ed6851",
+      "question": "O que é veneno agrícola para lagartas de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-057-d877d9ad",
+      "question": "Por que deve plantar na época da chuva e não na seca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-058-58cdc9ed",
+      "question": "Como combater formigas na horta em casa de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-059-6f22aff1",
+      "question": "O que é pH do solo em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-060-25b4ca5b",
+      "question": "Como saber se o solo está bom para plantar café no quintal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-061-87001b52",
+      "question": "Por que as flores do tomateiro caem antes de dar fruto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-062-1284ea54",
+      "question": "O que é cobertura morta de forma fácil de entender?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-063-797dd0e9",
+      "question": "Como cuidar de uma terra fraca para voltar a produzir?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-064-57342258",
+      "question": "Qual adubo deixa a raiz da planta crescer forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-065-3f3f2287",
+      "question": "Como evitar que a água da chuva leve a terra embora?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-066-9dfb3c87",
+      "question": "Como molhar o vaso de plantas de manhã cedo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-067-ccde9934",
+      "question": "O que é calagem de forma simples para iniciantes?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-068-00a1e305",
+      "question": "Como saber quanta água colocar na horta em casa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-069-e893d0b5",
+      "question": "O que é excesso de fertilizante em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-070-cfeb4050",
+      "question": "Qual a diferença entre terra de jardim e terra adubada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-071-a2e11f94",
+      "question": "Como preparar a terra para plantar alface em vasos?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-072-a6a3461d",
+      "question": "Como cuidar de plantas que estão amareladas no quintal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-073-d5a96837",
+      "question": "Por que as folhas da horta em casa ficam enroladas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-074-7d52fb01",
+      "question": "Como plantar cenoura em vaso de apartamento de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-075-a9cc2b7e",
+      "question": "Como tratar plantas com manchas pretas nas folhas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-076-4c78a8f5",
+      "question": "Por que o solo fica esbranquiçado no vaso depois de molhar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-077-33e1e0aa",
+      "question": "Como usar torta de mamona de forma simples no jardim?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-078-63d7828a",
+      "question": "O que fazer quando a folha amarela aparece na horta?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-079-30a5242a",
+      "question": "Como saber se o fruto está maduro para colher?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-080-5e858ba2",
+      "question": "Por que a planta não cresce mesmo molhando todo dia?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-081-55873889",
+      "question": "Como plantar alface em garrafa pet de forma fácil?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-082-bbffb55a",
+      "question": "O que é húmus de minhoca de forma fácil de entender?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-083-aee01608",
+      "question": "Como cuidar das plantas do quintal durante o inverno?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-084-48ba0380",
+      "question": "Como tirar bichinhos das folhas usando água e sabão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-085-be241c5b",
+      "question": "O que é bom para fazer a planta crescer mais rápido?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-086-64846f00",
+      "question": "Como guardar sacos de fertilizantes de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-087-9d4af72c",
+      "question": "Por que a plantação de tomate fica fraca no sol forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-088-841cd944",
+      "question": "Como tratar a terra dura do quintal antes de plantar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-089-aa7c7b40",
+      "question": "O que fazer quando as raízes saem pelo fundo do vaso?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-090-c0387e50",
+      "question": "Como plantar temperos em canteiro pequeno em casa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-091-47835143",
+      "question": "O que é rotação de culturas em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-092-cc1d08d8",
+      "question": "Por que a terra de vaso seca tão rápido no sol?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-093-5f6319b4",
+      "question": "Como usar casca de ovo moída como adubo orgânico?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-094-a7ca42cf",
+      "question": "O que é bom para combater lagartas na horta em casa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-095-874cbc62",
+      "question": "Como fazer adubo orgânico caseiro com restos de comida?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-096-323e5e45",
+      "question": "Por que aparecem ervas daninhas no vaso de planta?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-097-5235e872",
+      "question": "Como proteger as plantinhas do vento e frio forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-098-0e73412c",
+      "question": "O que é solo fértil em palavras simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-099-b577c34f",
+      "question": "Como saber se a semente ainda vai germinar de forma simples?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-100-3ea76bd1",
+      "question": "Por que as sementes demoram para brotar na terra fria?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-101-b91bbcd4",
+      "question": "Quanto de calcário devo jogar na terra antes de plantar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-102-7c7c7c03",
+      "question": "Quanto de calcário eu jogo na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-103-7eabe7b4",
+      "question": "Como ponho o calcário na terra pro milho vingar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-104-514047c3",
+      "question": "Tem que jogar o calcário antes de baixar a chuva?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-105-f4179dca",
+      "question": "Quanto eu boto de adubo na cova da mandioca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-106-c4e654c0",
+      "question": "Como é que faz pra terra não ficar fraca no estio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-107-8dcecbbd",
+      "question": "O que eu faço pra espantar a lagarta do milharal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-108-a02e92e8",
+      "question": "Esse adubo de saco novo rende bem na terra roxa?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-109-4aa63f57",
+      "question": "Como cuida do pasto pro gado engordar na seca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-110-7b82f181",
+      "question": "Qual é o tempo bão pra semear o feijão das águas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-111-b5555acd",
+      "question": "Como tirar a tiririca da roça sem matar o broto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-112-2247727f",
+      "question": "É bão jogar esterco curtido direto no pé do tomate?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-113-10a41b53",
+      "question": "Como que limpa o mato alto da grota sem queimar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-114-905f2cdb",
+      "question": "Quanto de uréia eu joga na capineira depois do corte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-115-9952c021",
+      "question": "Por que o milho tá amarelando as folhas de baixo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-116-0a3f0ba9",
+      "question": "Qual é o calcário bão pra terrinha de baixada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-117-4499871d",
+      "question": "Como tratar semente de milho em casa antes de jogar na terra?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-118-47bd0379",
+      "question": "O feijão tá cheio de vaquinha, o que eu jogo lá?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-119-1abfc0ae",
+      "question": "Como arrumar o pasto que tá virando cupinzeiro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-120-043e5e20",
+      "question": "Posso jogar o adubo no seco ou tem que esperar o mormaço?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-121-ed870d9c",
+      "question": "Como é que faz pra farinha de osso ajudar o mandiocal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-122-f0bab81c",
+      "question": "Quanto tempo demora pro calcário fazer efeito na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-123-fa76925d",
+      "question": "O capim brachiaria tá secando tudo, o que pode ser?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-124-d51e3484",
+      "question": "Qual a melhor época pra roçar o pasto velho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-125-8f6f6eb3",
+      "question": "Como socorrer o café que tomou geada forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-126-5e1bcdff",
+      "question": "Posso misturar cinza com esterco de vaca no plantio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-127-808112e2",
+      "question": "O que é bom pra combater a broca do café na rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-128-428ba4d7",
+      "question": "Como guardar o milho colhido pra não dar caruncho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-129-b486f0dd",
+      "question": "Quanto de cal precisa na terra preta pro feijão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-130-93e8c226",
+      "question": "Por que a mandioca tá dando pouca batata?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-131-d039c269",
+      "question": "Como molhar o hortaliçal sem encharcar o canteiro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-132-d0426e59",
+      "question": "Qual adubo de cova é melhor pro maracujá vinar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-133-8087d0a2",
+      "question": "É bom passar o arado bem fundo na terra seca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-134-bf9b90ec",
+      "question": "Como tratar a semente pra passarinho não comer na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-135-3a66bb94",
+      "question": "Por que a banana tá nascendo com o mastro torto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-136-28dba88f",
+      "question": "O que eu faço quando a terra tá cheia de cascalho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-137-3780377f",
+      "question": "Como amolhar o solo duro antes de passar a grade?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-138-1fc61eb1",
+      "question": "Qual o veneno caseiro pra pulgão na couve?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-139-6a00df23",
+      "question": "Como é que sabe se a roça tá no ponto de colher?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-140-002351ad",
+      "question": "Posso plantar milho junto com feijão na mesma carreira?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-141-46fad2bd",
+      "question": "Como que usa torta de mamona no cafezal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-142-040b3cd7",
+      "question": "O solo tá empedrando tudo quando seca, o que ajuda?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-143-3ce7aea9",
+      "question": "Como cuidar das bezerras no pasto de inverno?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-144-ac0bf0ce",
+      "question": "Quanto de superfosfato eu ponho por cova de mamão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-145-658cefaf",
+      "question": "Como proteger as muda de café do vento forte?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-146-4601446b",
+      "question": "O capim tá ficando ralo, tem que jogar mais semente?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-147-9de9bb79",
+      "question": "Qual a lua boa pra plantar aipim e batata doce?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-148-e27582fe",
+      "question": "Como acaba com o percevejo no milharal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-149-3aabe03d",
+      "question": "O calcário de liquida funciona igual o de pó na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-150-b1fdde38",
+      "question": "O que é bom jogar no pé de laranjeira pra dar fruto doce?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-151-26d94df2",
+      "question": "Como é que se faz pra plantar milho nas águas pro bicho não comer na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-152-9f70fa4c",
+      "question": "Quanto de adubo eu ponho na carreira do feijão da rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-153-f7fd41b1",
+      "question": "Por que o cafezal tá amarelando na grota durante o mormaço?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-154-5e806e37",
+      "question": "Qual a melhor lua boa pra cortar mato e roçar a capineira?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-155-048bf3a2",
+      "question": "Como é que acaba com o cupim no pasto de brachiaria na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-156-3309b0bc",
+      "question": "Quanto de esterco eu boto por cova de maracujá na terrinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-157-996d433c",
+      "question": "Como tratar o terreno de baixada que fica encharcado na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-158-7c07823f",
+      "question": "O que eu faço quando a broca espantar o cafezal da rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-159-9ce08020",
+      "question": "É bão misturar torta de mamona com farinha de osso no plantio da cova?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-160-cc65dc3f",
+      "question": "Quanto tempo depois de jogar na terra o calcário posso plantar mandioca?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-161-0ba47ba3",
+      "question": "Como fazer pra terra roxa não empedrar no estio brabo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-162-c6ab0f19",
+      "question": "Qual o modo caipira bão pra espantar lagarta no milharal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-163-d6aa40b5",
+      "question": "Como cuidar das bezerras no pasto durante o estio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-164-533287a3",
+      "question": "Quanto de uréia eu joga na capineira no tempo das águas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-165-b774664b",
+      "question": "Por que a mandioca tá vindo fina na cova da rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-166-260a76c1",
+      "question": "Como tirar tiririca da roça sem matar o broto novo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-167-c90dfe54",
+      "question": "Qual o jeito bão de passar o arado na terra de baixada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-168-bcb5b092",
+      "question": "O que fazer pro mandiocal não secar no mormaço de janeiro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-169-cde73250",
+      "question": "Quanto de adubo boto na cova da muda de laranjeira?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-170-34bc88ae",
+      "question": "Como guardar milho no paiol na roça pra caruncho não carcomer?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-171-385489ab",
+      "question": "Posso passar a grade na terra molhada da rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-172-b792665c",
+      "question": "Por que o capim brachiaria tá ficando ralo na grota?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-173-eb42a33e",
+      "question": "Como fazer muda sem levar broca pro hortaliçal na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-174-7415542f",
+      "question": "Qual a quantidade certa de cinza pra jogar no pé da couve na cova?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-175-6ad7ffb7",
+      "question": "Como socorrer a rocinha de tomate que tomou geada na baixada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-176-5966251b",
+      "question": "Quanto eu boto de fertilizante na cova do abóbora?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-177-b21fc828",
+      "question": "Por que as bezerras tão magras no pasto de estio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-178-8d19e625",
+      "question": "Como limpa a capineira pro capim virar touceira forte na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-179-055d27b9",
+      "question": "Qual o tempo bão pra aplicar veneno caseiro no milharal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-180-14dcb527",
+      "question": "O que espantar no pé de mamão pra vingar o fruto na rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-181-a28eabb4",
+      "question": "Como saber se a terrinha de grota precisa de calcário no plantio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-182-c73ec083",
+      "question": "É bão plantar feijão das águas na carreira da roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-183-0e213623",
+      "question": "Como combate a lagarta no milharal de baixada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-184-246e8853",
+      "question": "Quanto de esterco curtido eu ponho na cova da horta caipira?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-185-d7a79e21",
+      "question": "Por que o solo da roça tá rachando no estio seco?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-186-53a21b6c",
+      "question": "Como fazer composto na roça com palha e esterco na cova?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-187-2adc2f35",
+      "question": "Qual o momento bão de colher o café na rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-188-246fa44b",
+      "question": "O que jogar na terra da roça pra espantar formiga da cova?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-189-9a880cfa",
+      "question": "Como faz pro capim brachiaria verdejar nas águas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-190-c5de9ba1",
+      "question": "Quanto de cal precisa jogar na cova do mandiocal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-191-27eee010",
+      "question": "Por que a mexerica na rocinha tá dando fruto pequenino?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-192-7f1eace2",
+      "question": "Como arrumar a mandioca que tá dura na cova da roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-193-1131aafa",
+      "question": "Qual o jeito bão de plantar capim na capineira do gado?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-194-56bf7533",
+      "question": "Como tirar mato alto da grota sem queimar a rocinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-195-87d27761",
+      "question": "Quanto de adubo eu ponho na carreira do milharal?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-196-b24a4ec9",
+      "question": "Por que a banana tá nascendo torta no canteiro da roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-197-d3bc347d",
+      "question": "Como espantar percevejo no milharal de baixada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-198-b6c4de41",
+      "question": "É bão plantar crotalária na terra da rocinha no mormaço?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-199-fe67c2df",
+      "question": "Quanto de água jogar na cova do café na roça?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-200-baff5905",
+      "question": "Como manter a umidade na terrinha da roça durante o estio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-201-2c4e109f",
+      "question": "Qual dose de calcário devo aplicar considerando a saturação por bases?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-202-6a35acd4",
+      "question": "Como calcular a necessidade de calagem pelo método de neutralização do Al3+ e elevação dos teores de Ca2+ e Mg2+?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-203-94cf3c16",
+      "question": "Qual a interferência do PRNT na determinação da quantidade total de calcário a incorporar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-204-3f6b0277",
+      "question": "Como proceder na amostragem estratificada de solo nas camadas 0-20 cm e 20-40 cm para sistema de plantio direto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-205-794ff506",
+      "question": "Qual a relação Ca:Mg ideal no complexo sortivo para a cultura da soja em Latossolo Vermelho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-206-9b5b7b5c",
+      "question": "Como interpretar o teor de fósforo extraído por Mehlich-1 em solos com alto teor de argila?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-207-5974de8b",
+      "question": "Qual a recomendação de adubação potássica com base na expectativa de produtividade de 80 sc/ha de soja?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-208-7430307e",
+      "question": "Como calcular a CTC a pH 7.0 e a CTC efetiva a partir da análise química do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-209-33f5f873",
+      "question": "Qual o impacto da saturação por alumínio (m%) no desenvolvimento radicular das culturas anuais?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-210-b498443e",
+      "question": "Como aplicar micronutrientes via foliar considerando o estádio fenológico V4 da cultura do milho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-211-f727e235",
+      "question": "Qual a eficiência de recuperação do nitrogênio aplicado via cobertura utilizando uréia protegida por inibidores de urease?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-212-adefb812",
+      "question": "Como diagnosticar deficiência severa de boro em cafeeiros fertirrigados?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-213-fa6f0263",
+      "question": "Qual a taxa de inoculação de Bradyrhizobium japonicum recomendada para sementes de soja tratadas com fungicidas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-214-6f33348f",
+      "question": "Como determinar a capacidade de retenção de água e ponto de murcha permanente em Argissolos Vermelho-Amarelos?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-215-70e2e752",
+      "question": "Qual a dosagem de atrazina e óleo mineral recomendada para controle pós-emergente de dicotiledôneas no milho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-216-ab950b70",
+      "question": "Como mensurar a densidade do solo e a porosidade total em áreas sob compactação por tráfego de máquinas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-217-03c85d89",
+      "question": "Qual o limiar econômico de dano para Euschistus heros na cultura da soja no estádio R5?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-218-9b3c56c9",
+      "question": "Como realizar o manejo de resistência de Phakopsora pachyrhizi utilizando fungicidas multissítios?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-219-3066676a",
+      "question": "Qual a lâmina de irrigação líquida a aplicar via pivô central baseada na evapotranspiração de referência (ETo)?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-220-ee50d0ae",
+      "question": "Como estratificar o perfil de solo quanto à acidez subsuperficial e necessidade de gessagem agrícola?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-221-d85c9555",
+      "question": "Qual a dosagem de gesso agrícola recomendada em função do teor de argila para neutralizar Al3+ em profundidade?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-222-5232b89e",
+      "question": "Como correlacionar o teor de matéria orgânica do solo com a capacidade de troca catiônica efetiva?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-223-ac8c5dab",
+      "question": "Qual o índice V% recomendado para a implantação da cultura do cafeeiro arábica?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-224-9b90b81b",
+      "question": "Como ajustar a adubação fosfatada de plantio considerando a capacidade máxima de adsorção de fosfato do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-225-5abf0a54",
+      "question": "Qual o momento ideal de aplicação de potássio no milho visando minimizar perdas por lixiviação em solos arenosos?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-226-2e4ed305",
+      "question": "Como avaliar o estresse hídrico na cultura do trigo através do índice de temperatura do dossel?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-227-1c599a38",
+      "question": "Qual a dosagem e época de aplicação de regulador de crescimento em algodoeiro sob alta adubação nitrogenada?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-228-78a594b2",
+      "question": "Como calcular o balanço de massa de nutrientes na rotação soja-milho safrinha?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-229-32cdd16c",
+      "question": "Qual a seletividade de herbicidas pré-emergentes do grupo dos inibidores da PROTOX para a cultura do feijão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-230-0d20ba3a",
+      "question": "Como efetuar a calibração de pulverizadores de barras considerando o volume de calda de 100 L/ha e pontas de indução de ar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-231-8f028c3a",
+      "question": "Qual o efeito da salinização da água de irrigação na condutividade elétrica do extrato de saturação do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-232-cd04a300",
+      "question": "Como identificar sintomas diferenciais entre deficiência de enxofre e deficiência de nitrogênio em gramíneas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-233-5703cd01",
+      "question": "Qual a taxa de fixação biológica de nitrogênio esperada em pastagens de Brachiaria consorciadas com Stylosanthes?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-234-3b67184f",
+      "question": "Como quantificar a fração de carbono orgânico lábil no solo sob diferentes sistemas de manejo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-235-d7b0fdca",
+      "question": "Qual o papel do zinco na síntese de triptofano e alongamento celular em plantas de milho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-236-8d24ac15",
+      "question": "Como proceder no manejo integrado de Spodoptera frugiperda utilizando biopesticidas a base de Bacillus thuringiensis?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-237-da452a94",
+      "question": "Qual a condutividade hidráulica saturada de Latossolos sob cultivo contínuo sem revolvimento?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-238-f0a2358c",
+      "question": "Como calcular a dose de calcário pelo método da capacidade tampão do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-239-248a86f3",
+      "question": "Qual a curva de absorção de macronutrientes da cultura do girassol ao longo do ciclo vegetativo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-240-b06a1a30",
+      "question": "Como mitigar o efeito fitotóxico de resíduos de herbicidas sulfoniluréias na cultura da soja em sucessão?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-241-914d1d83",
+      "question": "Qual a tolerância de cultivares de sorgo ao alumínio tóxico em solos de Cerrado?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-242-186b7727",
+      "question": "Como diagnosticar o mofo-branco (Sclerotinia sclerotiorum) e estruturar o esquema de rotação com gramíneas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-243-d27cb58f",
+      "question": "Qual a relação C/N ideal do palhedo de cobertura para equilibrar a taxa de decomposição e imobilização de N?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-244-0a29566b",
+      "question": "Como determinar a condutividade elétrica da solução do solo fertirrigado por gotejamento?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-245-53c29956",
+      "question": "Qual a dosagem de cobalto e molibdênio recomendada via tratamento de sementes na cultura da soja?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-246-5c6d5835",
+      "question": "Como avaliar a suscetibilidade de genótipos de milho ao acamamento de colmo por Stenocarpella maydis?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-247-e92d74c2",
+      "question": "Qual o impacto do déficit de pressão de vapor (DPV) na condutance estomática e taxa fotossintética?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-248-68478f9e",
+      "question": "Como mensurar o fluxo de gases de efeito estufa (N2O e CH4) em solos agrícolas manejados?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-249-d596fbe8",
+      "question": "Qual a cinética de liberação de K em minerais primários e secundários de solos tropicais altamente intemperizados?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-250-0cf269e9",
+      "question": "Como dimensionar a densidade de semeadura e arranjo espacial de plantas para otimizar o índice de área foliar (IAF)?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-251-9b76536b",
+      "question": "Qual a dosagem de gessagem recomendada considerando a saturação por alumínio (m%) e o teor de argila na camada subsuperficial?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-252-54774918",
+      "question": "Como calcular o balanço de massa e a alteração da CTC em Latossolo submetido a altas dosagens de NPK?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-253-9c713294",
+      "question": "Como proceder na amostragem estratificada e diagnose de micronutrientes no estádio V4 da cultura do algodoeiro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-254-d01bb225",
+      "question": "Qual a curva de absorção e exigência nutricional de fósforo para milho de alta produtividade?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-255-84df8695",
+      "question": "Como calcular a lâmina de irrigação baseada na evapotranspiração de referência (ETo) em sistema pressurizado?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-256-38a7c450",
+      "question": "Qual a dosagem de gesso para correção da acidez subsuperficial em Latossolo Vermelho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-257-d9598de3",
+      "question": "Como mensurar o teor de carbono lábil e a capacidade tampão em solos sob plantio direto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-258-762e9e1e",
+      "question": "Qual a dosagem e o equilíbrio entre Ca2+ e Mg2+ no complexo sortivo para evitar lixiviação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-259-240ff18c",
+      "question": "Como calibrar a dosagem de regulador de crescimento em função da densidade do solo e área foliar?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-260-8c951abd",
+      "question": "Qual a taxa de mineralização de N da matéria orgânica em Latossolo sob rotação de culturas?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-261-eb8efc24",
+      "question": "Como fazer a amostragem estratificada para monitoramento da praga Sphenophorus levis?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-262-6b1038ba",
+      "question": "Qual a seletividade de herbicidas pré-emergentes e o efeito fitotóxico residual no solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-263-63abc9b3",
+      "question": "Como determinar a capacidade tampão de pH pelo método SMP na análise de solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-264-73c807c9",
+      "question": "Qual a taxa de inoculação de Bradyrhizobium e a eficiência de fixação de nitrogênio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-265-c01ad125",
+      "question": "Como calcular a lâmina de irrigação ajustada pela evapotranspiração (ETo) e capacidade de campo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-266-223f1663",
+      "question": "Qual o impacto do tráfego pesado na densidade do solo e na porosidade da camada subsuperficial?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-267-c1f44154",
+      "question": "Como diferenciar parâmetros de acidez trocável (Al3+) e teor de magnésio em pH em CaCl2?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-268-8e5d0829",
+      "question": "Qual o protocolo de amostragem estratificada em grade georreferenciada para calagem a taxa variável?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-269-0c6d8f5b",
+      "question": "Como determinar a condutividade elétrica no extrato de saturação do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-270-5473938f",
+      "question": "Qual a cinética de adsorção e dessorção de íons no complexo sortivo do Argissolo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-271-5aa5a737",
+      "question": "Como integrar parâmetros de densidade do solo, porosidade e CTC na avaliação da qualidade do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-272-54a37b9c",
+      "question": "Qual a dosagem de boro recomendada via adubação foliar no estádio reprodutivo do cafeeiro?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-273-fbcc260b",
+      "question": "Como mensurar a evapotranspiração de referência (ETo) e a lâmina de irrigação em pivô central?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-274-ff1c85a1",
+      "question": "Qual o limiar econômico de dano e a dosagem de inseticida para percevejo-castanho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-275-cf01d375",
+      "question": "Como calcular a curva de absorção de nutrientes e o balanço de massa no cultivo de milho?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-276-144ad1ca",
+      "question": "Qual a dosagem de fertilizante fluído contendo polifosfato e a eficiência em solo com alta fixação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-277-07572aff",
+      "question": "Como mensurar a porosidade total e a densidade do solo sob rotação com Brachiaria?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-278-f3e8e143",
+      "question": "Qual o modo de ação dos fungicidas multissítios no manejo de Phakopsora pachyrhizi?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-279-f66e12c0",
+      "question": "Como calcular a saturação por bases (V%) ideal na recomendação de calagem por PRNT?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-280-4e39f432",
+      "question": "Qual a condutividade elétrica do extrato de pasta saturada limite para evitar fitotoxidez por sais?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-281-4bf049c7",
+      "question": "Como determinar a cinética de liberação de nitrogênio por inibidores de urease?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-282-f333b97d",
+      "question": "Qual a seletividade de herbicidas inibidores da ALS em genótipos de arroz?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-283-e457e527",
+      "question": "Como mensurar a lâmina de irrigação e perda de carga na tubulação da fertirrigação subsuperficial?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-284-5e1eae50",
+      "question": "Qual a taxa de decomposição da palhada e liberação de K no sistema de rotação?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-285-0752429a",
+      "question": "Como avaliar o efeito fitotóxico de defensivos via adubação foliar em mudas de eucalipto?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-286-3a6df59b",
+      "question": "Qual a relação da densidade do solo com a condutividade elétrica e porosidade?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-287-39454234",
+      "question": "Como monitorar o teor de nitrato na solução do solo após fertirrigação com uréia protegida?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-288-1008d821",
+      "question": "Qual a dosagem de bioestimulantes para mitigar o estresse hídrico no estádio V6?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-289-df48aeca",
+      "question": "Como calcular a dosagem de calcário incorporado com base no PRNT e elevação de V%?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-290-ba1da065",
+      "question": "Qual a curva de absorção de micronutrientes aplicada via adubação foliar no girassol?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-291-d9a165be",
+      "question": "Como avaliar o potencial matricial de água e a condutividade elétrica da solução do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-292-42d76081",
+      "question": "Qual o impacto do efeito salino do KCl na condutividade elétrica no sulco de plantio?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-293-c553f4d5",
+      "question": "Como calcular a dosagem de P2O5 extraído por Mehlich-1 em solo com alta densidade do solo?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-294-76ce974b",
+      "question": "Qual o limiar econômico e a seletividade de herbicidas para controle de buva resistente?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-295-4f57e2d4",
+      "question": "Como determinar a capacidade tampão e a saturação por bases (V%) em solo tropical?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-296-7c5aa9ab",
+      "question": "Qual a dosagem de calagem necessária para elevar a saturação por bases (V%) a 60%?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-297-c1ca9020",
+      "question": "Como proceder no tratamento de sementes com inoculação biológica para nematoides?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-298-d718ca36",
+      "question": "Qual a dosagem de regulador vegetativo e o efeito na área foliar sob estresse hídrico?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-299-81319dd7",
+      "question": "Como calcular a dosagem de gessagem subsuperficial para neutralizar Al3+ em profundidade?",
+      "reference_answers": []
+    },
+    {
+      "question_id": "q-300-9e7c7e08",
+      "question": "Qual a seletividade de herbicidas inibidores da PROTOX em aplicação pré-emergente?",
+      "reference_answers": []
+    }
+  ]
+}

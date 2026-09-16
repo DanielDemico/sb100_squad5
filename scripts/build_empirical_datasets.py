@@ -355,22 +355,42 @@ ambiguous_base = [
 ]
 
 ambiguous_list = [
-    {"id": 1, "question": "Esse negócio de calcário funciona mesmo?", "expected_profile": "O Leigo"},
-    {"id": 2, "question": "Qual é a melhor maneira de cuidar da terra?", "expected_profile": "O Leigo"},
+    {
+        "id": 1,
+        "question": "Esse negócio de calcário funciona mesmo?",
+        "expected_profile": "O Leigo",
+    },
+    {
+        "id": 2,
+        "question": "Qual é a melhor maneira de cuidar da terra?",
+        "expected_profile": "O Leigo",
+    },
     {"id": 3, "question": "Quanto eu uso?", "expected_profile": "O Leigo"},
     {"id": 4, "question": "Pode colocar calcário antes da chuva?", "expected_profile": "O Caipira"},
 ] + [
-    {"id": i, "question": f"Como aplicar o adubo na plantação de forma certa na terra {i}?", "expected_profile": "O Leigo"}
+    {
+        "id": i,
+        "question": f"Como aplicar o adubo na plantação de forma certa na terra {i}?",
+        "expected_profile": "O Leigo",
+    }
     for i in range(5, 51)
 ]
 
 regional_list = [
     {"id": 1, "question": "Quanto de calcário eu jogo na roça?", "expected_profile": "O Caipira"},
     {"id": 2, "question": "Como ponho o calcário na terra?", "expected_profile": "O Caipira"},
-    {"id": 3, "question": "Tem que jogar o calcário antes de plantar?", "expected_profile": "O Caipira"},
+    {
+        "id": 3,
+        "question": "Tem que jogar o calcário antes de plantar?",
+        "expected_profile": "O Caipira",
+    },
     {"id": 4, "question": "Quanto eu boto de calcário?", "expected_profile": "O Caipira"},
 ] + [
-    {"id": i, "question": f"Quanto de esterco eu boto na cova da rocinha no plantio {i}?", "expected_profile": "O Caipira"}
+    {
+        "id": i,
+        "question": f"Quanto de esterco eu boto na cova da rocinha no plantio {i}?",
+        "expected_profile": "O Caipira",
+    }
     for i in range(5, 51)
 ]
 
@@ -380,24 +400,64 @@ reclassification_sequences = {
             "id": "seq_leigo_to_tecnico_1",
             "initial_profile": "O Leigo",
             "steps": [
-                {"question": "Como faço para melhorar a terra?", "expected_class": "O Leigo", "expected_reclassified": False},
-                {"question": "O que é calcário?", "expected_class": "O Leigo", "expected_reclassified": False},
-                {"question": "Quando devo colocar calcário?", "expected_class": "O Leigo", "expected_reclassified": False},
-                {"question": "Como calculo a necessidade de calagem considerando V2?", "expected_class": "O Técnico", "expected_reclassified": True},
-                {"question": "Como determinar a dose de calcário pelo método de saturação por bases?", "expected_class": "O Técnico", "expected_reclassified": False},
-                {"question": "Como o PRNT interfere na dose recomendada?", "expected_class": "O Técnico", "expected_reclassified": False}
-            ]
+                {
+                    "question": "Como faço para melhorar a terra?",
+                    "expected_class": "O Leigo",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "O que é calcário?",
+                    "expected_class": "O Leigo",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "Quando devo colocar calcário?",
+                    "expected_class": "O Leigo",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "Como calculo a necessidade de calagem considerando V2?",
+                    "expected_class": "O Técnico",
+                    "expected_reclassified": True,
+                },
+                {
+                    "question": "Como determinar a dose de calcário pelo método de saturação por bases?",
+                    "expected_class": "O Técnico",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "Como o PRNT interfere na dose recomendada?",
+                    "expected_class": "O Técnico",
+                    "expected_reclassified": False,
+                },
+            ],
         },
         {
             "id": "seq_caipira_to_tecnico_1",
             "initial_profile": "O Caipira",
             "steps": [
-                {"question": "Quanto de calcário eu jogo na roça?", "expected_class": "O Caipira", "expected_reclassified": False},
-                {"question": "Como ponho o calcário na terra pro milho vingar?", "expected_class": "O Caipira", "expected_reclassified": False},
-                {"question": "Qual a dose exata baseada na capacidade de troca catiônica efetiva (CTC)?", "expected_class": "O Técnico", "expected_reclassified": True},
-                {"question": "Como analisar o teor de Ca e Mg no extrato de acetato de amônio?", "expected_class": "O Técnico", "expected_reclassified": False}
-            ]
-        }
+                {
+                    "question": "Quanto de calcário eu jogo na roça?",
+                    "expected_class": "O Caipira",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "Como ponho o calcário na terra pro milho vingar?",
+                    "expected_class": "O Caipira",
+                    "expected_reclassified": False,
+                },
+                {
+                    "question": "Qual a dose exata baseada na capacidade de troca catiônica efetiva (CTC)?",
+                    "expected_class": "O Técnico",
+                    "expected_reclassified": True,
+                },
+                {
+                    "question": "Como analisar o teor de Ca e Mg no extrato de acetato de amônio?",
+                    "expected_class": "O Técnico",
+                    "expected_reclassified": False,
+                },
+            ],
+        },
     ],
     "persistence_tests": [
         {
@@ -405,7 +465,7 @@ reclassification_sequences = {
             "initial_profile": "O Leigo",
             "trigger_question": "Como calcular a necessidade de calagem por V% e PRNT?",
             "post_trigger_question": "Quais os teores ideais de Ca e Mg no solo?",
-            "expected_active_profile": "O Técnico"
+            "expected_active_profile": "O Técnico",
         }
     ],
     "stability_atypical_tests": [
@@ -415,7 +475,7 @@ reclassification_sequences = {
             "history_depth": 5,
             "atypical_question": "Como faço para colocar calcário?",
             "expected_final_profile": "O Técnico",
-            "should_reclassify": False
+            "should_reclassify": False,
         }
     ],
     "ambiguous_questions": ambiguous_list,
@@ -427,8 +487,8 @@ reclassification_sequences = {
         {"input_class": "", "expected_action": "REJECT"},
         {"input_class": None, "expected_action": "REJECT"},
         {"input_class": "técnico", "expected_action": "REJECT_OR_NORMALIZE"},
-        {"input_class": "TECNICO", "expected_action": "REJECT_OR_NORMALIZE"}
-    ]
+        {"input_class": "TECNICO", "expected_action": "REJECT_OR_NORMALIZE"},
+    ],
 }
 
 with open(DATASETS_DIR / "reclassification_sequences.json", "w", encoding="utf-8") as f:
@@ -436,6 +496,8 @@ with open(DATASETS_DIR / "reclassification_sequences.json", "w", encoding="utf-8
 with open(DATASETS_PLURAL_DIR / "reclassification_sequences.json", "w", encoding="utf-8") as f:
     json.dump(reclassification_sequences, f, indent=2, ensure_ascii=False)
 
-print(f"Generated reclassification_sequences.json with {len(reclassification_sequences['dynamic_transitions'])} transitions, "
-      f"{len(reclassification_sequences['ambiguous_questions'])} ambiguous questions, and "
-      f"{len(reclassification_sequences['regional_colloquial_questions'])} regional questions.")
+print(
+    f"Generated reclassification_sequences.json with {len(reclassification_sequences['dynamic_transitions'])} transitions, "
+    f"{len(reclassification_sequences['ambiguous_questions'])} ambiguous questions, and "
+    f"{len(reclassification_sequences['regional_colloquial_questions'])} regional questions."
+)

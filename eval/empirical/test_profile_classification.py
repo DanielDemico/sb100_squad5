@@ -21,7 +21,11 @@ def run_classification_experiment():
     y_pred = []
     results = []
 
-    classes = [UserProfileCategory.LEIGO.value, UserProfileCategory.CAIPIRA.value, UserProfileCategory.TECNICO.value]
+    classes = [
+        UserProfileCategory.LEIGO.value,
+        UserProfileCategory.CAIPIRA.value,
+        UserProfileCategory.TECNICO.value,
+    ]
 
     for item in dataset:
         q_id = item["id"]
@@ -33,13 +37,15 @@ def run_classification_experiment():
         y_true.append(expected)
         y_pred.append(predicted)
 
-        results.append({
-            "id": q_id,
-            "question": question,
-            "expected": expected,
-            "predicted": predicted,
-            "correct": expected == predicted
-        })
+        results.append(
+            {
+                "id": q_id,
+                "question": question,
+                "expected": expected,
+                "predicted": predicted,
+                "correct": expected == predicted,
+            }
+        )
 
     # Calculate metrics
     total = len(y_true)
@@ -71,7 +77,7 @@ def run_classification_experiment():
             "precision": round(precision, 4),
             "recall": round(recall, 4),
             "f1": round(f1, 4),
-            "support": support
+            "support": support,
         }
         precisions.append(precision)
         recalls.append(recall)
@@ -82,18 +88,24 @@ def run_classification_experiment():
         "precision": round(sum(precisions) / len(classes), 4),
         "recall": round(sum(recalls) / len(classes), 4),
         "f1": round(sum(f1s) / len(classes), 4),
-        "support": total
+        "support": total,
     }
 
-    weighted_precision = sum(p * s for p, s in zip(precisions, supports, strict=False)) / total if total > 0 else 0.0
-    weighted_recall = sum(r * s for r, s in zip(recalls, supports, strict=False)) / total if total > 0 else 0.0
-    weighted_f1 = sum(f * s for f, s in zip(f1s, supports, strict=False)) / total if total > 0 else 0.0
+    weighted_precision = (
+        sum(p * s for p, s in zip(precisions, supports, strict=False)) / total if total > 0 else 0.0
+    )
+    weighted_recall = (
+        sum(r * s for r, s in zip(recalls, supports, strict=False)) / total if total > 0 else 0.0
+    )
+    weighted_f1 = (
+        sum(f * s for f, s in zip(f1s, supports, strict=False)) / total if total > 0 else 0.0
+    )
 
     weighted_avg = {
         "precision": round(weighted_precision, 4),
         "recall": round(weighted_recall, 4),
         "f1": round(weighted_f1, 4),
-        "support": total
+        "support": total,
     }
 
     return {
@@ -105,7 +117,7 @@ def run_classification_experiment():
         "macro_avg": macro_avg,
         "weighted_avg": weighted_avg,
         "confusion_matrix": confusion_matrix,
-        "raw_results": results
+        "raw_results": results,
     }
 
 

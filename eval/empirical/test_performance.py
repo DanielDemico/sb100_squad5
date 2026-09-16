@@ -16,7 +16,7 @@ def run_performance_experiment(num_runs: int = 10):
         "Quanto de calcário eu jogo na roça?",
         "Qual dose de calcário devo aplicar considerando a saturação por bases?",
         "Por que a terra fica ácida?",
-        "Qual a interferência do PRNT na determinação da quantidade total de calcário?"
+        "Qual a interferência do PRNT na determinação da quantidade total de calcário?",
     ]
 
     profiling_latencies = []

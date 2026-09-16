@@ -28,14 +28,18 @@ def run_robustness_experiment():
         q = item["question"]
         inferred = classify_user_profile(q)
         # Evaluate disparity starting from default valid profile
-        final_p, reclassified, just = evaluate_disparity_and_reclassify("O Leigo", inferred, history=[])
+        final_p, reclassified, just = evaluate_disparity_and_reclassify(
+            "O Leigo", inferred, history=[]
+        )
 
-        ambiguity_results.append({
-            "question": q,
-            "inferred": inferred,
-            "final_profile": final_p,
-            "reclassified": reclassified
-        })
+        ambiguity_results.append(
+            {
+                "question": q,
+                "inferred": inferred,
+                "final_profile": final_p,
+                "reclassified": reclassified,
+            }
+        )
 
     # 2. Regional/Colloquial evaluation
     reg_correct = 0
@@ -46,16 +50,13 @@ def run_robustness_experiment():
         q = item["question"]
         expected = item["expected_profile"]
         predicted = classify_user_profile(q)
-        is_corr = (predicted == expected)
+        is_corr = predicted == expected
         if is_corr:
             reg_correct += 1
 
-        regional_results.append({
-            "question": q,
-            "expected": expected,
-            "predicted": predicted,
-            "correct": is_corr
-        })
+        regional_results.append(
+            {"question": q, "expected": expected, "predicted": predicted, "correct": is_corr}
+        )
 
     regional_accuracy = reg_correct / reg_total if reg_total > 0 else 0.0
 
@@ -68,26 +69,32 @@ def run_robustness_experiment():
         valid = is_valid_profile(bad_val)
 
         # Test evaluation behavior
-        final_p, reclassified, just = evaluate_disparity_and_reclassify(bad_val, "O Leigo", history=[])
+        final_p, reclassified, just = evaluate_disparity_and_reclassify(
+            bad_val, "O Leigo", history=[]
+        )
 
         # System must reject bad_val and set a valid profile (O Leigo/Técnico/Caipira)
         handled_safely = is_valid_profile(final_p) and not valid
         if handled_safely:
             rejected_count += 1
 
-        invalid_class_results.append({
-            "input_class": repr(bad_val),
-            "is_valid": valid,
-            "final_profile": final_p,
-            "handled_safely": handled_safely
-        })
+        invalid_class_results.append(
+            {
+                "input_class": repr(bad_val),
+                "is_valid": valid,
+                "final_profile": final_p,
+                "handled_safely": handled_safely,
+            }
+        )
 
     # 4. Dependency failure resilience simulation
     dep_failure_passed = False
     try:
         # Simulate invalid input or failure gracefully
         # System must fallback without corrupting profile
-        fallback_profile, reclass, just = evaluate_disparity_and_reclassify("O Leigo", "INVALID_DERIVED", history=[])
+        fallback_profile, reclass, just = evaluate_disparity_and_reclassify(
+            "O Leigo", "INVALID_DERIVED", history=[]
+        )
         if is_valid_profile(fallback_profile):
             dep_failure_passed = True
     except Exception:
@@ -97,11 +104,13 @@ def run_robustness_experiment():
     rep_questions = [
         "Como faço para colocar calcário na minha plantação?",
         "Quanto de calcário eu jogo na roça?",
-        "Qual dose de calcário devo aplicar considerando a saturação por bases?"
+        "Qual dose de calcário devo aplicar considerando a saturação por bases?",
     ]
     run1 = [classify_user_profile(q) for q in rep_questions]
     run2 = [classify_user_profile(q) for q in rep_questions]
-    consistency_rate = sum(1 for a, b in zip(run1, run2, strict=False) if a == b) / len(rep_questions)
+    consistency_rate = sum(1 for a, b in zip(run1, run2, strict=False) if a == b) / len(
+        rep_questions
+    )
 
     return {
         "ambiguity_eval_total": len(ambiguous_set),
@@ -113,7 +122,7 @@ def run_robustness_experiment():
         "dependency_failure_resilience": "PASS" if dep_failure_passed else "FAIL",
         "reproducibility_consistency_rate": round(consistency_rate, 4),
         "invalid_class_results": invalid_class_results,
-        "regional_results": regional_results
+        "regional_results": regional_results,
     }
 
 

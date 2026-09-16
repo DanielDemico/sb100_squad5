@@ -43,15 +43,17 @@ def run_dynamic_reclassification_experiment():
             if is_reclassified and reclassified_at_step is None:
                 reclassified_at_step = idx + 1
 
-            seq_log.append({
-                "step": idx + 1,
-                "question": question,
-                "inferred": inferred,
-                "profile_before": current_profile,
-                "profile_after": final_p,
-                "reclassified": is_reclassified,
-                "justification": justification
-            })
+            seq_log.append(
+                {
+                    "step": idx + 1,
+                    "question": question,
+                    "inferred": inferred,
+                    "profile_before": current_profile,
+                    "profile_after": final_p,
+                    "reclassified": is_reclassified,
+                    "justification": justification,
+                }
+            )
             current_profile = final_p
 
         total_cases += 1
@@ -61,13 +63,15 @@ def run_dynamic_reclassification_experiment():
             if reclassified_at_step is not None:
                 total_interactions_to_reclassify.append(reclassified_at_step)
 
-        transition_results.append({
-            "id": seq["id"],
-            "initial": seq["initial_profile"],
-            "final": current_profile,
-            "reclassified_at_step": reclassified_at_step,
-            "steps": seq_log
-        })
+        transition_results.append(
+            {
+                "id": seq["id"],
+                "initial": seq["initial_profile"],
+                "final": current_profile,
+                "reclassified_at_step": reclassified_at_step,
+                "steps": seq_log,
+            }
+        )
 
     # Persistence experiment
     persistence_results = []
@@ -85,12 +89,14 @@ def run_dynamic_reclassification_experiment():
         inferred2 = classify_user_profile(q2)
         p2, reclass2, just2 = evaluate_disparity_and_reclassify(p1, inferred2, history)
 
-        persistence_results.append({
-            "id": p_case["id"],
-            "profile_after_trigger": p1,
-            "profile_active_subsequent": p2,
-            "persisted_correctly": p2 == p_case["expected_active_profile"]
-        })
+        persistence_results.append(
+            {
+                "id": p_case["id"],
+                "profile_after_trigger": p1,
+                "profile_active_subsequent": p2,
+                "persisted_correctly": p2 == p_case["expected_active_profile"],
+            }
+        )
 
     # Stability against isolated atypical queries
     stability_results = []
@@ -98,7 +104,10 @@ def run_dynamic_reclassification_experiment():
     for s_case in stability_cases:
         current_profile = s_case["current_profile"]
         depth = s_case.get("history_depth", 3)
-        history = [{"role": "user", "content": "Pergunta técnica sobre V% e PRNT no solo."} for _ in range(depth)]
+        history = [
+            {"role": "user", "content": "Pergunta técnica sobre V% e PRNT no solo."}
+            for _ in range(depth)
+        ]
         atypical_q = s_case["atypical_question"]
 
         inferred = classify_user_profile(atypical_q)
@@ -106,23 +115,26 @@ def run_dynamic_reclassification_experiment():
             current_profile, inferred, history
         )
 
-        is_stable = (final_p == s_case["expected_final_profile"])
+        is_stable = final_p == s_case["expected_final_profile"]
         if reclassified and final_p != current_profile:
             unwarranted_changes += 1
 
-        stability_results.append({
-            "id": s_case["id"],
-            "current_profile": current_profile,
-            "atypical_question": atypical_q,
-            "inferred_class": inferred,
-            "final_profile": final_p,
-            "maintained_stability": is_stable,
-            "justification": justification
-        })
+        stability_results.append(
+            {
+                "id": s_case["id"],
+                "current_profile": current_profile,
+                "atypical_question": atypical_q,
+                "inferred_class": inferred,
+                "final_profile": final_p,
+                "maintained_stability": is_stable,
+                "justification": justification,
+            }
+        )
 
     avg_interactions = (
         sum(total_interactions_to_reclassify) / len(total_interactions_to_reclassify)
-        if total_interactions_to_reclassify else 0.0
+        if total_interactions_to_reclassify
+        else 0.0
     )
 
     return {
@@ -133,7 +145,7 @@ def run_dynamic_reclassification_experiment():
         "unwarranted_change_count": unwarranted_changes,
         "transitions": transition_results,
         "persistence": persistence_results,
-        "stability": stability_results
+        "stability": stability_results,
     }
 
 

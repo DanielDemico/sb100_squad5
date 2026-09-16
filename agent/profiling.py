@@ -19,12 +19,17 @@ logger = logging.getLogger(__name__)
 
 class UserProfileCategory(StrEnum):
     """The 3 canonical user profiles defined in testesEmpiricos.md."""
+
     LEIGO = "O Leigo"
     CAIPIRA = "O Caipira"
     TECNICO = "O Técnico"
 
 
-VALID_PROFILES = {UserProfileCategory.LEIGO, UserProfileCategory.CAIPIRA, UserProfileCategory.TECNICO}
+VALID_PROFILES = {
+    UserProfileCategory.LEIGO,
+    UserProfileCategory.CAIPIRA,
+    UserProfileCategory.TECNICO,
+}
 
 
 def is_valid_profile(profile_name: Any) -> bool:
@@ -36,41 +41,131 @@ def is_valid_profile(profile_name: Any) -> bool:
 
 # High-precision domain keywords and patterns
 TECNICO_PATTERNS = [
-    r"\bv%\b", r"\bprnt\b", r"\bctc\b", r"\bmehlich\b", r"\bsaturação por bases\b",
-    r"\bal3\+\b", r"\bca2\+\b", r"\bmg2\+\b", r"\bdossel\b", r"\beuschistus\b",
-    r"\blatossolo\b", r"\bargissolo\b", r"\bestádio v\d\b", r"\bestádio r\d\b",
-    r"\bradioterapia\b", r"\bbradyrhizobium\b", r"\bphakopsora\b", r"\b Small\b",
-    r"\bfungicidas multissítios\b", r"\bcondutividade elétrica\b", r"\bbalanço de massa\b",
-    r"\bprotox\b", r"\bcinética\b", r"\blábil\b", r"\bextrato de saturação\b",
-    r"\bcapacidade tampão\b", r"\bdosagem\b", r"\bteor\b", r"\bteores\b", r"\bparâmetros\b",
-    r"\bquímica do solo\b", r"\bamostragem estratificada\b", r"\bcomplexo sortivo\b",
-    r"\bseletividade de herbicidas\b", r"\bmodo de ação\b", r"\b fitotóxico\b",
-    r"\bexigência nutricional\b", r"\bcurva de absorção\b", r"\btaxa de fixação\b",
-    r"\blimiar econômico\b", r"\b densidade do solo\b", r"\b porosidade\b", r"\b ETo\b",
-    r"\bevapotranspiração\b", r"\blâmina de irrigação\b", r"\b pressurizado\b", r"\b gessagem\b",
-    r"\bsubsuperficial\b", r"\b micro-nutrientes\b", r"\b adubação foliar\b", r"\binibidores\b",
-    r"\burease\b", r"\b uréia protegida\b", r"\b fertilizante fluído\b", r"\b inoculação\b"
+    r"\bv%\b",
+    r"\bprnt\b",
+    r"\bctc\b",
+    r"\bmehlich\b",
+    r"\bsaturação por bases\b",
+    r"\bal3\+\b",
+    r"\bca2\+\b",
+    r"\bmg2\+\b",
+    r"\bdossel\b",
+    r"\beuschistus\b",
+    r"\blatossolo\b",
+    r"\bargissolo\b",
+    r"\bestádio v\d\b",
+    r"\bestádio r\d\b",
+    r"\bradioterapia\b",
+    r"\bbradyrhizobium\b",
+    r"\bphakopsora\b",
+    r"\b Small\b",
+    r"\bfungicidas multissítios\b",
+    r"\bcondutividade elétrica\b",
+    r"\bbalanço de massa\b",
+    r"\bprotox\b",
+    r"\bcinética\b",
+    r"\blábil\b",
+    r"\bextrato de saturação\b",
+    r"\bcapacidade tampão\b",
+    r"\bdosagem\b",
+    r"\bteor\b",
+    r"\bteores\b",
+    r"\bparâmetros\b",
+    r"\bquímica do solo\b",
+    r"\bamostragem estratificada\b",
+    r"\bcomplexo sortivo\b",
+    r"\bseletividade de herbicidas\b",
+    r"\bmodo de ação\b",
+    r"\b fitotóxico\b",
+    r"\bexigência nutricional\b",
+    r"\bcurva de absorção\b",
+    r"\btaxa de fixação\b",
+    r"\blimiar econômico\b",
+    r"\b densidade do solo\b",
+    r"\b porosidade\b",
+    r"\b ETo\b",
+    r"\bevapotranspiração\b",
+    r"\blâmina de irrigação\b",
+    r"\b pressurizado\b",
+    r"\b gessagem\b",
+    r"\bsubsuperficial\b",
+    r"\b micro-nutrientes\b",
+    r"\b adubação foliar\b",
+    r"\binibidores\b",
+    r"\burease\b",
+    r"\b uréia protegida\b",
+    r"\b fertilizante fluído\b",
+    r"\b inoculação\b",
 ]
 
 CAIPIRA_PATTERNS = [
-    r"\broça\b", r"\brocinha\b", r"\b Terrão\b", r"\b jogar na terra\b", r"\b ponho\b",
-    r"\bboto\b", r"\bvingar\b", r"\bestio\b", r"\bmormaço\b", r"\bcapineira\b",
-    r"\bmilharal\b", r"\bbão\b", r"\bbãoda\b", r"\b terrinha\b", r"\bgrota\b",
-    r"\bvaquinha\b", r"\bcupinzeiro\b", r"\b farinha de osso\b", r"\bbrachiaria\b",
-    r"\bhortaliçal\b", r"\bcarreira\b", r"\baipim\b", r"\bbaixada\b", r"\bcova\b",
-    r"\bcovas\b", r"\bpasarinho\b", r"\bmastro\b", r"\barado\b", r"\bgrade\b",
-    r"\bmodo caipira\b", r"\bcoloquial\b", r"\bveneno caseiro\b", r"\bcortar mato\b",
-    r"\blua boa\b", r"\bezerras\b", r"\btorta de mamona\b", r"\bespantar\b",
-    r"\bengordar\b", r"\báguas\b", r"\b capim ralo\b"
+    r"\broça\b",
+    r"\brocinha\b",
+    r"\b Terrão\b",
+    r"\b jogar na terra\b",
+    r"\b ponho\b",
+    r"\bboto\b",
+    r"\bvingar\b",
+    r"\bestio\b",
+    r"\bmormaço\b",
+    r"\bcapineira\b",
+    r"\bmilharal\b",
+    r"\bbão\b",
+    r"\bbãoda\b",
+    r"\b terrinha\b",
+    r"\bgrota\b",
+    r"\bvaquinha\b",
+    r"\bcupinzeiro\b",
+    r"\b farinha de osso\b",
+    r"\bbrachiaria\b",
+    r"\bhortaliçal\b",
+    r"\bcarreira\b",
+    r"\baipim\b",
+    r"\bbaixada\b",
+    r"\bcova\b",
+    r"\bcovas\b",
+    r"\bpasarinho\b",
+    r"\bmastro\b",
+    r"\barado\b",
+    r"\bgrade\b",
+    r"\bmodo caipira\b",
+    r"\bcoloquial\b",
+    r"\bveneno caseiro\b",
+    r"\bcortar mato\b",
+    r"\blua boa\b",
+    r"\bezerras\b",
+    r"\btorta de mamona\b",
+    r"\bespantar\b",
+    r"\bengordar\b",
+    r"\báguas\b",
+    r"\b capim ralo\b",
 ]
 
 LEIGO_PATTERNS = [
-    r"\bcomo faço para\b", r"\bo que é\b", r"\bpara que serve\b", r"\bpor que\b",
-    r"\bqual a diferença\b", r"\bcomo molhar\b", r"\bcomo saber\b", r"\bcomo guardar\b",
-    r"\bcomo tirar\b", r"\bcomo melhorar\b", r"\bcomo cuidar\b", r"\bcomo evitar\b",
-    r"\bcomo tratar\b", r"\bcomo preparar\b", r"\bcomo usar\b", r"\bde forma simples\b",
-    r"\bem palavras simples\b", r"\bfácil de entender\b", r"\bbichinhos\b", r"\bfolha amarela\b",
-    r"\bplanta crescer\b", r"\bterra dura\b", r"\bhorta em casa\b", r"\badubo orgânico\b"
+    r"\bcomo faço para\b",
+    r"\bo que é\b",
+    r"\bpara que serve\b",
+    r"\bpor que\b",
+    r"\bqual a diferença\b",
+    r"\bcomo molhar\b",
+    r"\bcomo saber\b",
+    r"\bcomo guardar\b",
+    r"\bcomo tirar\b",
+    r"\bcomo melhorar\b",
+    r"\bcomo cuidar\b",
+    r"\bcomo evitar\b",
+    r"\bcomo tratar\b",
+    r"\bcomo preparar\b",
+    r"\bcomo usar\b",
+    r"\bde forma simples\b",
+    r"\bem palavras simples\b",
+    r"\bfácil de entender\b",
+    r"\bbichinhos\b",
+    r"\bfolha amarela\b",
+    r"\bplanta crescer\b",
+    r"\bterra dura\b",
+    r"\bhorta em casa\b",
+    r"\badubo orgânico\b",
 ]
 
 
@@ -94,8 +189,55 @@ def classify_user_profile(question: str) -> str:
             return UserProfileCategory.LEIGO.value
 
     # Heuristic score fallback
-    tecnico_score = sum(1 for w in ["dose", "saturação", "eficiência", "concentração", "análise", "método", "índice", "equação", "parâmetro", "densidade", "condutividade", "cultivar", "profundidade", "camada", "adsorção", "cinética", "balanço", "taxa", "manejo"] if w in q_lower)
-    caipira_score = sum(1 for w in ["jogo", "ponho", "boto", "roça", "terra", "matar", "bicho", "limpar", "pasto", "gado", "milho", "feijão", "mandioca", "café", "seco", "chuva", "pé", "cova"] if w in q_lower)
+    tecnico_score = sum(
+        1
+        for w in [
+            "dose",
+            "saturação",
+            "eficiência",
+            "concentração",
+            "análise",
+            "método",
+            "índice",
+            "equação",
+            "parâmetro",
+            "densidade",
+            "condutividade",
+            "cultivar",
+            "profundidade",
+            "camada",
+            "adsorção",
+            "cinética",
+            "balanço",
+            "taxa",
+            "manejo",
+        ]
+        if w in q_lower
+    )
+    caipira_score = sum(
+        1
+        for w in [
+            "jogo",
+            "ponho",
+            "boto",
+            "roça",
+            "terra",
+            "matar",
+            "bicho",
+            "limpar",
+            "pasto",
+            "gado",
+            "milho",
+            "feijão",
+            "mandioca",
+            "café",
+            "seco",
+            "chuva",
+            "pé",
+            "cova",
+        ]
+        if w in q_lower
+    )
 
     if tecnico_score > caipira_score and tecnico_score >= 1:
         return UserProfileCategory.TECNICO.value
@@ -106,9 +248,7 @@ def classify_user_profile(question: str) -> str:
 
 
 def evaluate_disparity_and_reclassify(
-    current_profile: str,
-    inferred_profile: str,
-    history: list[dict[str, str]] | None = None
+    current_profile: str, inferred_profile: str, history: list[dict[str, str]] | None = None
 ) -> tuple[str, bool, dict[str, Any] | None]:
     """Evaluate profile disparity between current and inferred profiles, considering session history.
 
@@ -124,7 +264,11 @@ def evaluate_disparity_and_reclassify(
     """
     if not is_valid_profile(inferred_profile):
         # Inferência retornou classe inválida ou falhou — mantém perfil atual se válido ou fallback para O Leigo
-        safe_profile = current_profile if is_valid_profile(current_profile) else UserProfileCategory.LEIGO.value
+        safe_profile = (
+            current_profile
+            if is_valid_profile(current_profile)
+            else UserProfileCategory.LEIGO.value
+        )
         return safe_profile, False, None
 
     if not is_valid_profile(current_profile):
@@ -134,7 +278,7 @@ def evaluate_disparity_and_reclassify(
             "new_profile": inferred_profile,
             "reason": "Perfil anterior era inválido ou não inicializado. Atribuído perfil inferido pela primeira vez.",
             "evidence": f"Entrada inicial de perfil: {current_profile}",
-            "timestamp": datetime.datetime.now(datetime.UTC).isoformat()
+            "timestamp": datetime.datetime.now(datetime.UTC).isoformat(),
         }
         return inferred_profile, True, justification
 
@@ -157,7 +301,7 @@ def evaluate_disparity_and_reclassify(
         "new_profile": inferred_profile,
         "reason": reason,
         "evidence": evidence,
-        "timestamp": datetime.datetime.now(datetime.UTC).isoformat()
+        "timestamp": datetime.datetime.now(datetime.UTC).isoformat(),
     }
     return inferred_profile, True, justification
 

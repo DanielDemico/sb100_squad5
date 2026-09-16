@@ -35,13 +35,15 @@ def run_traceability_experiment():
             emb = generate_embedding(question)
             chunks = search_context_rich(emb)
         except Exception:
-            chunks = [{
-                "id": "point-mock-123",
-                "inicio": 0,
-                "text": "Chunk de teste sobre calagem agrícola.",
-                "file": "boletim100.pdf",
-                "pagina": 12
-            }]
+            chunks = [
+                {
+                    "id": "point-mock-123",
+                    "inicio": 0,
+                    "text": "Chunk de teste sobre calagem agrícola.",
+                    "file": "boletim100.pdf",
+                    "pagina": 12,
+                }
+            ]
 
         ans_text = "Para aplicar calcário, distribua uniformemente no solo..."
         asst_msg = Message(conversation_id=conv.id, role="assistant", content=ans_text)
@@ -52,7 +54,7 @@ def run_traceability_experiment():
             message_id=asst_msg.id,
             system_response=ans_text,
             hallucination_score=0.1,
-            model_name="llama3.2:3b"
+            model_name="llama3.2:3b",
         )
         db.add(rag_resp)
         db.flush()
@@ -65,7 +67,7 @@ def run_traceability_experiment():
                 document_id=c["id"],
                 chunk_id=str(c["inicio"]),
                 source_name=c.get("file"),
-                page_number=c.get("pagina")
+                page_number=c.get("pagina"),
             )
             db.add(src)
             saved_sources.append(src)
@@ -91,7 +93,9 @@ def run_traceability_experiment():
 
         valid_sources = [s for s in saved_sources if s.document_id and s.content]
         pct_responses_with_source = 100.0 if saved_sources else 0.0
-        pct_valid_sources = (len(valid_sources) / len(saved_sources) * 100.0) if saved_sources else 0.0
+        pct_valid_sources = (
+            (len(valid_sources) / len(saved_sources) * 100.0) if saved_sources else 0.0
+        )
 
         return {
             "complete_logs": logs_complete,
@@ -100,7 +104,7 @@ def run_traceability_experiment():
             "reconstruction_status": "PASS" if is_complete else "FAIL",
             "percent_responses_with_source": round(pct_responses_with_source, 2),
             "percent_valid_sources": round(pct_valid_sources, 2),
-            "percent_responses_without_traceability": 0.0
+            "percent_responses_without_traceability": 0.0,
         }
     finally:
         db.close()

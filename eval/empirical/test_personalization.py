@@ -12,7 +12,11 @@ def run_personalization_experiment():
         "A quantidade é determinada com base na análise de solo, calculando a Saturação por Bases (V%) e o PRNT do calcário."
     )
 
-    profiles = [UserProfileCategory.LEIGO.value, UserProfileCategory.CAIPIRA.value, UserProfileCategory.TECNICO.value]
+    profiles = [
+        UserProfileCategory.LEIGO.value,
+        UserProfileCategory.CAIPIRA.value,
+        UserProfileCategory.TECNICO.value,
+    ]
     responses = {}
     evaluation_scores = {}
 
@@ -22,10 +26,11 @@ def run_personalization_experiment():
 
         try:
             from core.schemas import ExpertiseLevel, UserProfile
+
             exp_map = {
                 UserProfileCategory.LEIGO.value: ExpertiseLevel.beginner,
                 UserProfileCategory.CAIPIRA.value: ExpertiseLevel.intermediate,
-                UserProfileCategory.TECNICO.value: ExpertiseLevel.expert
+                UserProfileCategory.TECNICO.value: ExpertiseLevel.expert,
             }
             user_prof = UserProfile(name="EmpiricalUser", expertise=exp_map[profile])
             ans = generate(question=question, context=context, history=[], profile=user_prof)
@@ -40,19 +45,37 @@ def run_personalization_experiment():
 
         if profile == UserProfileCategory.LEIGO.value:
             # Simple language, low jargon, clear terms
-            if not any(t in ans_lower for t in ["saturação por bases", "prnt", "meq/100cm3", "al3+"]):
+            if not any(
+                t in ans_lower for t in ["saturação por bases", "prnt", "meq/100cm3", "al3+"]
+            ):
                 score += 1.0
             if any(t in ans_lower for t in ["fácil", "simples", "ajuda", "terra", "planta"]):
                 score += 1.0
         elif profile == UserProfileCategory.CAIPIRA.value:
             # Direct, conversational, practical field terms
-            if any(t in ans_lower for t in ["roça", "campo", "terra", "jogar", "boto", "prático", "vamos"]):
+            if any(
+                t in ans_lower
+                for t in ["roça", "campo", "terra", "jogar", "boto", "prático", "vamos"]
+            ):
                 score += 1.5
             if len(ans) > 20:
                 score += 0.5
         elif profile == UserProfileCategory.TECNICO.value:
             # Agronomic terminology, formulas, V%, PRNT
-            if any(t in ans_lower for t in ["ph", "calcário", "solo", "neutralizar", "alumínio", "base", "v%", "prnt", "dose"]):
+            if any(
+                t in ans_lower
+                for t in [
+                    "ph",
+                    "calcário",
+                    "solo",
+                    "neutralizar",
+                    "alumínio",
+                    "base",
+                    "v%",
+                    "prnt",
+                    "dose",
+                ]
+            ):
                 score += 1.5
             if len(ans) > 50:
                 score += 0.5

@@ -39,9 +39,9 @@ def run_performance_experiment(num_runs: int = 10):
         tr_start = time.perf_counter()
         try:
             emb = generate_embedding(q)
-            chunks = search_context_rich(emb)
+            search_context_rich(emb)
         except Exception:
-            chunks = []
+            pass
         tr_end = time.perf_counter()
         r_lat = (tr_end - tr_start) * 1000.0
         retrieval_latencies.append(r_lat)

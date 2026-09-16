@@ -64,18 +64,14 @@ def test_classify_domain_fails_open_when_top_similarity_none(
 
 
 def test_classify_domain_llm_in_scope() -> None:
-    mock_chat = {
-        "message": {"content": "SIM"}
-    }
+    mock_chat = {"message": {"content": "SIM"}}
     with patch("agent.intent.get_chat_client") as mock_client:
         mock_client.return_value.chat.return_value = mock_chat
         assert classify_domain_llm("como plantar milho?") is True
 
 
 def test_classify_domain_llm_out_of_scope() -> None:
-    mock_chat = {
-        "message": {"content": "NAO"}
-    }
+    mock_chat = {"message": {"content": "NAO"}}
     with patch("agent.intent.get_chat_client") as mock_client:
         mock_client.return_value.chat.return_value = mock_chat
         assert classify_domain_llm("quem pintou a mona lisa?") is False

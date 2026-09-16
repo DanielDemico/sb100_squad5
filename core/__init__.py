@@ -7,6 +7,7 @@ This module centralizes the fundamental definitions of the SmartB100 system:
 
 Exports:
     settings: Singleton instance of the system settings.
+    ChatMessage: Shared chat message contract.
     ExpertiseLevel: Enum of user expertise levels.
     UserProfile: User profile schema.
     ChatRequest: Chat request schema.
@@ -14,12 +15,29 @@ Exports:
 """
 
 from core.config import settings
-from core.schemas import ChatRequest, ChatResponse, ExpertiseLevel, UserProfile
+from core.schemas import (
+    ChatMessage,
+    ChatRequest,
+    ChatResponse,
+    ExpertiseLevel,
+    RegisterResponse,
+    RetrievalChunk,
+    RetrievalSource,
+    Token,
+    UserCreate,
+    UserProfile,
+)
 
 __all__ = [
     "settings",
+    "ChatMessage",
     "ExpertiseLevel",
     "UserProfile",
     "ChatRequest",
     "ChatResponse",
+    "RetrievalSource",
+    "RetrievalChunk",
+    "UserCreate",
+    "RegisterResponse",
+    "Token",
 ]

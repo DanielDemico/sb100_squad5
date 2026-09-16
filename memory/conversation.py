@@ -3,6 +3,8 @@
 import logging
 from collections import deque
 
+from core.schemas import ChatMessage
+
 logger = logging.getLogger(__name__)
 
 _VALID_ROLES: frozenset[str] = frozenset({"user", "assistant"})
@@ -21,7 +23,7 @@ class ConversationBuffer:
         Args:
             maxlen: Maximum number of turns in the buffer.
         """
-        self._buffer: deque[dict[str, str]] = deque(maxlen=maxlen)
+        self._buffer: deque[ChatMessage] = deque(maxlen=maxlen)
 
     def add(self, role: str, content: str) -> None:
         """Add a turn to the buffer.
@@ -29,6 +31,9 @@ class ConversationBuffer:
         Args:
             role: Turn role (``"user"`` or ``"assistant"``).
             content: Message content (must not be empty or whitespace-only).
+
+        Returns:
+            None.
 
         Raises:
             ValueError: If ``role`` is not in ``{"user", "assistant"}`` or
@@ -38,10 +43,12 @@ class ConversationBuffer:
             raise ValueError(f"role must be one of {sorted(_VALID_ROLES)}; got {role!r}")
         if not content or not content.strip():
             raise ValueError("content must be a non-empty string")
+        # The deque owns FIFO overflow: once maxlen is reached, append drops the
+        # oldest turn so memory stays bounded while preserving recent context.
         self._buffer.append({"role": role, "content": content})
         logger.debug("memory.conversation.add", extra={"role": role, "size": len(self._buffer)})
 
-    def to_messages(self) -> list[dict[str, str]]:
+    def to_messages(self) -> list[ChatMessage]:
         """Return the history as a list of messages.
 
         Returns:

@@ -11,8 +11,8 @@ import sys
 from dataclasses import dataclass
 
 from core.config import settings
-from core.schemas import ExpertiseLevel
 from core.ollama_clients import get_chat_client
+from core.schemas import ExpertiseLevel
 from retrieval import generate_embedding, top_similarity
 
 logger = logging.getLogger(__name__)
@@ -25,7 +25,14 @@ OUT_OF_DOMAIN_MESSAGE = (
 
 @dataclass(frozen=True)
 class DomainDecision:
-    """Outcome of the domain gate: whether the question is in domain and the score seen."""
+    """Domain-gate result consumed by the agent chat path.
+
+    Attributes:
+        in_domain: Whether retrieval similarity indicates the question can be
+            answered from the agricultural corpus.
+        score: Top corpus similarity observed, or ``None`` when scoring failed
+            or produced no result and the gate failed open.
+    """
 
     in_domain: bool
     score: float | None
@@ -38,6 +45,13 @@ def classify_domain(question: str) -> DomainDecision:
     Fails open: on any embedding/search error, or when the collection yields no score, the
     question is treated as in domain (the agent path shares this retrieval and would surface the
     failure itself) and the failure is logged.
+
+    Args:
+        question: User question to embed and compare with the corpus.
+
+    Returns:
+        Domain decision with the boolean gate result and optional similarity
+        score.
     """
     try:
         embedding = generate_embedding(question)
@@ -58,6 +72,19 @@ def classify_domain_llm(question: str) -> bool:
 
     Fails open under pytest runner to preserve legacy integration tests.
     Under production, propagates exceptions to ensure the caller receives detailed errors.
+
+    Args:
+        question: User question to classify.
+
+    Returns:
+        ``True`` when the LLM answers ``SIM`` or when pytest fail-open logic is
+        active; otherwise ``False``.
+
+    Raises:
+        RuntimeError: If the classifier LLM call fails outside pytest.
+
+    QUALITY: long-function-justification - prompt construction, pytest legacy fallback
+    detection, LLM call, and strict yes/no parsing form one observable classifier transaction.
     """
     import unittest.mock
 
@@ -66,9 +93,8 @@ def classify_domain_llm(question: str) -> bool:
     is_pytest = "pytest" in sys.modules
     try:
         client = get_chat_client()
-        is_client_mocked = (
-            isinstance(client, unittest.mock.Mock)
-            or isinstance(client.chat, unittest.mock.Mock)
+        is_client_mocked = isinstance(client, unittest.mock.Mock) or isinstance(
+            client.chat, unittest.mock.Mock
         )
     except Exception:
         is_client_mocked = False
@@ -84,21 +110,16 @@ def classify_domain_llm(question: str) -> bool:
         "responda apenas 'SIM'. Se o tema não for relacionado, responda apenas 'NAO'.\n"
         "Responda estritamente apenas a palavra 'SIM' ou 'NAO' (em maiúsculas), sem qualquer outro caractere ou explicação."
     )
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": question}
-    ]
+    messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": question}]
     try:
         response = get_chat_client().chat(
             model=settings.chat_model,
             messages=messages,
-            options={"temperature": 0.0, "num_predict": 5}
+            options={"temperature": 0.0, "num_predict": 5},
         )
         content = str(response["message"]["content"]).strip().upper()
-        if "SIM" not in content and "NAO" not in content:
-            # Se for um mock genérico de teste que não respondeu SIM nem NAO, falha aberto
-            if "pytest" in sys.modules:
-                return True
+        if "SIM" not in content and "NAO" not in content and "pytest" in sys.modules:
+            return True
         return "SIM" in content
     except Exception as e:
         logger.exception("agent.intent.llm_classification_failed", extra={"error": str(e)})
@@ -114,15 +135,27 @@ def classify_expertise_llm(question: str) -> ExpertiseLevel:
     """Classifies via LLM the appropriate expertise level (beginner, intermediate, expert) for the question.
 
     Fails open to 'intermediate' under pytest if the client is not mocked specifically.
+
+    Args:
+        question: User question whose terminology and depth indicate the target
+            answer level.
+
+    Returns:
+        Expertise enum used to select the generation prompt.
+
+    Raises:
+        RuntimeError: If the classifier LLM call fails outside pytest.
+
+    QUALITY: long-function-justification - prompt construction, test-mode fallback, LLM
+    dispatch, and enum normalization stay together to keep the fail-open contract readable.
     """
     import unittest.mock
 
     is_pytest = "pytest" in sys.modules
     try:
         client = get_chat_client()
-        is_client_mocked = (
-            isinstance(client, unittest.mock.Mock)
-            or isinstance(client.chat, unittest.mock.Mock)
+        is_client_mocked = isinstance(client, unittest.mock.Mock) or isinstance(
+            client.chat, unittest.mock.Mock
         )
     except Exception:
         is_client_mocked = False
@@ -138,15 +171,12 @@ def classify_expertise_llm(question: str) -> ExpertiseLevel:
         "- 'expert': Se o usuário usa jargões científicos, dados quantitativos ou busca detalhes técnicos profundos e avançados.\n"
         "Responda estritamente apenas uma das palavras: 'beginner', 'intermediate' ou 'expert'. Não adicione pontuação ou explicações."
     )
-    messages = [
-        {"role": "system", "content": system_prompt},
-        {"role": "user", "content": question}
-    ]
+    messages = [{"role": "system", "content": system_prompt}, {"role": "user", "content": question}]
     try:
         response = get_chat_client().chat(
             model=settings.chat_model,
             messages=messages,
-            options={"temperature": 0.0, "num_predict": 10}
+            options={"temperature": 0.0, "num_predict": 10},
         )
         content = str(response["message"]["content"]).strip().lower()
         if "expert" in content:

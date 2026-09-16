@@ -44,6 +44,7 @@ Thumbs.db
 # AI - local agent artifacts (never tracked)
 .claude/
 docs/superpowers/
+.agents
 
 # Miscellaneous
 coverage.xml
@@ -51,5 +52,11 @@ coverage.xml
 
 # Runtime data - do not version
 /qdrant_storage/
+/pytest_tmp/
+
+# Out-of-scope application directories for the MVP
+/[Aa][Uu][Tt][Hh]/
+/[Ff][Rr][Oo][Nn][Tt][Ee][Nn][Dd]/
+/[Nn][Gg][Ii][Nn][Xx]/
 
 *.DOCUMENTATION_ANTIGRAVITY.MD

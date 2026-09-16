@@ -83,6 +83,10 @@ def merge_results(existing: list[dict], new: list[dict]) -> list[dict]:
 async def resolve_token(client: httpx.AsyncClient, api_url: str = DEFAULT_API_URL) -> str:
     """Resolve a bearer token for /chat from the environment.
 
+    QUALITY: long-function-justification - token shortcut, credential validation,
+    HTTP exchange, status mapping, connection mapping, and token extraction are one
+    authentication boundary for the evaluation runner.
+
     Uses ``EVAL_API_TOKEN`` directly when set; otherwise exchanges
     ``EVAL_USERNAME``/``EVAL_PASSWORD`` for a token via ``POST /auth/token``.
 
@@ -135,6 +139,10 @@ async def call_chat_api(
 ) -> dict:
     """
     Make a single call to the POST /chat endpoint.
+
+    QUALITY: long-function-justification - session isolation, request payload,
+    authenticated HTTP call, success projection, HTTP error projection, and transport
+    error projection are one measured API sample.
 
     Args:
         client: Async HTTP client
@@ -191,6 +199,10 @@ def load_checkpoint(
     question_ids: set[str] | None = None,
 ) -> list[dict]:
     """Load partial results from a checkpoint, if it exists and matches.
+
+    QUALITY: long-function-justification - existence check, corrupt-file handling,
+    fingerprint validation, schema filtering, and dataset filtering are one safe
+    checkpoint-read boundary.
 
     Returns an empty list if the checkpoint is missing or corrupted. When a
     ``dataset_fingerprint`` is given, the stored fingerprint must match — an
@@ -249,6 +261,10 @@ async def run_evaluation_async(
     """
     Evaluate every question asynchronously, persisting progress
     incrementally via checkpoint.
+
+    QUALITY: long-function-justification - checkpoint resume, auth, health gate,
+    concurrent request scheduling, progress iteration, and periodic persistence are
+    one resumable evaluation transaction.
 
     Args:
         questions: List of question objects from the dataset
@@ -354,6 +370,10 @@ def run_evaluation(
     """
     Run the full SB100 evaluation.
 
+    QUALITY: long-function-justification - dataset load, async execution, result
+    statistics, artifact write, checkpoint cleanup, and terminal summary are one
+    top-level evaluation transaction.
+
     Args:
         input_path: Path to the dataset with questions and references
         output_path: Path to the output file
@@ -426,6 +446,11 @@ def run_evaluation(
 
 
 def main() -> int:
+    """Parse CLI options and run the SB100 evaluation.
+
+    QUALITY: long-function-justification - argument parsing, input validation,
+    evaluation execution, handled abort mapping, and exit status are one CLI workflow.
+    """
     parser = argparse.ArgumentParser(
         description="Run the SB100 evaluation against the question dataset"
     )

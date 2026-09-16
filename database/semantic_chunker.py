@@ -4,7 +4,6 @@ import re
 import uuid
 from dataclasses import dataclass, field
 from pathlib import Path
-from typing import Any
 
 import fitz  # PyMuPDF
 import numpy as np
@@ -12,10 +11,12 @@ from qdrant_client import QdrantClient
 from qdrant_client.models import Distance, PointStruct, VectorParams
 from tqdm import tqdm
 
-from retrieval.ollama_embeddings import embed_text
 from core.config import settings
+from core.embeddings import embed_text
 
 logger = logging.getLogger(__name__)
+
+MetadataValue = str | int | float | bool | None
 
 # ─────────────────────────────────────────────
 # Global settings
@@ -40,16 +41,28 @@ MAX_CHUNK_SENTENCES = 20  # maximum sentences per chunk
 
 @dataclass
 class Sentence:
+    """Sentence extracted from a source PDF with its embedding vector.
+
+    The chunking pipeline uses this structure as the smallest semantic unit
+    before grouping adjacent sentences into larger Qdrant chunks.
+    """
+
     text: str
-    embedding: np.ndarray = field(default=None, repr=False)
+    embedding: np.ndarray = field(repr=False)
 
 
 @dataclass
 class Chunk:
+    """Indexable text chunk produced from one or more adjacent sentences.
+
+    Holds the merged text, original sentence texts, representative embedding
+    and source metadata that will be stored as the Qdrant payload.
+    """
+
     text: str
     sentences: list[str]
-    embedding: np.ndarray = field(default=None, repr=False)
-    metadata: dict[str, Any] = field(default_factory=dict)
+    embedding: np.ndarray = field(repr=False)
+    metadata: dict[str, MetadataValue] = field(default_factory=dict)
 
 
 # ─────────────────────────────────────────────
@@ -58,7 +71,18 @@ class Chunk:
 
 
 def extract_text_from_pdf(pdf_path: str) -> str:
-    """Extract text from all pages of the PDF."""
+    """Extract plain text from every page in a PDF file.
+
+    Args:
+        pdf_path: Path to the PDF file to read.
+
+    Returns:
+        Concatenated page text separated by newlines.
+
+    Raises:
+        FileNotFoundError: If ``pdf_path`` does not exist.
+        RuntimeError: If PyMuPDF cannot open or read the document.
+    """
     doc = fitz.open(pdf_path)
     pages_text = []
     for page in doc:
@@ -69,9 +93,17 @@ def extract_text_from_pdf(pdf_path: str) -> str:
 
 
 def split_into_sentences(text: str) -> list[str]:
-    """
-    Split text into sentences using a simple regex (no NLTK).
-    Works well for Portuguese and English texts.
+    """Split text into sentence-like units using a simple regex.
+
+    The regex avoids an NLP dependency and is tuned for Portuguese/English
+    uppercase sentence starts commonly found in the source PDFs.
+
+    Args:
+        text: Raw text extracted from one or more PDF pages.
+
+    Returns:
+        Normalized sentences longer than 30 characters, with likely PDF noise
+        removed.
     """
     # Normalize spaces and line breaks
     text = re.sub(r"\n+", " ", text)
@@ -91,13 +123,35 @@ def split_into_sentences(text: str) -> list[str]:
 
 
 def get_embedding(text: str) -> np.ndarray:
-    """Generate an embedding for a text using the Llama model via Ollama."""
+    """Generate an embedding vector for text using the configured Ollama model.
+
+    Args:
+        text: Text to embed.
+
+    Returns:
+        NumPy float32 vector produced by Ollama.
+
+    Raises:
+        Exception: Propagates the final Ollama embedding failure from
+            ``core.embeddings.embed_text`` after retries.
+    """
     vec = embed_text(OLLAMA_MODEL, text)
     return np.array(vec, dtype=np.float32)
 
 
 def get_embeddings_batch(texts: list[str], batch_size: int = 16) -> list[np.ndarray]:
-    """Generate embeddings in batches for efficiency."""
+    """Generate embeddings for many texts in fixed-size batches.
+
+    Args:
+        texts: Text fragments to embed in order.
+        batch_size: Number of texts grouped per progress-bar step.
+
+    Returns:
+        Embedding vectors in the same order as ``texts``.
+
+    Raises:
+        Exception: Propagates embedding failures from ``get_embedding``.
+    """
     embeddings = []
     for i in tqdm(range(0, len(texts), batch_size), desc="  Generating embeddings", leave=False):
         batch = texts[i : i + batch_size]
@@ -108,7 +162,16 @@ def get_embeddings_batch(texts: list[str], batch_size: int = 16) -> list[np.ndar
 
 
 def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
-    """Cosine similarity between two vectors."""
+    """Compute cosine similarity between two embedding vectors.
+
+    Args:
+        a: First embedding vector.
+        b: Second embedding vector.
+
+    Returns:
+        Similarity in the ``[-1.0, 1.0]`` range, or ``0.0`` if either vector
+        has zero norm.
+    """
     norm_a = np.linalg.norm(a)
     norm_b = np.linalg.norm(b)
     if norm_a == 0 or norm_b == 0:
@@ -122,14 +185,19 @@ def cosine_similarity(a: np.ndarray, b: np.ndarray) -> float:
 
 
 def semantic_chunking(sentences: list[Sentence]) -> list[list[Sentence]]:
-    """
-    Group sentences into chunks based on semantic similarity.
+    """Group adjacent sentences into semantically coherent chunks.
 
     Algorithm:
       1. Start a chunk with the first sentence.
       2. For each next sentence, compare against the current chunk's mean embedding.
-      3. If similarity < threshold (or the chunk got too large) → new chunk.
+      3. If similarity < threshold (or the chunk got too large), start a new chunk.
       4. Respect minimum and maximum sizes.
+
+    Args:
+        sentences: Ordered PDF sentences with precomputed embeddings.
+
+    Returns:
+        Ordered groups of sentences ready to become indexable chunks.
     """
     if not sentences:
         return []
@@ -140,7 +208,8 @@ def semantic_chunking(sentences: list[Sentence]) -> list[list[Sentence]]:
     for i in range(1, len(sentences)):
         sentence = sentences[i]
 
-        # Mean embedding of the current chunk
+        # Compare the next sentence against the chunk centroid, not only the
+        # previous sentence, so the split decision reflects the whole local topic.
         chunk_embeddings = np.stack([s.embedding for s in current_chunk])
         chunk_mean = chunk_embeddings.mean(axis=0)
 
@@ -149,26 +218,40 @@ def semantic_chunking(sentences: list[Sentence]) -> list[list[Sentence]]:
         too_small = len(current_chunk) < MIN_CHUNK_SENTENCES
 
         if (similarity < SIMILARITY_THRESHOLD and not too_small) or too_large:
-            # Close the current chunk and start a new one
+            # A low similarity marks a topic shift, but only after the minimum
+            # chunk size avoids tiny fragments; the max size caps overly broad chunks.
             chunks.append(current_chunk)
             current_chunk = [sentence]
         else:
             current_chunk.append(sentence)
 
-    # Add the last chunk
+    # The final open group is not closed by a following topic shift, so it must
+    # be appended explicitly to avoid dropping the tail of the document.
     if current_chunk:
         chunks.append(current_chunk)
 
     return chunks
 
 
-def build_chunks(sentence_groups: list[list[Sentence]], metadata: dict) -> list[Chunk]:
-    """Convert sentence groups into Chunk objects with a representative embedding."""
+def build_chunks(
+    sentence_groups: list[list[Sentence]],
+    metadata: dict[str, MetadataValue],
+) -> list[Chunk]:
+    """Convert grouped sentences into Qdrant-ready ``Chunk`` objects.
+
+    Args:
+        sentence_groups: Semantic sentence groups from ``semantic_chunking``.
+        metadata: Source metadata to copy into every chunk payload.
+
+    Returns:
+        Chunks with merged text, sentence text list, mean embedding and metadata.
+    """
     chunks = []
     for group in sentence_groups:
         text = " ".join(s.text for s in group)
 
-        # Chunk embedding = mean of the sentence embeddings
+        # Averaging sentence embeddings gives Qdrant one representative vector
+        # for the whole chunk while preserving sentence text in metadata.
         embeddings = np.stack([s.embedding for s in group])
         chunk_embedding = embeddings.mean(axis=0)
 
@@ -187,8 +270,20 @@ def build_chunks(sentence_groups: list[list[Sentence]], metadata: dict) -> list[
 # ─────────────────────────────────────────────
 
 
-def init_qdrant(client: QdrantClient, embed_dim: int):
-    """Create the Qdrant collection if it does not exist."""
+def init_qdrant(client: QdrantClient, embed_dim: int) -> None:
+    """Create the configured Qdrant collection when missing.
+
+    Args:
+        client: Qdrant client connected to the target instance.
+        embed_dim: Embedding dimensionality used by the collection vector.
+
+    Returns:
+        None.
+
+    Raises:
+        Exception: Propagates Qdrant client failures while listing or creating
+            collections.
+    """
     existing = [c.name for c in client.get_collections().collections]
     if COLLECTION_NAME not in existing:
         client.create_collection(
@@ -203,8 +298,19 @@ def init_qdrant(client: QdrantClient, embed_dim: int):
         logger.info("semantic_chunker.collection_exists", extra={"collection": COLLECTION_NAME})
 
 
-def upsert_chunks(client: QdrantClient, chunks: list[Chunk]):
-    """Insert chunks into Qdrant."""
+def upsert_chunks(client: QdrantClient, chunks: list[Chunk]) -> int:
+    """Insert generated chunks into the configured Qdrant collection.
+
+    Args:
+        client: Qdrant client connected to the target instance.
+        chunks: Prepared chunks with text, vectors and source metadata.
+
+    Returns:
+        Number of points submitted to Qdrant.
+
+    Raises:
+        Exception: Propagates Qdrant upsert failures.
+    """
     points = []
     for chunk in chunks:
         point = PointStruct(
@@ -229,7 +335,19 @@ def upsert_chunks(client: QdrantClient, chunks: list[Chunk]):
 
 
 def process_pdf(pdf_path: str, client: QdrantClient) -> int:
-    """Process a single PDF and index it in Qdrant. Returns the number of chunks."""
+    """Process one PDF and index its semantic chunks in Qdrant.
+
+    Args:
+        pdf_path: Path to the source PDF.
+        client: Qdrant client used for collection setup and point upsert.
+
+    Returns:
+        Number of chunks indexed; ``0`` when the PDF has no extractable text or
+        no valid sentences.
+
+    QUALITY: long-function-justification - extraction, batch embedding, semantic chunking,
+    collection setup, and upsert are the atomic ingestion unit for one source document.
+    """
     filename = Path(pdf_path).name
     logger.info("semantic_chunker.pdf_start", extra={"file": filename})
 
@@ -265,7 +383,7 @@ def process_pdf(pdf_path: str, client: QdrantClient) -> int:
     )
 
     # 5. Build chunks with metadata
-    metadata = {
+    metadata: dict[str, MetadataValue] = {
         "source_file": filename,
         "source_path": str(Path(pdf_path).resolve()),
     }
@@ -277,8 +395,19 @@ def process_pdf(pdf_path: str, client: QdrantClient) -> int:
     return count
 
 
-def process_folder(folder_path: str):
-    """Process all PDFs in a folder."""
+def process_folder(folder_path: str) -> None:
+    """Process and index all PDFs found recursively in a folder.
+
+    Args:
+        folder_path: Directory containing source PDFs.
+
+    Returns:
+        None.
+
+    QUALITY: long-function-justification - folder discovery, empty-folder handling,
+    Qdrant setup, per-PDF ingestion loop, and final indexing summary form one
+    operator-facing ingestion transaction.
+    """
     pdf_files = list(Path(folder_path).glob("**/*.pdf"))
     if not pdf_files:
         logger.warning("semantic_chunker.no_pdfs_found", extra={"folder": folder_path})
@@ -313,8 +442,19 @@ def process_folder(folder_path: str):
 # ─────────────────────────────────────────────
 
 
-def search(query: str, top_k: int = 5):
-    """Semantic search over the collection."""
+def search(query: str, top_k: int = 5) -> None:
+    """Run a semantic search against Qdrant and log ranked results.
+
+    Args:
+        query: Natural-language query to embed and search.
+        top_k: Maximum number of nearest chunks to log.
+
+    Returns:
+        None.
+
+    Raises:
+        Exception: Propagates embedding or Qdrant query failures.
+    """
     client = QdrantClient(url=QDRANT_URL, api_key=QDRANT_API_KEY)
     query_embedding = get_embedding(query)
 
@@ -344,7 +484,14 @@ def search(query: str, top_k: int = 5):
 
 
 def main() -> None:
-    """Entry point for CLI usage. Parses arguments and runs index or search."""
+    """Parse CLI arguments and dispatch indexing or search commands.
+
+    Returns:
+        None.
+
+    QUALITY: long-function-justification - argparse setup and command dispatch remain
+    together because splitting the parser obscures CLI flags and subcommands.
+    """
     global OLLAMA_MODEL, SIMILARITY_THRESHOLD, QDRANT_URL, QDRANT_API_KEY, COLLECTION_NAME
 
     logging.basicConfig(

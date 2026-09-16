@@ -129,6 +129,10 @@ def collect_references(
     """
     Collect reference answers for every question.
 
+    QUALITY: long-function-justification - provider selection, resumable per-model
+    answer collection, error recording, metadata update, artifact write, and terminal
+    statistics are one auditable reference-collection transaction.
+
     Args:
         questions_path: Path to the question dataset
         output_path: Path to the output file
@@ -212,6 +216,12 @@ def collect_references(
 
 
 def main():
+    """Parse CLI options and execute reference collection.
+
+    QUALITY: long-function-justification - argument parsing, provider credential
+    checks, input validation, model parsing, collection call, and process status
+    compose one CLI entrypoint whose order is important for operator feedback.
+    """
     parser = argparse.ArgumentParser(
         description="Collect reference answers from open-source models"
     )

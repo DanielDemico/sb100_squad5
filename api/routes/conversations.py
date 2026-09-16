@@ -1,6 +1,9 @@
 """Routes to manage user conversations."""
 
 import logging
+from datetime import datetime
+from typing import cast
+
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
@@ -18,8 +21,16 @@ router = APIRouter(prefix="/conversations", tags=["conversations"])
 def list_conversations(
     db: Session = Depends(get_db),
     current_user: User = Depends(verify_token),
-) -> list[Conversation]:
-    """Retrieve all conversations for the authenticated user, sorted by created_at desc."""
+) -> list[ConversationResponse]:
+    """Retrieve all conversations owned by the authenticated user.
+
+    Args:
+        db: SQLAlchemy session injected by FastAPI.
+        current_user: User resolved from the bearer JWT.
+
+    Returns:
+        Conversation metadata sorted by creation time descending.
+    """
     logger.info(
         "conversations.list",
         extra={"username": current_user.username, "user_id": current_user.id},
@@ -30,4 +41,13 @@ def list_conversations(
         .order_by(Conversation.created_at.desc())
         .all()
     )
-    return conversations
+    return [
+        ConversationResponse(
+            id=int(conversation.id),
+            user_id=int(conversation.user_id),
+            title=str(conversation.title),
+            created_at=cast(datetime, conversation.created_at),
+            updated_at=cast(datetime, conversation.updated_at),
+        )
+        for conversation in conversations
+    ]

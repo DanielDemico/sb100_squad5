@@ -79,7 +79,15 @@ def new_session_state(api_url: str) -> dict:
 
 
 def get_session_info(state: dict) -> str:
-    """Human-readable label with the conversation_id."""
+    """Build the session label shown in the Gradio sidebar.
+
+    Args:
+        state: Current per-browser session state.
+
+    Returns:
+        Human-readable conversation identifier, or the new-conversation label
+        when no conversation has been created yet.
+    """
     cid = state.get("conversation_id")
     if cid is None:
         return "Nova Conversa (Sem ID)"
@@ -100,6 +108,8 @@ def login(state: dict, username: str, password: str) -> tuple[dict, str]:
 
     Returns:
         Tuple of (updated state, status message for display).
+    QUALITY: long-function-justification - form validation, token exchange, HTTP status
+    handling, request-error handling, and state update are one UI command.
     """
     if not username or not password:
         return {**state, "token": None}, "Enter your username and password to log in."
@@ -185,6 +195,8 @@ def send_with_retry(
 
     Raises:
         httpx.HTTPStatusError | httpx.RequestError: If all attempts fail.
+    QUALITY: long-function-justification - retry loop, transient classifier, exponential
+    backoff, logging, and final exception propagation keep the retry policy reviewable.
     """
     last_exc: Exception | None = None
     for attempt in range(attempts + 1):
@@ -294,7 +306,17 @@ def respond(
 ) -> Generator[tuple[dict, list[dict[str, str]], str, str], None, None]:
     """Process a message and update history, threaded through the session state.
 
-    Yields a ``(state, history, score_html, msg_input_value)`` tuple.
+    Args:
+        state: Current per-browser session state.
+        message: User message submitted from the input box.
+        history: Current Gradio chatbot history.
+
+    Yields:
+        Tuples of ``(state, history, score_html, msg_input_value)`` for loading
+        and terminal UI states.
+
+    QUALITY: long-function-justification - Gradio requires one generator to emit loading
+    and terminal UI states; splitting the yield flow obscures state transitions.
     """
     if not message.strip():
         yield state, history, "", message
@@ -359,13 +381,32 @@ def respond(
 
 
 def reset_session(state: dict) -> tuple[dict, list[dict[str, str]], str, str]:
-    """Start a new conversation for this browser only (keeps the login)."""
+    """Start a new conversation for the current browser session only.
+
+    Args:
+        state: Current per-browser session state.
+
+    Returns:
+        Updated state with ``conversation_id`` cleared, empty chat history,
+        refreshed session label and cleared verification HTML.
+    """
     new_state = {**state, "conversation_id": None}
     return new_state, [], get_session_info(new_state), ""
 
 
 def create_interface(api_url: str) -> gr.Blocks:
-    """Creates the full Gradio interface."""
+    """Creates the full Gradio interface.
+
+    Args:
+        api_url: Base URL used by callbacks to reach the FastAPI backend.
+
+    Returns:
+        Configured Gradio ``Blocks`` application with login, chat and
+        verification widgets wired to their callbacks.
+
+    QUALITY: long-function-justification - Gradio component construction and event wiring
+    are colocated so callbacks, inputs, and outputs can be audited as one UI graph.
+    """
 
     def init_session() -> tuple[dict, str]:
         """Per-connection initialiser wired to ``interface.load``."""
@@ -465,7 +506,14 @@ def create_interface(api_url: str) -> gr.Blocks:
 
 
 def main() -> None:
-    """Main application entry point."""
+    """Main application entry point.
+
+    Returns:
+        None.
+
+    QUALITY: long-function-justification - logging setup, CLI arguments, interface creation,
+    and launch are the executable boundary for the Gradio process.
+    """
     logging.basicConfig(
         level=logging.INFO,
         format="%(asctime)s %(name)s %(levelname)s %(message)s",

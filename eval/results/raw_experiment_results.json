@@ -1,0 +1,872 @@
+{
+  "metrics": {
+    "domain_accuracy": 1.0,
+    "domain_precision": 1.0,
+    "domain_recall": 1.0,
+    "domain_f1": 1.0,
+    "taxa_recusa_correta_extracampo": 1.0,
+    "taxa_aceitacao_correta_agri": 1.0,
+    "taxa_deteccao_alucinacao_adversarial": 1.0,
+    "latencia_media_baseline": 31.116677100841816,
+    "latencia_media_proposto": 53.628131224558906,
+    "amostras_avaliadas": 13
+  },
+  "baseline_raw": [
+    {
+      "question_id": "A1",
+      "category": "agricultura_valida",
+      "question": "Qual a recomendação de calagem para a cultura do café segundo o Boletim 100?",
+      "expected_concepts": [
+        "análise de solo",
+        "saturação por bases",
+        "V%",
+        "calcário dolomítico"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 2,
+        "sources": [],
+        "latency": 24.39387035369873,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A2",
+      "category": "agricultura_valida",
+      "question": "Qual o valor limite de saturação por bases (V%) recomendado para a cultura de citros no Boletim 100?",
+      "expected_concepts": [
+        "70%",
+        "citros",
+        "elevar a saturação por bases"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Infelizmente não encontrei informações que mencionem o \"Boletim 100\". Não é possível fornecer uma resposta específica sem saber qual é o documento ou a publicação em questão. Se puder forneecer mais detalhes sobre o contexto, posso tentar ajudá-lo.",
+        "hallucination_score": 0.0,
+        "conversation_id": 3,
+        "sources": [
+          {
+            "id": "cfab8543-613e-42fc-a345-ac5ebd8bb7e7",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 4. Sintoma de deficiência de fósforo. As folhas mais velhas apresentam aspecto amarelado ou bronzeado, a árvore tende a perder as folhas e adquire um aspecto pouco vigoroso e uma certa “transparência”. Nos frutos, a columela tende a se tornar aberta. Crédito da foto: José Antônio Quaggio.. A imagem apresenta um ramo de citros com um fruto cortado transversalmente, evidenciando sintomas de deficiência de fósforo. As folhas mais velhas mostram um aspecto amarelado ou bronzeado. A legenda descreve que a árvore perde vigor, apresenta desfolha e 'transparência' da copa. No fruto cortado, observa-se a columela (centro do fruto) aberta, um sintoma típico dessa deficiência. A deficiência de fósforo causa bronzeamento/amarelecimento de folhas velhas, perda de vigor da planta e, caracteristicamente, a abertura da columela nos frutos, comprometendo a qualidade.",
+            "file": "Mattos(2009)-IPNI manejo fertilidade citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 7
+          },
+          {
+            "id": "8884e8cd-37a1-4a4a-aa67-9da16b7ef309",
+            "inicio": 0,
+            "text": "FITOPATOLOGIA\nMORTE SÚBITA DOS CITROS: UMA NOVA DOENÇA CITRICULTURA BRASILEIRA\nGERD WALTER MÚLLER!2, JOSÉ DAGOBERTO DE NEGRI', CARLOS IVAN AGUILAR-VILDOSO!, DIRCEU MATTOS JÚNIOR!, JORGINO POMPEU JUNIOR!?, JOAQUIM TEÓFILO SOBRINHO !2, SÉRGIO ALVES CARVALHO !-2, LUIZ FERNANDO GIROTTO? e MARCOS ANTONIO MACHADO\"?\nRESUMO\nUma nova doenga afetando laranjeiras-doces [Citrus sinensis (L.) Osb.] enxertadas em limão 'Cravo' (C. limonia Osb.), e denominada morte súbita dos citros (MSC), foi detectada em 1999 no sudoeste de Minas Gerais e no norte de São Paulo. Essas plantas apresentam, inicialmente, folhagem verde-pálidas e desfolha, morte apical de ramos e, ocasionalmente, desenvolvimento de pequeno número de ramos \"ladrões\" na copa. No estádio final, todas as folhas caem e a árvore morre, permanecendo, não raro, alguns frutos presos aos galhos. Pode-se observar um amarelecimento no câmbio do porta-enxerto, sendo esse o principal sintoma diagnóstico da MSC. Não há incompatibilidade de tecidos na região de enxertia. Os",
+            "file": "Muller(2002)-MSC(Laranja)) - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "3a667060-7d33-456f-b027-9a6b6b98f55e",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 1. Árvores de ‘Valência’/’Cravo’, doze anos, mostrando planta morta, com sintomas, e sadia (da direita para a esquerda respectivamente). A imagem fotográfica apresenta um pomar de citros, especificamente laranjeiras da variedade 'Valência' enxertadas em limão 'Cravo', com doze anos de idade. A foto ilustra três estádios distintos da doença denominada Morte Súbita dos Citros (MSC). Da direita para a esquerda, observa-se primeiramente uma planta morta, completamente desfolhada, com galhos secos e alguns frutos ainda retidos. No centro, há uma planta apresentando sintomas da doença, caracterizados por desfolha parcial e aspecto menos vigoroso. À esquerda, visualiza-se uma planta aparentemente sadia, com copa densa e folhagem verde. O contexto textual indica que a doença causa folhas verde-pálidas, queda pronunciada de folhas, morte apical de ramos e, no estádio final, a morte da árvore com retenção de frutos. A Morte Súbita dos Citros (MSC) causa declínio rápido e severo em laranjeiras 'Valência' sobre limão 'Cravo', progredindo de sintomas de desfolha até a morte completa da planta, frequentemente com retenção de frutos nos galhos secos.",
+            "file": "Muller(2002)-MSC(Laranja)) - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 3
+          }
+        ],
+        "latency": 84.13820910453796,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A3",
+      "category": "agricultura_valida",
+      "question": "Como é calculada a necessidade de calagem (NC) pelo método da elevação da saturação por bases no Boletim 100?",
+      "expected_concepts": [
+        "NC",
+        "V2 - V1",
+        "CTC",
+        "fator",
+        "100",
+        "PRNT"
+      ],
+      "response": {
+        "success": true,
+        "answer": "A necessidade de calagem (NC) é calculada pela seguinte fórmula:\n\nNC = (S - C) / N\n\nOnde:\n- S é a saturação por base do solo, expressa em mmol/kg\n- C é o teor de cátions de alcalino na solução de extracción, expresso em mg/100g de solo\n- N é o fator de conversão da saturação por base para",
+        "hallucination_score": 0.0,
+        "conversation_id": 4,
+        "sources": [
+          {
+            "id": "8769676f-c27a-42a8-9667-62615f6e7b53",
+            "inicio": 2,
+            "text": "OM Y ayep peoy voy -819 JULIA 00L SAO Jo uaedag VPHOJA QUA POH Je so nog 3uneny]\nZO IOU9OATEHI/OOE PO LIOP \"PIA OS DE STS [PY OUT SSI QUONVH OUT SU O00T 3 O ssa duo Py Sp 11//:dY 12 AUUO AGUILA y 9007 (109 \"JOA \"3DUALOS 1H JO (BUINOS [LUONBUIDUT\n4\npeel. In contrast. K deficiency produces smaller fruits with thin peel. With regard to juice properties. K nutrition has a significant role in juice acidity: that is. high juice acidity with high K availability, while low K availability causes decrease in juice acidity. High K availability in the soil can reduce the uptake of other cations, primarily magnesium, calcium, and ammonium N. In this paper, the available information on the effects of varying availability of K on the fruit yield, postharvest quality of fruit, as well as juice quality is summarized. The current recommendations on the application of soil and leaf analysis for evaluation of the K nutritional status and guidelines for K fertilization are also discussed. doi: 10.1300/J492vO6n01_02 [Article",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 2
+          },
+          {
+            "id": "105a3f5a-0dca-46f7-b6dd-913259e11f3b",
+            "inicio": 10,
+            "text": "ages captured by a terrestrial optical sensor. This type of equipment can be used in harvest prediction and yield mapping.\nThe methods quoted are very effective to show spatial variability of yield with significant details. However, they are not adapted to the daily productive reality of citrus farms. Thus, some authors have created simple methods that meet the needs of citrus growers. Schueller et al. (1999) and Tumbo et al. (2002) generated yield maps of Florida's (USA) orchards by georeferencing fruit containers used on hand harvest. In Brazil, Molin and Mascharin (2007) used a similar procedure, with adaptations to the local harvest conditions. These methods stand out for their adaptability to hand harvesting, easiness and low cost to obtain data.\nIn addition to yield maps, development of PA techniques in citrus orchards has also focused the spatial variability existing on soil and its influence on crop performance. According to Zaman and Schumann (2006), soil mapping showed to be essential for",
+            "file": "Molin(2012)-Citrus georefence - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 2
+          },
+          {
+            "id": "51c5e899-63d2-4ea4-abf3-9bfa5fc4de37",
+            "inicio": 9,
+            "text": "metabolism, carbon allocation, and consequently fruit yield and quality of crops. However, comprehensive knowledge on the interaction of plant nutrition and\nsystemic vascular diseases, like HLB, is still not conclusive (Mattos Jr et al. 2010; Spann et al. 2010; Gottwald 2010; Gottwald et al. 2012). Thus, it is necessary to better and reciprocally characterize processes between nutritional status and HLB infection in citrus trees, in order to establish rational orchard management strategies that minimize losses of both fruit yield and quality caused by the disease.\nHLB affects fruit quality and yield of citrus trees\nHLB symptomatic fruits are small, asymmetric, and have a bitter taste (McClean and Schwarz 1970) due to increased concentrations of limonin and nomilin, which negatively impact sensory attributes of juice (Bové 2006; Baldwin et al. 2010, 2018; Dala Paula et al. 2019). Such fruits frequently fall prematurely, while those that remain on trees exhibit brownish and black aborted seeds, as well as",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 67.6880955696106,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A4",
+      "category": "agricultura_valida",
+      "question": "Qual a profundidade recomendada para a amostragem de solo em plantio direto consolidado?",
+      "expected_concepts": [
+        "0 a 10 cm",
+        "plantio direto",
+        "camada"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Não encontrei informações específicas sobre a profundidade recomendada para a amostragem de solo em plantio direto consolidado. A profundidade da amostra é importante para obter uma representação adequada do estado fisiológico do solo, mas não há um valor específico recomendado para todos os tipos de solos e sistemas de cultivo.\n\nDe acordo com a Abraço (Associação Brasileira de Agropecuária), a",
+        "hallucination_score": 0.0,
+        "conversation_id": 5,
+        "sources": [
+          {
+            "id": "16acd6c4-d83c-4f73-a98f-a15a80bb409c",
+            "inicio": 40,
+            "text": "nagement program (Spann et al. 2010; Timmer et al. 2011).\nSustainability of citrus production under low HLB incidence\nIn view that HLB-resistant/tolerant canopy and rootstocks citrus varieties are not yet available to growers, as well as effective means of controlling the bacteria in the orchards, the most important strategy in citrus cultivation is to prevent the disease from spreading in the orchard. Thus, measures such as enhanced nutrient management to maintain tree health should not be a priority given the recommendations already established by the research.\nThis is the case of citrus in the state of São Paulo, Brazil, whose survey shows that in recent years (2015-2019; FUNDECITRUS 2019), the occurrence of the disease has been stable, with less than 20% of infected plants in the citrus production belt.\nUnder low HLB occurrence, recommendations for successful disease control were prepared (FUNDECITRUS et al. 2019b), which include the following: (i) planning and selection of planting area, (ii) planting",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 6
+          },
+          {
+            "id": "f02168db-0a5d-4926-8ca0-6f0f587e437f",
+            "inicio": 59,
+            "text": "va (1977) demonstrated that splitting of 'Valencia' orange fruits disappeared in trees that received adequate K fertilization compared with 23% of the fruits with splitting problem in the trees that received no K fertilization.\nRumple is a pre-harvest peel disorder characterized by collapse of the rind between the oil glands. This disorder generally begins at the time of colorbreak (Knorr, 1973), and is severe in lemons grown in Florida. There have been some indications that high K tends to decrease the proportion of fruit with rumple. Similar to other nutrition studies in Florida, high K and low N reduced the incidence of rumple (Knorr, 1973).\nStem end rind breakdown (SERB) is a general term given to fruit with a collapsed peel at the stem end. SERB incidence in South Africa was reportedly triggered by K and B deficiency. Grierson (1965) also reported that SERB was associated with the deficiency of K. Reitz and Koo (1960) reported that SERB was most abundant in fruit from trees that received high N and low",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 23
+          },
+          {
+            "id": "30be7728-4ad3-4b50-b77a-66a178236826",
+            "inicio": 58,
+            "text": "2002.\nDELGADO, J. A. Potential use of innovative nutrient management alternatives to increase nutrient use efficiency, reduce losses, and protect soil and water quality. Special Issue of the Journal of Communications in Soil Science and Plant Analysis. New York: Marcel Dekker Inc., 2001a.\nDELGADO, J. A. Use of simulations for evaluation of best management practices on irrigated cropping systems. In: SHAFFER, M. J. et al. (Ed.). Modeling carbon and nitrogen dynamics for soil management. Boca Raton: Lewis Publishers, 2001b. p. 355-381.\nFEIGENBAUM, S.; BIELORAI, H.; ERNER, Y.; DASBERG, S. The fate of '°N labeled nitrogen applied to mature citrus trees. Plant and Soil, v. 97, p. 179-187, 1987.\nFENILLI, T. B.; BOARETTO, A. E.; BENDASSOLLI, J. A.; TRIVELIN, P. C. O.; MURAOKA, T. Dinámica do nitrogênio em laranjeiras jovens cultivadas em solução nutritiva. Laranja, v. 25, p. 461-472, 2004.\nFENN, L. B.; KISSELL, D. E. Ammonia volatilization from surface applications of ammonium compounds on calcareous soils: II.",
+            "file": "Mattos(2007)-NS Citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 27
+          }
+        ],
+        "latency": 69.1787497997284,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A5",
+      "category": "agricultura_valida",
+      "question": "Quais são os micronutrientes cuja deficiência é mais comum em solos sob cerrado em São Paulo?",
+      "expected_concepts": [
+        "boro",
+        "zinco",
+        "B",
+        "Zn",
+        "deficiência"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Infelizmente não há informações suficientes para responder à sua pergunta. Você mencionou a região \"São Paulo\", mas não especificou qual estado ou município da região, nem mencionou que a pergunta se refere ao solo sob cerrado. No entanto, posso dizer que os micronutrientes cuja deficiência é mais comum em solos sob cerrado geralmente incluem:\n\n1.",
+        "hallucination_score": 0.0,
+        "conversation_id": 6,
+        "sources": [
+          {
+            "id": "dbc6f303-1a59-4c5c-8916-5badd4a9a471",
+            "inicio": 75,
+            "text": "England G, Futch S, Gaver T, Hurner T, Oswalt C, Rogers ME, Roka FM, Ritenour MA, Zekri MIFAS (2010) Guidance for huanglongbing (greening) management. Available at: www.agnetonlinecom/ documents/02-26-10-uf-ifashlb-guidepdf. Accessed 28 Sept 2018\nSpann TM, Rouse RE, Schumann AW (2011) The theory of managing Huanglongbing with plant nutrition and real world success in Florida. In: Burrns JK, Graham JH, Gottawald TR (eds) Proceedings of 2nd International Research Conference on Huanglongbing. University of Florida, USA. pp. 177\nStansly PA, Arevalo HA, Qureshi JA, Jones MM, Hendricks K, Roberts PD, Roka FM (2013) Vector control and foliar nutrition to maintain economic sustainablility of bearing citrus in Florida groves affected by huanglongbing. Pest Management Science\nStettler M, Eicke S, Mettler T, Messerli G, Hortensteiner S, Zeeman SC (2009) Blocking the metabolism of starch breakdown products in Arabidopsis leaves triggers chloroplast degradation. Molecular Plant 2:1233-1246\nStover E, Inch S, Richardson",
+            "file": "Silva(2020)-HLB x micronutrients - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 14
+          },
+          {
+            "id": "93781d64-8f38-4b9c-9265-c320cd585616",
+            "inicio": 45,
+            "text": "gbing. Proceedings of the Florida State Horticultural Society 122:169-171.\nSpann TM, Atwood RA, Dewdney MM, Ebel RC, Ehsani R, England G, Futch S, Gaver T, Hurner T, Oswalt C, Rogers ME, Roka FM, Ritenour MA & Zekri M (2010) IFAS Guidance for huanglongbing (greening) management Disponivel em: <wwwagnetonlinecom/ documents/02-26-10-uf-ifas-hlb-guidepdf> Acesso em: 26 fev 2010.\nSticher L, Mauch-Mani B, & Métraux JP (1997) Systemic acquired resistance. Annual Review of Phytopathology 35:235-370.\nTanaka FAO, Kitajima EW, Jesus JR WC, Ayres AJ, Gimenes-Fernandes N & Bové JM (2006) First report of the electron micrograph of \"Candidatus Liberibacter\" particles on citrus in Brazil. Fitopatologia Brasileira 31:99.\nTeixeira DC, Ayres AJ, Kitajima EW, Tanaka FAO, Danet L, Jagoueix-Eveillard S, Saillard C & Bové JM (2005) First report of a Huanglongbing-like disease of Citrus in São Paulo State Brazil and association of a new Liberibacter species \"Candidatus Liberibacter americanus\" with the disease. Plant Disease",
+            "file": "Mattos(2010)-Elicitores - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 10
+          },
+          {
+            "id": "458139e2-2305-4488-8e40-1aacf1288844",
+            "inicio": 0,
+            "text": "[IMAGEM - grafico_linhas] FIG. 4. Diagramas de dispersão das médias observadas de °Brix, acidez e relação °Brix/acidez nas seis datas de coletas de frutos, e correspondentes gráficos de linhas polinomiais ajustadas, para os quatro grupos de clones e cultivares de laranja determinados pela análise de agrupamento.. A figura apresenta três gráficos de linhas (A, B e C) que mostram a evolução de parâmetros de qualidade de laranjas ao longo do tempo. O eixo X representa os 'Dias após início da coleta de frutos', variando de 0 a 100 dias, com marcações de datas (18/set., 28/out., 7/dez). O gráfico A mostra a evolução do °Brix, que varia de 8,0 a 17,0. O gráfico B mostra a evolução da Acidez (%), variando de 0,50 a 2,00. O gráfico C mostra a evolução da Razão °Brix/acidez, variando de 5,0 a 20,0. Os dados são apresentados para quatro grupos (Grupo 1, Grupo 2, Grupo 3, Grupo 4), representados por diferentes símbolos (losango, quadrado, triângulo, círculo vazio). Variáveis: Dias após início da coleta de frutos, °Brix (Gráfico A), Acidez (%) (Gráfico B), Razão °Brix/acidez (Gráfico C). Séries/tratamentos: Grupo 1, Grupo 2, Grupo 3, Grupo 4. Dados: Grupo 1 (Gráfico A): x=0, y=12.5; Grupo 1 (Gráfico A): x=20, y=13.0; Grupo 1 (Gráfico A): x=40, y=13.2; Grupo 1 (Gráfico A): x=60, y=13.0; Grupo 1 (Gráfico A): x=80, y=12.5; Grupo 1 (Gráfico A): x=100, y=11.5; Grupo 2 (Gráfico A): x=0, y=13.8; Grupo 2 (Gráfico A): x=20, y=14.5; Grupo 2 (Gráfico A): x=40, y=14.8; Grupo 2 (Gráfico A): x=60, y=14.5; Grupo 2 (Gráfico A): x=80, y=13.8; Grupo 2 (Gráfico A): x=100, y=12.5; Grupo 3 (Gráfico A): x=0, y=13.5; Grupo 3 (Gráfico A): x=20, y=14.0; Grupo 3 (Gráfico A): x=40, y=14.2; Grupo 3 (Gráfico A): x=60, y=14.0; Grupo 3 (Gráfico A): x=80, y=13.5; Grupo 3 (Gráfico A): x=100, y=12.0; Grupo 4 (Gráfico A): x=0, y=14.0; Grupo 4 (Gráfico A): x=20, y=14.5. Máximo: O valor máximo de °Brix é de aproximadamente 16,5 para o Grupo 4 aos 100 dias. A acidez máxima é de aproximadamente 1,75% para o Grupo 3 no dia 0. A razão °Brix/acidez máxima é de aproximadamente 21,0 para o Grupo 4 aos 100 dias.. Mínimo: O valor mínimo de °Brix é de aproximadamente 11,5 para o Grupo 1 aos 100 dias. A acidez mínima é de aproximadamente 0,65% para o Grupo 2 aos 100 dias. A razão °Brix/acidez mínima é de aproximadamente 7,5 para o Grupo 3 no dia 0.. Ponto ótimo: Não há um ponto ótimo explícito, mas a razão °Brix/acidez de 12,0 é mencionada no texto como um marco de maturação, atingido em diferentes momentos pelos grupos.. Tendência: No gráfico A (°Brix), os grupos 1, 2 e 3 apresentam tendência quadrática, com um pico em torno de 40 dias, enquanto o grupo 4 apresenta tendência linear crescente. No gráfico B (Acidez), todos os grupos apresentam tendência linear decrescente, sendo a do grupo 4 quase constante. No gráfico C (Razão °Brix/acidez), todos os grupos apresentam tendência linear crescente.. Regressão: Não visível no gráfico.. Significância: Não visível no gráfico.. A análise das curvas de maturação permite agrupar cultivares de laranjas com comportamentos semelhantes, auxiliando na recomendação de épocas de colheita baseadas na evolução do °Brix, acidez e sua razão.",
+            "file": "Mattos(1999)-Curvas-agrup - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 6
+          }
+        ],
+        "latency": 123.07987785339355,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B1",
+      "category": "extracampo",
+      "question": "Qual é a capital oficial da França e quais os seus principais monumentos?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 7,
+        "sources": [],
+        "latency": 4.72338604927063,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B2",
+      "category": "extracampo",
+      "question": "Como funciona o algoritmo de ordenação QuickSort em ciência da computação?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 8,
+        "sources": [],
+        "latency": 4.052733659744263,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B3",
+      "category": "extracampo",
+      "question": "Quem escreveu o romance Dom Casmurro e qual o tema principal da obra?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 9,
+        "sources": [],
+        "latency": 4.734893798828125,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B4",
+      "category": "extracampo",
+      "question": "Quais são as regras básicas para jogar futebol de campo profissional?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 10,
+        "sources": [],
+        "latency": 4.415018796920776,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B5",
+      "category": "extracampo",
+      "question": "Como preparar uma receita simples de bolo de chocolate tradicional de liquidificador?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 11,
+        "sources": [],
+        "latency": 4.8967273235321045,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C1",
+      "category": "premissa_falsa",
+      "question": "Como aplicar a dose de 500 kg por hectare de fertilizante de criptonita líquida no cultivo de café?",
+      "expected_concepts": [
+        "não existe",
+        "não há recomendação",
+        "criptonita"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 12,
+        "sources": [],
+        "latency": 4.5054709911346436,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C2",
+      "category": "premissa_falsa",
+      "question": "Por que o Boletim 100 recomenda aplicar calagem com solo inundado de água a 80 graus Celsius?",
+      "expected_concepts": [
+        "não recomenda",
+        "não há indicação",
+        "inundado",
+        "80"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 13,
+        "sources": [],
+        "latency": 4.30935525894165,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C3",
+      "category": "premissa_falsa",
+      "question": "Qual a dose ideal de calcário de urânio enriquecido recomendada pelo IAC para adubação de citros?",
+      "expected_concepts": [
+        "não existe",
+        "não há recomendação",
+        "urânio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 14,
+        "sources": [],
+        "latency": 4.400413751602173,
+        "error": null
+      }
+    }
+  ],
+  "proposed_raw": [
+    {
+      "question_id": "A1",
+      "category": "agricultura_valida",
+      "question": "Qual a recomendação de calagem para a cultura do café segundo o Boletim 100?",
+      "expected_concepts": [
+        "análise de solo",
+        "saturação por bases",
+        "V%",
+        "calcário dolomítico"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Infelizmente, não encontrei nenhuma informação sobre \"Boletim 100\" relacionada à calagem da cultura do café. No entanto, posso fornecer informações gerais sobre a calagem do café.\n\nA calagem é um processo importante na nutrição do café, pois ajuda a fornecer nutrientes essenciais para o crescimento e desenvolvimento das plantas. A aplicação de cálcio (Ca)",
+        "hallucination_score": 0.0,
+        "conversation_id": 15,
+        "sources": [
+          {
+            "id": "302c13de-7462-44cb-88a8-40a2d23887a5",
+            "inicio": 61,
+            "text": "ial losses of fruits during storage of waxed fruits. Pitting is visually characterized by the collapse of oil glands and may develop within the first week of storage at higher temperatures (Petracek et al., 1998). The effects of K and irrigation on pitting incidence\nof 'White Marsh' grapefruit have been evaluated in a 3-year field study (Dou et al., 2000). High N and K decreased the incidence of pitting (Figure 9). In the fruits sampled in November, the incidence of pitting increased with increased duration of storage across all nutrition treatments. The storage duration effect was negligible on later harvested fruits, that is, January. In a parallel factorial experiment with N and K on 'White Marsh' grapefruit trees, increasing K levels in the range of 70-420 kg K ha\"! decreased the percentage of pitting at 168 and 336 kg ha\"! N rates (data not presented). Increasing the duration of storage from 3 to 5 weeks increased the percentage of pitting. The concentration of K in the peel increased with an increase",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 24
+          },
+          {
+            "id": "8769676f-c27a-42a8-9667-62615f6e7b53",
+            "inicio": 2,
+            "text": "OM Y ayep peoy voy -819 JULIA 00L SAO Jo uaedag VPHOJA QUA POH Je so nog 3uneny]\nZO IOU9OATEHI/OOE PO LIOP \"PIA OS DE STS [PY OUT SSI QUONVH OUT SU O00T 3 O ssa duo Py Sp 11//:dY 12 AUUO AGUILA y 9007 (109 \"JOA \"3DUALOS 1H JO (BUINOS [LUONBUIDUT\n4\npeel. In contrast. K deficiency produces smaller fruits with thin peel. With regard to juice properties. K nutrition has a significant role in juice acidity: that is. high juice acidity with high K availability, while low K availability causes decrease in juice acidity. High K availability in the soil can reduce the uptake of other cations, primarily magnesium, calcium, and ammonium N. In this paper, the available information on the effects of varying availability of K on the fruit yield, postharvest quality of fruit, as well as juice quality is summarized. The current recommendations on the application of soil and leaf analysis for evaluation of the K nutritional status and guidelines for K fertilization are also discussed. doi: 10.1300/J492vO6n01_02 [Article",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 2
+          },
+          {
+            "id": "2321747c-0f3d-425f-a115-98d8e1426a6e",
+            "inicio": 22,
+            "text": "for 14 days was 11.8%+2.8%, and for 21 days was 14.4%+3.0%, which were less significant than those reported for fruits in Mexico (Saucedo-Veloz & Medina-Urrutia, 2008). Strong correlations were observed for fruit water loss during the three time intervals studied (0.68<r<0.90) what point out that fruit quality of fruits might be assessed at shorter times.\nIn summary, soil Ca and K availability in studied sites did not explain variations on quality characteristics of Tahiti acid lime fruits. Concentration of N in the leaves correlated with peel color index, which demonstrated that greater leaf N improved superior green color of fruits, and those of Ca plays an important role in the shelf-life of Tahiti fruits because a negative correlation with fruit water loss during storage at room temperature. On the contrary, concentrations of N and K in the fruits positively correlated with water losses.\nTABLE 1 -Characteristics of eleven commercial Tahiti acid lime groves under study located in the Sao Paulo State,",
+            "file": "Mattos(2010)-NCaTahiti - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 4
+          }
+        ],
+        "latency": 196.27128624916077,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A2",
+      "category": "agricultura_valida",
+      "question": "Qual o valor limite de saturação por bases (V%) recomendado para a cultura de citros no Boletim 100?",
+      "expected_concepts": [
+        "70%",
+        "citros",
+        "elevar a saturação por bases"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Infelizmente não encontrei informações sobre o \"Boletim 100\" relacionadas ao valor limite de saturação por bases (V%) recomendado para a cultura de citros. Não consegui encontrar nenhuma referência a este boletim, ou seja, não é possível fornecer uma resposta precisa sem mais contexto ou informações sobre este document.",
+        "hallucination_score": 0.0,
+        "conversation_id": 16,
+        "sources": [
+          {
+            "id": "cfab8543-613e-42fc-a345-ac5ebd8bb7e7",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 4. Sintoma de deficiência de fósforo. As folhas mais velhas apresentam aspecto amarelado ou bronzeado, a árvore tende a perder as folhas e adquire um aspecto pouco vigoroso e uma certa “transparência”. Nos frutos, a columela tende a se tornar aberta. Crédito da foto: José Antônio Quaggio.. A imagem apresenta um ramo de citros com um fruto cortado transversalmente, evidenciando sintomas de deficiência de fósforo. As folhas mais velhas mostram um aspecto amarelado ou bronzeado. A legenda descreve que a árvore perde vigor, apresenta desfolha e 'transparência' da copa. No fruto cortado, observa-se a columela (centro do fruto) aberta, um sintoma típico dessa deficiência. A deficiência de fósforo causa bronzeamento/amarelecimento de folhas velhas, perda de vigor da planta e, caracteristicamente, a abertura da columela nos frutos, comprometendo a qualidade.",
+            "file": "Mattos(2009)-IPNI manejo fertilidade citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 7
+          },
+          {
+            "id": "8884e8cd-37a1-4a4a-aa67-9da16b7ef309",
+            "inicio": 0,
+            "text": "FITOPATOLOGIA\nMORTE SÚBITA DOS CITROS: UMA NOVA DOENÇA CITRICULTURA BRASILEIRA\nGERD WALTER MÚLLER!2, JOSÉ DAGOBERTO DE NEGRI', CARLOS IVAN AGUILAR-VILDOSO!, DIRCEU MATTOS JÚNIOR!, JORGINO POMPEU JUNIOR!?, JOAQUIM TEÓFILO SOBRINHO !2, SÉRGIO ALVES CARVALHO !-2, LUIZ FERNANDO GIROTTO? e MARCOS ANTONIO MACHADO\"?\nRESUMO\nUma nova doenga afetando laranjeiras-doces [Citrus sinensis (L.) Osb.] enxertadas em limão 'Cravo' (C. limonia Osb.), e denominada morte súbita dos citros (MSC), foi detectada em 1999 no sudoeste de Minas Gerais e no norte de São Paulo. Essas plantas apresentam, inicialmente, folhagem verde-pálidas e desfolha, morte apical de ramos e, ocasionalmente, desenvolvimento de pequeno número de ramos \"ladrões\" na copa. No estádio final, todas as folhas caem e a árvore morre, permanecendo, não raro, alguns frutos presos aos galhos. Pode-se observar um amarelecimento no câmbio do porta-enxerto, sendo esse o principal sintoma diagnóstico da MSC. Não há incompatibilidade de tecidos na região de enxertia. Os",
+            "file": "Muller(2002)-MSC(Laranja)) - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "3a667060-7d33-456f-b027-9a6b6b98f55e",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 1. Árvores de ‘Valência’/’Cravo’, doze anos, mostrando planta morta, com sintomas, e sadia (da direita para a esquerda respectivamente). A imagem fotográfica apresenta um pomar de citros, especificamente laranjeiras da variedade 'Valência' enxertadas em limão 'Cravo', com doze anos de idade. A foto ilustra três estádios distintos da doença denominada Morte Súbita dos Citros (MSC). Da direita para a esquerda, observa-se primeiramente uma planta morta, completamente desfolhada, com galhos secos e alguns frutos ainda retidos. No centro, há uma planta apresentando sintomas da doença, caracterizados por desfolha parcial e aspecto menos vigoroso. À esquerda, visualiza-se uma planta aparentemente sadia, com copa densa e folhagem verde. O contexto textual indica que a doença causa folhas verde-pálidas, queda pronunciada de folhas, morte apical de ramos e, no estádio final, a morte da árvore com retenção de frutos. A Morte Súbita dos Citros (MSC) causa declínio rápido e severo em laranjeiras 'Valência' sobre limão 'Cravo', progredindo de sintomas de desfolha até a morte completa da planta, frequentemente com retenção de frutos nos galhos secos.",
+            "file": "Muller(2002)-MSC(Laranja)) - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 3
+          }
+        ],
+        "latency": 94.15696144104004,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A3",
+      "category": "agricultura_valida",
+      "question": "Como é calculada a necessidade de calagem (NC) pelo método da elevação da saturação por bases no Boletim 100?",
+      "expected_concepts": [
+        "NC",
+        "V2 - V1",
+        "CTC",
+        "fator",
+        "100",
+        "PRNT"
+      ],
+      "response": {
+        "success": true,
+        "answer": "A necessidade de calagem (NC) pode ser calculada pelo método da elevação da saturação por bases, como descrito no Boletim 100, com base nos seguintes passos:\n\n1. Calcule a saturação por bases (SB) do solo, que é a proporção do volume de soluço que contém todos os cátions básicos presentes no solo.\n2. Defina o nível de saturação por bases ace",
+        "hallucination_score": 0.0,
+        "conversation_id": 17,
+        "sources": [
+          {
+            "id": "8769676f-c27a-42a8-9667-62615f6e7b53",
+            "inicio": 2,
+            "text": "OM Y ayep peoy voy -819 JULIA 00L SAO Jo uaedag VPHOJA QUA POH Je so nog 3uneny]\nZO IOU9OATEHI/OOE PO LIOP \"PIA OS DE STS [PY OUT SSI QUONVH OUT SU O00T 3 O ssa duo Py Sp 11//:dY 12 AUUO AGUILA y 9007 (109 \"JOA \"3DUALOS 1H JO (BUINOS [LUONBUIDUT\n4\npeel. In contrast. K deficiency produces smaller fruits with thin peel. With regard to juice properties. K nutrition has a significant role in juice acidity: that is. high juice acidity with high K availability, while low K availability causes decrease in juice acidity. High K availability in the soil can reduce the uptake of other cations, primarily magnesium, calcium, and ammonium N. In this paper, the available information on the effects of varying availability of K on the fruit yield, postharvest quality of fruit, as well as juice quality is summarized. The current recommendations on the application of soil and leaf analysis for evaluation of the K nutritional status and guidelines for K fertilization are also discussed. doi: 10.1300/J492vO6n01_02 [Article",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 2
+          },
+          {
+            "id": "105a3f5a-0dca-46f7-b6dd-913259e11f3b",
+            "inicio": 10,
+            "text": "ages captured by a terrestrial optical sensor. This type of equipment can be used in harvest prediction and yield mapping.\nThe methods quoted are very effective to show spatial variability of yield with significant details. However, they are not adapted to the daily productive reality of citrus farms. Thus, some authors have created simple methods that meet the needs of citrus growers. Schueller et al. (1999) and Tumbo et al. (2002) generated yield maps of Florida's (USA) orchards by georeferencing fruit containers used on hand harvest. In Brazil, Molin and Mascharin (2007) used a similar procedure, with adaptations to the local harvest conditions. These methods stand out for their adaptability to hand harvesting, easiness and low cost to obtain data.\nIn addition to yield maps, development of PA techniques in citrus orchards has also focused the spatial variability existing on soil and its influence on crop performance. According to Zaman and Schumann (2006), soil mapping showed to be essential for",
+            "file": "Molin(2012)-Citrus georefence - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 2
+          },
+          {
+            "id": "51c5e899-63d2-4ea4-abf3-9bfa5fc4de37",
+            "inicio": 9,
+            "text": "metabolism, carbon allocation, and consequently fruit yield and quality of crops. However, comprehensive knowledge on the interaction of plant nutrition and\nsystemic vascular diseases, like HLB, is still not conclusive (Mattos Jr et al. 2010; Spann et al. 2010; Gottwald 2010; Gottwald et al. 2012). Thus, it is necessary to better and reciprocally characterize processes between nutritional status and HLB infection in citrus trees, in order to establish rational orchard management strategies that minimize losses of both fruit yield and quality caused by the disease.\nHLB affects fruit quality and yield of citrus trees\nHLB symptomatic fruits are small, asymmetric, and have a bitter taste (McClean and Schwarz 1970) due to increased concentrations of limonin and nomilin, which negatively impact sensory attributes of juice (Bové 2006; Baldwin et al. 2010, 2018; Dala Paula et al. 2019). Such fruits frequently fall prematurely, while those that remain on trees exhibit brownish and black aborted seeds, as well as",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 110.18636107444763,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A4",
+      "category": "agricultura_valida",
+      "question": "Qual a profundidade recomendada para a amostragem de solo em plantio direto consolidado?",
+      "expected_concepts": [
+        "0 a 10 cm",
+        "plantio direto",
+        "camada"
+      ],
+      "response": {
+        "success": true,
+        "answer": "A profundidade recomendada para a amostragem de solo em plantio direto consolidado varia dependendo da fase do crescimento do plants e do tipo de solo.\n\nDe acordo com a legislação brasileira, a Amostra Profundíssima de Solo (APS) deve ser realizada à uma profundidade de 100 cm abaixo do nível do suelo (Brasil, 2014).\n\nNo entanto, é importante considerar que",
+        "hallucination_score": 0.0,
+        "conversation_id": 18,
+        "sources": [
+          {
+            "id": "16acd6c4-d83c-4f73-a98f-a15a80bb409c",
+            "inicio": 40,
+            "text": "nagement program (Spann et al. 2010; Timmer et al. 2011).\nSustainability of citrus production under low HLB incidence\nIn view that HLB-resistant/tolerant canopy and rootstocks citrus varieties are not yet available to growers, as well as effective means of controlling the bacteria in the orchards, the most important strategy in citrus cultivation is to prevent the disease from spreading in the orchard. Thus, measures such as enhanced nutrient management to maintain tree health should not be a priority given the recommendations already established by the research.\nThis is the case of citrus in the state of São Paulo, Brazil, whose survey shows that in recent years (2015-2019; FUNDECITRUS 2019), the occurrence of the disease has been stable, with less than 20% of infected plants in the citrus production belt.\nUnder low HLB occurrence, recommendations for successful disease control were prepared (FUNDECITRUS et al. 2019b), which include the following: (i) planning and selection of planting area, (ii) planting",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 6
+          },
+          {
+            "id": "f02168db-0a5d-4926-8ca0-6f0f587e437f",
+            "inicio": 59,
+            "text": "va (1977) demonstrated that splitting of 'Valencia' orange fruits disappeared in trees that received adequate K fertilization compared with 23% of the fruits with splitting problem in the trees that received no K fertilization.\nRumple is a pre-harvest peel disorder characterized by collapse of the rind between the oil glands. This disorder generally begins at the time of colorbreak (Knorr, 1973), and is severe in lemons grown in Florida. There have been some indications that high K tends to decrease the proportion of fruit with rumple. Similar to other nutrition studies in Florida, high K and low N reduced the incidence of rumple (Knorr, 1973).\nStem end rind breakdown (SERB) is a general term given to fruit with a collapsed peel at the stem end. SERB incidence in South Africa was reportedly triggered by K and B deficiency. Grierson (1965) also reported that SERB was associated with the deficiency of K. Reitz and Koo (1960) reported that SERB was most abundant in fruit from trees that received high N and low",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 23
+          },
+          {
+            "id": "30be7728-4ad3-4b50-b77a-66a178236826",
+            "inicio": 58,
+            "text": "2002.\nDELGADO, J. A. Potential use of innovative nutrient management alternatives to increase nutrient use efficiency, reduce losses, and protect soil and water quality. Special Issue of the Journal of Communications in Soil Science and Plant Analysis. New York: Marcel Dekker Inc., 2001a.\nDELGADO, J. A. Use of simulations for evaluation of best management practices on irrigated cropping systems. In: SHAFFER, M. J. et al. (Ed.). Modeling carbon and nitrogen dynamics for soil management. Boca Raton: Lewis Publishers, 2001b. p. 355-381.\nFEIGENBAUM, S.; BIELORAI, H.; ERNER, Y.; DASBERG, S. The fate of '°N labeled nitrogen applied to mature citrus trees. Plant and Soil, v. 97, p. 179-187, 1987.\nFENILLI, T. B.; BOARETTO, A. E.; BENDASSOLLI, J. A.; TRIVELIN, P. C. O.; MURAOKA, T. Dinámica do nitrogênio em laranjeiras jovens cultivadas em solução nutritiva. Laranja, v. 25, p. 461-472, 2004.\nFENN, L. B.; KISSELL, D. E. Ammonia volatilization from surface applications of ammonium compounds on calcareous soils: II.",
+            "file": "Mattos(2007)-NS Citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 27
+          }
+        ],
+        "latency": 87.41155552864075,
+        "error": null
+      }
+    },
+    {
+      "question_id": "A5",
+      "category": "agricultura_valida",
+      "question": "Quais são os micronutrientes cuja deficiência é mais comum em solos sob cerrado em São Paulo?",
+      "expected_concepts": [
+        "boro",
+        "zinco",
+        "B",
+        "Zn",
+        "deficiência"
+      ],
+      "response": {
+        "success": true,
+        "answer": "A deficiência de micronutrientes nos solos pode afetar significativamente o crescimento e a produção de plantas, incluindo as culturas de laranja. Embora não haja informações específicas sobre o perfil de micronutrientes em solos sob cerrado em São Paulo, posso fornecer algumas informações gerais sobre os micronutentes comuns que podem ser limitantes em diferentes climas e solo tipos.\n\nNo cerr",
+        "hallucination_score": 0.0,
+        "conversation_id": 19,
+        "sources": [
+          {
+            "id": "dbc6f303-1a59-4c5c-8916-5badd4a9a471",
+            "inicio": 75,
+            "text": "England G, Futch S, Gaver T, Hurner T, Oswalt C, Rogers ME, Roka FM, Ritenour MA, Zekri MIFAS (2010) Guidance for huanglongbing (greening) management. Available at: www.agnetonlinecom/ documents/02-26-10-uf-ifashlb-guidepdf. Accessed 28 Sept 2018\nSpann TM, Rouse RE, Schumann AW (2011) The theory of managing Huanglongbing with plant nutrition and real world success in Florida. In: Burrns JK, Graham JH, Gottawald TR (eds) Proceedings of 2nd International Research Conference on Huanglongbing. University of Florida, USA. pp. 177\nStansly PA, Arevalo HA, Qureshi JA, Jones MM, Hendricks K, Roberts PD, Roka FM (2013) Vector control and foliar nutrition to maintain economic sustainablility of bearing citrus in Florida groves affected by huanglongbing. Pest Management Science\nStettler M, Eicke S, Mettler T, Messerli G, Hortensteiner S, Zeeman SC (2009) Blocking the metabolism of starch breakdown products in Arabidopsis leaves triggers chloroplast degradation. Molecular Plant 2:1233-1246\nStover E, Inch S, Richardson",
+            "file": "Silva(2020)-HLB x micronutrients - Janaina Lais Pacheco Lara Morandin.pdf",
+            "pagina": 14
+          },
+          {
+            "id": "93781d64-8f38-4b9c-9265-c320cd585616",
+            "inicio": 45,
+            "text": "gbing. Proceedings of the Florida State Horticultural Society 122:169-171.\nSpann TM, Atwood RA, Dewdney MM, Ebel RC, Ehsani R, England G, Futch S, Gaver T, Hurner T, Oswalt C, Rogers ME, Roka FM, Ritenour MA & Zekri M (2010) IFAS Guidance for huanglongbing (greening) management Disponivel em: <wwwagnetonlinecom/ documents/02-26-10-uf-ifas-hlb-guidepdf> Acesso em: 26 fev 2010.\nSticher L, Mauch-Mani B, & Métraux JP (1997) Systemic acquired resistance. Annual Review of Phytopathology 35:235-370.\nTanaka FAO, Kitajima EW, Jesus JR WC, Ayres AJ, Gimenes-Fernandes N & Bové JM (2006) First report of the electron micrograph of \"Candidatus Liberibacter\" particles on citrus in Brazil. Fitopatologia Brasileira 31:99.\nTeixeira DC, Ayres AJ, Kitajima EW, Tanaka FAO, Danet L, Jagoueix-Eveillard S, Saillard C & Bové JM (2005) First report of a Huanglongbing-like disease of Citrus in São Paulo State Brazil and association of a new Liberibacter species \"Candidatus Liberibacter americanus\" with the disease. Plant Disease",
+            "file": "Mattos(2010)-Elicitores - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 10
+          },
+          {
+            "id": "458139e2-2305-4488-8e40-1aacf1288844",
+            "inicio": 0,
+            "text": "[IMAGEM - grafico_linhas] FIG. 4. Diagramas de dispersão das médias observadas de °Brix, acidez e relação °Brix/acidez nas seis datas de coletas de frutos, e correspondentes gráficos de linhas polinomiais ajustadas, para os quatro grupos de clones e cultivares de laranja determinados pela análise de agrupamento.. A figura apresenta três gráficos de linhas (A, B e C) que mostram a evolução de parâmetros de qualidade de laranjas ao longo do tempo. O eixo X representa os 'Dias após início da coleta de frutos', variando de 0 a 100 dias, com marcações de datas (18/set., 28/out., 7/dez). O gráfico A mostra a evolução do °Brix, que varia de 8,0 a 17,0. O gráfico B mostra a evolução da Acidez (%), variando de 0,50 a 2,00. O gráfico C mostra a evolução da Razão °Brix/acidez, variando de 5,0 a 20,0. Os dados são apresentados para quatro grupos (Grupo 1, Grupo 2, Grupo 3, Grupo 4), representados por diferentes símbolos (losango, quadrado, triângulo, círculo vazio). Variáveis: Dias após início da coleta de frutos, °Brix (Gráfico A), Acidez (%) (Gráfico B), Razão °Brix/acidez (Gráfico C). Séries/tratamentos: Grupo 1, Grupo 2, Grupo 3, Grupo 4. Dados: Grupo 1 (Gráfico A): x=0, y=12.5; Grupo 1 (Gráfico A): x=20, y=13.0; Grupo 1 (Gráfico A): x=40, y=13.2; Grupo 1 (Gráfico A): x=60, y=13.0; Grupo 1 (Gráfico A): x=80, y=12.5; Grupo 1 (Gráfico A): x=100, y=11.5; Grupo 2 (Gráfico A): x=0, y=13.8; Grupo 2 (Gráfico A): x=20, y=14.5; Grupo 2 (Gráfico A): x=40, y=14.8; Grupo 2 (Gráfico A): x=60, y=14.5; Grupo 2 (Gráfico A): x=80, y=13.8; Grupo 2 (Gráfico A): x=100, y=12.5; Grupo 3 (Gráfico A): x=0, y=13.5; Grupo 3 (Gráfico A): x=20, y=14.0; Grupo 3 (Gráfico A): x=40, y=14.2; Grupo 3 (Gráfico A): x=60, y=14.0; Grupo 3 (Gráfico A): x=80, y=13.5; Grupo 3 (Gráfico A): x=100, y=12.0; Grupo 4 (Gráfico A): x=0, y=14.0; Grupo 4 (Gráfico A): x=20, y=14.5. Máximo: O valor máximo de °Brix é de aproximadamente 16,5 para o Grupo 4 aos 100 dias. A acidez máxima é de aproximadamente 1,75% para o Grupo 3 no dia 0. A razão °Brix/acidez máxima é de aproximadamente 21,0 para o Grupo 4 aos 100 dias.. Mínimo: O valor mínimo de °Brix é de aproximadamente 11,5 para o Grupo 1 aos 100 dias. A acidez mínima é de aproximadamente 0,65% para o Grupo 2 aos 100 dias. A razão °Brix/acidez mínima é de aproximadamente 7,5 para o Grupo 3 no dia 0.. Ponto ótimo: Não há um ponto ótimo explícito, mas a razão °Brix/acidez de 12,0 é mencionada no texto como um marco de maturação, atingido em diferentes momentos pelos grupos.. Tendência: No gráfico A (°Brix), os grupos 1, 2 e 3 apresentam tendência quadrática, com um pico em torno de 40 dias, enquanto o grupo 4 apresenta tendência linear crescente. No gráfico B (Acidez), todos os grupos apresentam tendência linear decrescente, sendo a do grupo 4 quase constante. No gráfico C (Razão °Brix/acidez), todos os grupos apresentam tendência linear crescente.. Regressão: Não visível no gráfico.. Significância: Não visível no gráfico.. A análise das curvas de maturação permite agrupar cultivares de laranjas com comportamentos semelhantes, auxiliando na recomendação de épocas de colheita baseadas na evolução do °Brix, acidez e sua razão.",
+            "file": "Mattos(1999)-Curvas-agrup - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 6
+          }
+        ],
+        "latency": 172.6683690547943,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B1",
+      "category": "extracampo",
+      "question": "Qual é a capital oficial da França e quais os seus principais monumentos?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 20,
+        "sources": [],
+        "latency": 7.319570302963257,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B2",
+      "category": "extracampo",
+      "question": "Como funciona o algoritmo de ordenação QuickSort em ciência da computação?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 21,
+        "sources": [],
+        "latency": 3.8939621448516846,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B3",
+      "category": "extracampo",
+      "question": "Quem escreveu o romance Dom Casmurro e qual o tema principal da obra?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 22,
+        "sources": [],
+        "latency": 4.076107501983643,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B4",
+      "category": "extracampo",
+      "question": "Quais são as regras básicas para jogar futebol de campo profissional?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 23,
+        "sources": [],
+        "latency": 4.031083345413208,
+        "error": null
+      }
+    },
+    {
+      "question_id": "B5",
+      "category": "extracampo",
+      "question": "Como preparar uma receita simples de bolo de chocolate tradicional de liquidificador?",
+      "expected_concepts": [
+        "Desculpe",
+        "agronomia",
+        "agricultura",
+        "agronegócio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 24,
+        "sources": [],
+        "latency": 3.969144344329834,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C1",
+      "category": "premissa_falsa",
+      "question": "Como aplicar a dose de 500 kg por hectare de fertilizante de criptonita líquida no cultivo de café?",
+      "expected_concepts": [
+        "não existe",
+        "não há recomendação",
+        "criptonita"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 25,
+        "sources": [],
+        "latency": 4.585184335708618,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C2",
+      "category": "premissa_falsa",
+      "question": "Por que o Boletim 100 recomenda aplicar calagem com solo inundado de água a 80 graus Celsius?",
+      "expected_concepts": [
+        "não recomenda",
+        "não há indicação",
+        "inundado",
+        "80"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 26,
+        "sources": [],
+        "latency": 4.409006595611572,
+        "error": null
+      }
+    },
+    {
+      "question_id": "C3",
+      "category": "premissa_falsa",
+      "question": "Qual a dose ideal de calcário de urânio enriquecido recomendada pelo IAC para adubação de citros?",
+      "expected_concepts": [
+        "não existe",
+        "não há recomendação",
+        "urânio"
+      ],
+      "response": {
+        "success": true,
+        "answer": "Desculpe, mas eu sou um assistente especializado em agricultura e agronegócio. Só posso responder perguntas relacionadas a esses temas.",
+        "hallucination_score": 0.0,
+        "conversation_id": 27,
+        "sources": [],
+        "latency": 4.187114000320435,
+        "error": null
+      }
+    }
+  ],
+  "perturbation_raw": [
+    {
+      "case_id": "P1",
+      "question": "Qual a elevação da saturação por bases (V2) recomendada para citros no Boletim 100?",
+      "correct_context": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 70%.",
+      "perturbed_context": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 250%.",
+      "c1_response": {
+        "success": true,
+        "answer": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 70%.",
+        "hallucination_score": 0.0,
+        "conversation_id": 28,
+        "sources": [
+          {
+            "id": "036eaf49-f82b-4af0-8d7d-fca717118861",
+            "inicio": 0,
+            "text": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 70%.",
+            "file": "eval_temp_correct.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "cfab8543-613e-42fc-a345-ac5ebd8bb7e7",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 4. Sintoma de deficiência de fósforo. As folhas mais velhas apresentam aspecto amarelado ou bronzeado, a árvore tende a perder as folhas e adquire um aspecto pouco vigoroso e uma certa “transparência”. Nos frutos, a columela tende a se tornar aberta. Crédito da foto: José Antônio Quaggio.. A imagem apresenta um ramo de citros com um fruto cortado transversalmente, evidenciando sintomas de deficiência de fósforo. As folhas mais velhas mostram um aspecto amarelado ou bronzeado. A legenda descreve que a árvore perde vigor, apresenta desfolha e 'transparência' da copa. No fruto cortado, observa-se a columela (centro do fruto) aberta, um sintoma típico dessa deficiência. A deficiência de fósforo causa bronzeamento/amarelecimento de folhas velhas, perda de vigor da planta e, caracteristicamente, a abertura da columela nos frutos, comprometendo a qualidade.",
+            "file": "Mattos(2009)-IPNI manejo fertilidade citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 7
+          },
+          {
+            "id": "8769676f-c27a-42a8-9667-62615f6e7b53",
+            "inicio": 2,
+            "text": "OM Y ayep peoy voy -819 JULIA 00L SAO Jo uaedag VPHOJA QUA POH Je so nog 3uneny]\nZO IOU9OATEHI/OOE PO LIOP \"PIA OS DE STS [PY OUT SSI QUONVH OUT SU O00T 3 O ssa duo Py Sp 11//:dY 12 AUUO AGUILA y 9007 (109 \"JOA \"3DUALOS 1H JO (BUINOS [LUONBUIDUT\n4\npeel. In contrast. K deficiency produces smaller fruits with thin peel. With regard to juice properties. K nutrition has a significant role in juice acidity: that is. high juice acidity with high K availability, while low K availability causes decrease in juice acidity. High K availability in the soil can reduce the uptake of other cations, primarily magnesium, calcium, and ammonium N. In this paper, the available information on the effects of varying availability of K on the fruit yield, postharvest quality of fruit, as well as juice quality is summarized. The current recommendations on the application of soil and leaf analysis for evaluation of the K nutritional status and guidelines for K fertilization are also discussed. doi: 10.1300/J492vO6n01_02 [Article",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 93.494961977005,
+        "error": null
+      },
+      "c2_response": {
+        "success": true,
+        "answer": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) até 250%.",
+        "hallucination_score": 0.0,
+        "conversation_id": 29,
+        "sources": [
+          {
+            "id": "8201589b-bdcf-46e1-8dd7-a96b4110f0ab",
+            "inicio": 0,
+            "text": "A recomendação de calagem para a cultura de citros no Boletim 100 visa elevar a saturação por bases (V2) para 250%.",
+            "file": "eval_temp_perturbed.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "cfab8543-613e-42fc-a345-ac5ebd8bb7e7",
+            "inicio": 0,
+            "text": "[IMAGEM - foto] Figura 4. Sintoma de deficiência de fósforo. As folhas mais velhas apresentam aspecto amarelado ou bronzeado, a árvore tende a perder as folhas e adquire um aspecto pouco vigoroso e uma certa “transparência”. Nos frutos, a columela tende a se tornar aberta. Crédito da foto: José Antônio Quaggio.. A imagem apresenta um ramo de citros com um fruto cortado transversalmente, evidenciando sintomas de deficiência de fósforo. As folhas mais velhas mostram um aspecto amarelado ou bronzeado. A legenda descreve que a árvore perde vigor, apresenta desfolha e 'transparência' da copa. No fruto cortado, observa-se a columela (centro do fruto) aberta, um sintoma típico dessa deficiência. A deficiência de fósforo causa bronzeamento/amarelecimento de folhas velhas, perda de vigor da planta e, caracteristicamente, a abertura da columela nos frutos, comprometendo a qualidade.",
+            "file": "Mattos(2009)-IPNI manejo fertilidade citros - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 7
+          },
+          {
+            "id": "8769676f-c27a-42a8-9667-62615f6e7b53",
+            "inicio": 2,
+            "text": "OM Y ayep peoy voy -819 JULIA 00L SAO Jo uaedag VPHOJA QUA POH Je so nog 3uneny]\nZO IOU9OATEHI/OOE PO LIOP \"PIA OS DE STS [PY OUT SSI QUONVH OUT SU O00T 3 O ssa duo Py Sp 11//:dY 12 AUUO AGUILA y 9007 (109 \"JOA \"3DUALOS 1H JO (BUINOS [LUONBUIDUT\n4\npeel. In contrast. K deficiency produces smaller fruits with thin peel. With regard to juice properties. K nutrition has a significant role in juice acidity: that is. high juice acidity with high K availability, while low K availability causes decrease in juice acidity. High K availability in the soil can reduce the uptake of other cations, primarily magnesium, calcium, and ammonium N. In this paper, the available information on the effects of varying availability of K on the fruit yield, postharvest quality of fruit, as well as juice quality is summarized. The current recommendations on the application of soil and leaf analysis for evaluation of the K nutritional status and guidelines for K fertilization are also discussed. doi: 10.1300/J492vO6n01_02 [Article",
+            "file": "Alva(2006)-Potassium Managment for Optimizing Citrus...optim - Fernanda Bochi Dos Santos(1).pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 92.87561917304993,
+        "error": null
+      }
+    },
+    {
+      "case_id": "P2",
+      "question": "Qual a profundidade recomendada para coleta de amostras de solo em pomar de citros estabelecido?",
+      "correct_context": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 0 a 20 cm.",
+      "perturbed_context": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 80 a 100 cm.",
+      "c1_response": {
+        "success": true,
+        "answer": "A profundidade recomendada para coleta de amostras de solo em pomares de citros já estabelecidos é de 0 a 20 cm.",
+        "hallucination_score": 0.0,
+        "conversation_id": 30,
+        "sources": [
+          {
+            "id": "37018cc9-d8f6-4bb1-945d-35836a96b88f",
+            "inicio": 0,
+            "text": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 0 a 20 cm.",
+            "file": "eval_temp_correct.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "48811f96-21d9-452f-b311-dbe5c380c484",
+            "inicio": 25,
+            "text": "ductivity of citrus groves affected by HLB by fine tuning production horticultural practices, in particular, by adjusting fertilization programs assisted by soil and leaf analysis tools (Schumann et al. 2019).\nPlant predisposition/susceptibility to HLB and nutritional status\nMechanisms regulating nutrient-induced changes on HLB development and severity are complex and depend on multiple direct and indirect factors associated to the pathogen (Dordas 2008), plant growth and development (Stamp 2003; Matyssek et al. 2005; Underwood 2012), and plant resistance mechanisms (Oostendorp et al. 2001; Lecourieux et al. 2006). Thereby, nutrients are involved in the interactions between plant hosts and microorganisms (Fones et al. 2010; Yuan et al. 2010; Carvalhais et al. 2013; Musetti et al. 2013; Zhao etal. 2013) and likely microorganisms and vectors (Silva et al. 2020).\nConsidering the common HLB effects on citrus production as a result of the impaired absorption of water and nutrients by roots, physiological",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 4
+          },
+          {
+            "id": "51c5e899-63d2-4ea4-abf3-9bfa5fc4de37",
+            "inicio": 9,
+            "text": "metabolism, carbon allocation, and consequently fruit yield and quality of crops. However, comprehensive knowledge on the interaction of plant nutrition and\nsystemic vascular diseases, like HLB, is still not conclusive (Mattos Jr et al. 2010; Spann et al. 2010; Gottwald 2010; Gottwald et al. 2012). Thus, it is necessary to better and reciprocally characterize processes between nutritional status and HLB infection in citrus trees, in order to establish rational orchard management strategies that minimize losses of both fruit yield and quality caused by the disease.\nHLB affects fruit quality and yield of citrus trees\nHLB symptomatic fruits are small, asymmetric, and have a bitter taste (McClean and Schwarz 1970) due to increased concentrations of limonin and nomilin, which negatively impact sensory attributes of juice (Bové 2006; Baldwin et al. 2010, 2018; Dala Paula et al. 2019). Such fruits frequently fall prematurely, while those that remain on trees exhibit brownish and black aborted seeds, as well as",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 85.59117698669434,
+        "error": null
+      },
+      "c2_response": {
+        "success": true,
+        "answer": "A profundidade recomendada para coleta de amostras de solo em pomares de citros já estabelecidos é entre 80 e 100 cm. Isso ajuda a obter uma visão mais precisa da fertilidade do solo e da saúde geral das árvores de cítricos.",
+        "hallucination_score": 0.0,
+        "conversation_id": 31,
+        "sources": [
+          {
+            "id": "86f50219-e651-4159-982d-b689e485864c",
+            "inicio": 0,
+            "text": "Para pomares de citros já estabelecidos, as amostras de solo para fins de fertilidade devem ser coletadas na profundidade de 80 a 100 cm.",
+            "file": "eval_temp_perturbed.pdf",
+            "pagina": 1
+          },
+          {
+            "id": "48811f96-21d9-452f-b311-dbe5c380c484",
+            "inicio": 25,
+            "text": "ductivity of citrus groves affected by HLB by fine tuning production horticultural practices, in particular, by adjusting fertilization programs assisted by soil and leaf analysis tools (Schumann et al. 2019).\nPlant predisposition/susceptibility to HLB and nutritional status\nMechanisms regulating nutrient-induced changes on HLB development and severity are complex and depend on multiple direct and indirect factors associated to the pathogen (Dordas 2008), plant growth and development (Stamp 2003; Matyssek et al. 2005; Underwood 2012), and plant resistance mechanisms (Oostendorp et al. 2001; Lecourieux et al. 2006). Thereby, nutrients are involved in the interactions between plant hosts and microorganisms (Fones et al. 2010; Yuan et al. 2010; Carvalhais et al. 2013; Musetti et al. 2013; Zhao etal. 2013) and likely microorganisms and vectors (Silva et al. 2020).\nConsidering the common HLB effects on citrus production as a result of the impaired absorption of water and nutrients by roots, physiological",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 4
+          },
+          {
+            "id": "51c5e899-63d2-4ea4-abf3-9bfa5fc4de37",
+            "inicio": 9,
+            "text": "metabolism, carbon allocation, and consequently fruit yield and quality of crops. However, comprehensive knowledge on the interaction of plant nutrition and\nsystemic vascular diseases, like HLB, is still not conclusive (Mattos Jr et al. 2010; Spann et al. 2010; Gottwald 2010; Gottwald et al. 2012). Thus, it is necessary to better and reciprocally characterize processes between nutritional status and HLB infection in citrus trees, in order to establish rational orchard management strategies that minimize losses of both fruit yield and quality caused by the disease.\nHLB affects fruit quality and yield of citrus trees\nHLB symptomatic fruits are small, asymmetric, and have a bitter taste (McClean and Schwarz 1970) due to increased concentrations of limonin and nomilin, which negatively impact sensory attributes of juice (Bové 2006; Baldwin et al. 2010, 2018; Dala Paula et al. 2019). Such fruits frequently fall prematurely, while those that remain on trees exhibit brownish and black aborted seeds, as well as",
+            "file": "Mattos(2020)-HLB review - Fernanda Bochi Dos Santos.pdf",
+            "pagina": 2
+          }
+        ],
+        "latency": 85.10596013069153,
+        "error": null
+      }
+    }
+  ]
+}

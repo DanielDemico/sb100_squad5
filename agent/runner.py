@@ -1,13 +1,12 @@
 """Synchronous runner for the SmartB100 deep agent, isolated behind agent/ (ADR-0008)."""
 
 from dataclasses import dataclass
-from typing import Any
 
 from langchain_core.messages import AIMessage, ToolMessage
 
 from agent.factory import create_agent
 from agent.tools import SEARCH_CORPUS_SENTINELS
-from core.schemas import UserProfile
+from core.schemas import AgentGraph, ChatMessage, UserProfile
 
 # Reuse the generation-layer sanitizer so the agent path has the same
 # prompt-injection hardening as the legacy /chat path (parity, no duplication).
@@ -16,13 +15,19 @@ from generation.llm import _sanitize_question
 
 @dataclass(frozen=True)
 class AgentOutcome:
-    """Result of one agent run: the final answer and the context it retrieved."""
+    """Result returned by one DeepAgents execution.
+
+    Attributes:
+        answer: Final assistant message produced by the graph.
+        context: Concatenated corpus text returned by successful ``search_corpus``
+            tool calls during the run.
+    """
 
     answer: str
     context: str
 
 
-def _as_text(content: Any) -> str:
+def _as_text(content: object) -> str:
     """Normalize LangChain message content (str or content blocks) to plain text."""
     if isinstance(content, str):
         return content
@@ -30,8 +35,8 @@ def _as_text(content: Any) -> str:
 
 
 def _build_input(
-    question: str, history: list[dict[str, str]], profile: UserProfile
-) -> dict[str, Any]:
+    question: str, history: list[ChatMessage], profile: UserProfile
+) -> dict[str, list[ChatMessage]]:
     """Build the graph input: prior turns plus the user question with a short profile preamble."""
     preamble = (
         f"The user's expertise level is {profile.expertise.value}. "
@@ -41,20 +46,31 @@ def _build_input(
     # system-authored and keys only on a constrained StrEnum value, so it carries
     # no injection risk.
     sanitized_question = _sanitize_question(question)
-    messages: list[dict[str, str]] = list(history)
+    messages: list[ChatMessage] = list(history)
     messages.append({"role": "user", "content": f"{preamble}\n\n{sanitized_question}"})
     return {"messages": messages}
 
 
 def invoke_agent(
     question: str,
-    history: list[dict[str, str]],
+    history: list[ChatMessage],
     profile: UserProfile,
-    graph: Any | None = None,
+    graph: AgentGraph | None = None,
 ) -> AgentOutcome:
     """Run the deep agent once and return its final answer plus retrieved context.
 
-    ``graph`` defaults to a freshly built agent; inject a stub in tests to run without network.
+    Args:
+        question: Current user question.
+        history: Prior chat turns in the API/generation message format.
+        profile: User profile used to adapt the agent answer.
+        graph: Optional graph implementation; when omitted a fresh agent is
+            created from settings.
+
+    Returns:
+        Agent outcome with the final answer and any retrieved context.
+
+    Raises:
+        Exception: Propagates graph construction or invocation failures.
     """
     if graph is None:
         graph = create_agent()

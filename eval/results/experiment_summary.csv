@@ -1,0 +1,14 @@
+question_id,category,baseline_answer,proposed_answer,baseline_latency,proposed_latency,proposed_score
+A1,agricultura_valida,Desculpe; mas eu sou um assistente especializado em agricult,Infelizmente; não encontrei nenhuma informação sobre "Boleti,24.39,196.27,0.00
+A2,agricultura_valida,Infelizmente não encontrei informações que mencionem o "Bole,Infelizmente não encontrei informações sobre o "Boletim 100",84.14,94.16,0.00
+A3,agricultura_valida,A necessidade de calagem (NC) é calculada pela seguinte fórm,A necessidade de calagem (NC) pode ser calculada pelo método,67.69,110.19,0.00
+A4,agricultura_valida,Não encontrei informações específicas sobre a profundidade r,A profundidade recomendada para a amostragem de solo em plan,69.18,87.41,0.00
+A5,agricultura_valida,Infelizmente não há informações suficientes para responder à,A deficiência de micronutrientes nos solos pode afetar signi,123.08,172.67,0.00
+B1,extracampo,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.72,7.32,0.00
+B2,extracampo,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.05,3.89,0.00
+B3,extracampo,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.73,4.08,0.00
+B4,extracampo,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.42,4.03,0.00
+B5,extracampo,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.90,3.97,0.00
+C1,premissa_falsa,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.51,4.59,0.00
+C2,premissa_falsa,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.31,4.41,0.00
+C3,premissa_falsa,Desculpe; mas eu sou um assistente especializado em agricult,Desculpe; mas eu sou um assistente especializado em agricult,4.40,4.19,0.00

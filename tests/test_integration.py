@@ -15,7 +15,7 @@ from api.main import app
 from core.config import settings
 from core.schemas import ChatResponse, ExpertiseLevel
 from database.db import Base, get_db
-from database.models import Conversation, Message, User
+from database.models import User
 
 
 def _override_verify_token() -> User:
@@ -37,10 +37,10 @@ def db_setup() -> Generator[None, None, None]:
         poolclass=StaticPool,
     )
     Base.metadata.create_all(bind=engine)
-    TestingSessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    testing_session_local = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
     # Seed users into the in-memory database
-    db = TestingSessionLocal()
+    db = testing_session_local()
     try:
         # Default test user
         user = User(
@@ -70,7 +70,7 @@ def db_setup() -> Generator[None, None, None]:
         db.close()
 
     def _get_testing_db() -> Generator[Session, None, None]:
-        db = TestingSessionLocal()
+        db = testing_session_local()
         try:
             yield db
         except Exception:
@@ -292,11 +292,15 @@ def test_nominal_flow_no_500_errors(
     mock_generate_by_expertise,
 ):
     """The full nominal flow does not produce HTTP 500."""
-    response1 = client.post("/chat", json={"conversation_id": None, "question": "What is the ideal pH?"})
+    response1 = client.post(
+        "/chat", json={"conversation_id": None, "question": "What is the ideal pH?"}
+    )
     assert response1.status_code == 200
     conv_id = response1.json()["conversation_id"]
 
-    response2 = client.post("/chat", json={"conversation_id": conv_id, "question": "How to apply lime?"})
+    response2 = client.post(
+        "/chat", json={"conversation_id": conv_id, "question": "How to apply lime?"}
+    )
     assert response2.status_code == 200
 
     response3 = client.post("/chat", json={"conversation_id": None, "question": "Lime dosage?"})
@@ -338,9 +342,13 @@ def test_cross_user_conversation_id_does_not_leak_history_via_endpoint(
     monkeypatch.setattr(chat_module.settings, "verification_enabled", False)
     monkeypatch.setattr(chat_module, "generate_embedding", lambda _q: [0.1] * 768)
     monkeypatch.setattr(chat_module, "search_context", lambda _emb: ["chunk"])
-    monkeypatch.setattr(chat_module, "generate", lambda question, context, history, profile: "response")
+    monkeypatch.setattr(
+        chat_module, "generate", lambda question, context, history, profile: "response"
+    )
     monkeypatch.setattr(chat_module, "classify_domain_llm", lambda q: True)
-    monkeypatch.setattr(chat_module, "classify_expertise_llm", lambda q: ExpertiseLevel.intermediate)
+    monkeypatch.setattr(
+        chat_module, "classify_expertise_llm", lambda q: ExpertiseLevel.intermediate
+    )
 
     user_a = User(id=10, username="alice", hashed_password="x", created_at=datetime.now(UTC))
     user_b = User(id=20, username="bob", hashed_password="x", created_at=datetime.now(UTC))
@@ -504,7 +512,9 @@ def test_chat_agent_path_intent_filter_disabled_bypasses_gate(client, _agent_pay
     mock_invoke.assert_called_once()
 
 
-def test_chat_intent_decision_emitted_as_structured_log(client, _agent_payload, caplog, monkeypatch):
+def test_chat_intent_decision_emitted_as_structured_log(
+    client, _agent_payload, caplog, monkeypatch
+):
     from agent.intent import DomainDecision
 
     monkeypatch.setattr(settings, "agent_enabled", True)
@@ -519,9 +529,9 @@ def test_chat_intent_decision_emitted_as_structured_log(client, _agent_payload, 
             return_value=DomainDecision(in_domain=False, score=0.05),
         ),
         patch("api.routes.chat.invoke_agent"),
+        caplog.at_level("INFO", logger="api.routes.chat"),
     ):
-        with caplog.at_level("INFO", logger="api.routes.chat"):
-            response = client.post("/chat", json=_agent_payload)
+        response = client.post("/chat", json=_agent_payload)
 
     assert response.status_code == 200
     intent_records = [r for r in caplog.records if "chat.intent" in r.message]

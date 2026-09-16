@@ -16,11 +16,11 @@ Numerical-stability and error-handling notes:
 
 import logging
 import math
-from typing import Any, cast
+from typing import TypedDict, cast
 
 from core.config import settings
+from core.embeddings import embed_text
 from core.ollama_clients import get_chat_client
-from retrieval.ollama_embeddings import embed_text
 
 logger = logging.getLogger(__name__)
 
@@ -33,6 +33,14 @@ DEFAULT_VERIFICATION_MODELS = {
 }
 
 OPENROUTER_BASE_URL = "https://openrouter.ai/api/v1"
+
+
+class _OllamaMessage(TypedDict, total=False):
+    content: str
+
+
+class _OllamaChatResponse(TypedDict, total=False):
+    message: _OllamaMessage
 
 
 def _build_messages(question: str, context: str) -> list[dict[str, str]]:
@@ -61,11 +69,11 @@ def _generate_one_groq(question: str, context: str, model: str) -> str:
 
 
 def _generate_one_ollama(question: str, context: str, model: str) -> str:
-    # ollama-py returns ChatResponse; casting to dict[str, Any] keeps the safe
+    # ollama-py returns ChatResponse; casting to a partial TypedDict keeps the safe
     # ``.get`` access (still valid at runtime for ChatResponse).
     # Shared client (singleton with timeout — see core/ollama_clients).
     resp = cast(
-        dict[str, Any],
+        _OllamaChatResponse,
         get_chat_client().chat(
             model=model,
             messages=_build_messages(question, context),
@@ -172,11 +180,16 @@ def _cluster_responses(responses: list[str], threshold: float = 0.85) -> list[li
         placed = False
         for cluster in clusters:
             representative = cluster[0]
+            # Semantic entropy needs clusters of equivalent meanings, not exact
+            # strings; comparing with one representative keeps this O(N^2) pass
+            # small while treating paraphrases as the same answer mode.
             if _compute_similarity(response, representative, cache=embedding_cache) >= threshold:
                 cluster.append(response)
                 placed = True
                 break
         if not placed:
+            # A new cluster means the model produced a semantically distinct
+            # answer, which increases uncertainty in the later entropy score.
             clusters.append([response])
 
     return clusters
@@ -191,9 +204,13 @@ def _shannon_entropy(clusters: list[list[str]], total: int) -> float:
     for cluster in clusters:
         p = len(cluster) / total
         if p > 0:
+            # Shannon entropy measures how spread out the sampled answers are:
+            # one dominant cluster means confidence, many balanced clusters mean uncertainty.
             entropy -= p * math.log2(p)
 
     max_entropy = math.log2(total) if total > 1 else 1.0
+    # Normalize by the maximum possible entropy for the number of samples so
+    # callers can compare the score directly against a 0..1 hallucination threshold.
     return entropy / max_entropy if max_entropy > 0 else 0.0
 
 
@@ -204,14 +221,18 @@ def compute_entropy_score(question: str, context: str) -> float:
     similarity, and computes Shannon entropy over the cluster distribution.
     High entropy indicates uncertainty/possible hallucination.
 
+    Args:
+        question: User question used to generate verification samples.
+        context: Retrieved RAG context that should ground each sample.
+
     Returns:
         Score in the range [0.0, 1.0]. Returns 0.0 when the provider has no
-        API key (logs a warning) or when all samples fail and the caller
-        decides to proceed.
+        required API key.
 
     Raises:
-        KeyError: If ``settings.verification_provider`` is not in
-            :data:`DEFAULT_VERIFICATION_MODELS` (should not happen with the enum).
+        ValueError: If ``settings.verification_provider`` is unknown.
+        Exception: Propagates sample generation failures when every attempt
+            fails; callers decide whether to degrade or abort.
     """
     provider = str(settings.verification_provider)
 
@@ -230,6 +251,8 @@ def compute_entropy_score(question: str, context: str) -> float:
         return 0.0
 
     model = settings.verification_chat_model or DEFAULT_VERIFICATION_MODELS[provider]
+    # Multiple high-temperature samples expose answer instability; clustering
+    # converts wording variance into semantic modes before Shannon entropy.
     samples = _generate_samples(provider, question, context, model, settings.entropy_num_samples)
     clusters = _cluster_responses(samples)
     score = _shannon_entropy(clusters, len(samples))

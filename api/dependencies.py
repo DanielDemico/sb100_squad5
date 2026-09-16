@@ -43,6 +43,8 @@ def verify_token(
     Raises:
         HTTPException: 401 if the token is invalid, expired, missing ``sub``,
             or if the referenced user no longer exists in the database.
+    QUALITY: long-function-justification - JWT decode, subject validation, database
+    existence check, and 401 mapping are one FastAPI authentication boundary.
     """
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,

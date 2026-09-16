@@ -234,6 +234,10 @@ def generate_questions_from_files(
     """
     Generate questions from a list of files.
 
+    QUALITY: long-function-justification - model/provider resolution, document
+    extraction, chunk allocation, LLM calls, duplicate removal, and dataset assembly
+    are one reproducible dataset-generation transaction.
+
     Returns:
         Structured dataset with metadata and questions
     """
@@ -318,6 +322,12 @@ def generate_questions_from_files(
 
 
 def main():
+    """Parse CLI options and generate the question dataset.
+
+    QUALITY: long-function-justification - argument parsing, credential validation,
+    file discovery, progress output, generation call, artifact write, and status code
+    stay together as the operator-facing CLI workflow.
+    """
     parser = argparse.ArgumentParser(
         description="Generate agriculture-domain questions from documents"
     )
